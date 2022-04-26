@@ -18,9 +18,13 @@ namespace AppGestionAgenceVoyage
 {
     public partial class MainWindow : Window
     {
+
+        private MainWindowViewModel _viewModel;
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel = new MainWindowViewModel();
+            _viewModel.DataBidonnage();
         }
 
         private void ButtonLogin_MouseEnter(object sender, MouseEventArgs e)
@@ -32,5 +36,11 @@ namespace AppGestionAgenceVoyage
         {
             ButtonLogin.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
         }
+
+        private void ButtonLogin_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.LoginCheck(TextboxUsername.Text, TextboxPassword.Text);
+        }
+
     }
 }

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DataContainer.cs" />
     <Compile Include="Destination.cs" />
+    <Compile Include="ILoginUtility.cs" />
     <Compile Include="MoyenDeTransport.cs" />
     <Compile Include="Voyage.cs" />
     <Compile Include="Voyageur.cs" />

@@ -42,9 +42,9 @@
                 Height="25"/>
         </Button>
 
-            <!-- Nom d'utilisateur -->
+        <!-- Nom d'utilisateur -->
 
-            <StackPanel HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2" Height="30" Orientation="Horizontal">
+        <StackPanel HorizontalAlignment="Left" Grid.Column="2" Grid.Row="2" Height="30" Orientation="Horizontal">
             <Label Content="Nom d'utilisateur : "
                    FontSize="15"
                    FontFamily="Segoe UI Semibold"/>
@@ -54,7 +54,8 @@
                      Height="24"/>
         </StackPanel>
 
-        <!-- Mot de passe -->
+        <!-- Mot de passe  -->
+        <!-- Ne pas oublier de le mettre en "passwordBox" pour le projet -->
 
         <StackPanel HorizontalAlignment="Left" Grid.Column="2" Grid.Row="3" Height="30" Orientation="Horizontal">
             <Label Grid.Column="1" Grid.Row="2"
@@ -77,7 +78,9 @@
                     BorderBrush="#f58735"
                     Background="#f58735"
                     MouseEnter="ButtonLogin_MouseEnter"
-                    MouseLeave="ButtonLogin_MouseLeave">
+                    MouseLeave="ButtonLogin_MouseLeave" Click="ButtonLogin_Click">
+
+                <!-- Permet de changer le template par défaut du mouse over -->
 
                 <Button.Style>
                     <Style TargetType="{x:Type Button}">
@@ -101,8 +104,6 @@
 
             </Button>
         </StackPanel>
-
-
 
     </Grid>
 </Window>

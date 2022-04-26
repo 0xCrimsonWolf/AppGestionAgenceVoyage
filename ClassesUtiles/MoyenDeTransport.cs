@@ -25,13 +25,5 @@ namespace ClassesUtiles
             _nbrPassager = 0;
             _chargeUtile = 0;
         }
-
-        public MoyenDeTransport()
-        {
-            _nom = null;
-            _type = null;
-            _nbrPassager = 0;
-            _chargeUtile = 0;
-        }
     }
 }
