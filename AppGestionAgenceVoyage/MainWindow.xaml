@@ -62,7 +62,7 @@
                    Content="Mot de passe : "
                    FontSize="15"
                    FontFamily="Segoe UI Semibold"/>
-            <TextBox x:Name="TextboxPassword"
+            <PasswordBox x:Name="TextboxPassword"
                      FontSize="15"
                      Width="178" Height="24"/>
         </StackPanel>

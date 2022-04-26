@@ -9,9 +9,8 @@ using ClassesUtiles;
 
 namespace AppGestionAgenceVoyage
 {
-    internal class MainWindowViewModel : ILoginUtility
+    public class MainWindowViewModel : ILoginUtility
     {
-
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "LOGIN_PASSWORD";
         const string keyName = userRoot + "\\" + subkey;
@@ -30,10 +29,16 @@ namespace AppGestionAgenceVoyage
         }
         public bool LoginCheck(string username, string password)
         {
-            MessageBox.Show("USER : " + username + "\nPASSWORD : " + password + "\n");
             if (LoginCheckRegistry(username, password))
-                MessageBox.Show("GG !");
-
+            {
+                /*ApplicationWindow applicationWindow;
+                applicationWindow = new ApplicationWindow();
+                applicationWindow.Show();*/
+            }
+            else
+            {
+                MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
             return true;
         }
 
@@ -47,6 +52,5 @@ namespace AppGestionAgenceVoyage
             else 
                 return false;
         }
-
     }
 }

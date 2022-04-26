@@ -8,6 +8,7 @@ namespace ClassesUtiles
 {
     public interface ILoginUtility
     {
+        bool LoginCheck(string username, string password);
         bool LoginCheckRegistry(string username, string password);
     }
 }

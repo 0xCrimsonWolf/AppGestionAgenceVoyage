@@ -23,6 +23,11 @@ namespace AppGestionAgenceVoyage
         public MainWindow()
         {
             InitializeComponent();
+
+            ApplicationWindow applicationWindow;
+            applicationWindow = new ApplicationWindow();
+            applicationWindow.Show();
+
             _viewModel = new MainWindowViewModel();
             _viewModel.DataBidonnage();
         }
@@ -39,8 +44,7 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.LoginCheck(TextboxUsername.Text, TextboxPassword.Text);
+            _viewModel.LoginCheck(TextboxUsername.Text, TextboxPassword.Password.ToString());
         }
-
     }
 }
