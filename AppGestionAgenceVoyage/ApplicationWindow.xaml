@@ -5,21 +5,22 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
-        Title="TravelAgency Application" Height="600" Width="1200" Icon="D:\Images\TroisLignes_1.png">
-    <Grid>
+        Title="TravelAgency Application" Height="600" Width="1200" MinHeight="600" MinWidth="1200" Icon="D:\Images\TroisLignes_1.png">
+    <Grid Margin="-4,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="55"/>
             <RowDefinition Height="5"/>
+            <RowDefinition Height="515"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="2">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="1">
 
             <StackPanel Orientation="Vertical">
                 <Label Grid.Column="1"
@@ -31,7 +32,7 @@
                    FontWeight="Bold"
                    Foreground="#f58735"
                    HorizontalAlignment="Left"
-                   VerticalAlignment="Top" Margin="0,-10,0,0"/>
+                   VerticalAlignment="Top" Margin="5,-10,0,0"/>
 
                 <Label Grid.Row="1"
                    Grid.Column="1"
@@ -44,18 +45,205 @@
                    Foreground="#00afef"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Margin="0,-16,0,0"/>
+                   Margin="5,-14,0,0"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal">
-                <Button Content="Hallo" Width="200"/>
+                <Button x:Name="ButtonNavClient"
+                        Content="Espace Client"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Width="120"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0, 0, -1, 0" MouseEnter="ButtonNavClient_MouseEnter" MouseLeave="ButtonNavClient_MouseLeave" Click="ButtonNavClient_Click">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="#f58735"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#f58735"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="ButtonNavXXX5"
+                        Content="Espace Client"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Width="200"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0, 0, -1, 0">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="ButtonNavXXX1"
+                        Content="Espace Client"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Width="200"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0, 0, -1, 0">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="ButtonNavXXX2"
+                        Content="Espace Client"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Width="200"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0, 0, -1, 0">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="ButtonNavXXX3"
+                        Content="Espace Client"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Width="200"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0, 0, -1, 0">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
+                <Button x:Name="ButtonNavParametres"
+                        Width="50"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0, 0, -1, 0">
+                    <Image Source="D:\Images\TroisLignes.png"
+                        Width="30"
+                        Height="30"/>
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}">
+                            <Setter Property="Background" Value="Black"/>
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type Button}">
+                                        <Border Background="{TemplateBinding Background}">
+                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="Black"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
-
         </StackPanel>
 
-        <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
-            <Label Background="DarkBlue"/>
-        </StackPanel>
+        <ListView x:Name="ListViewClient"
+                  Grid.Column="2"
+                  Grid.Row="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Prenom" Width="50"/>
+                    <GridViewColumn Header="Nom"/>
+                    <GridViewColumn Header="Sexe"/>
+                    <GridViewColumn Header="Date de naissance"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
 
     </Grid>
 </Window>

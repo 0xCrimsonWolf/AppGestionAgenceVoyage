@@ -23,5 +23,20 @@ namespace AppGestionAgenceVoyage
         {
             InitializeComponent();
         }
+
+        private void ButtonNavClient_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavClient.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavClient_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavClient.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+        }
+
+        private void ButtonNavClient_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
