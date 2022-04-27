@@ -8,22 +8,27 @@
         Title="TravelAgency Application" Height="600" Width="1200" MinHeight="600" MinWidth="1200" Icon="D:\Images\TroisLignes_1.png">
     <Grid Margin="-4,0,0,0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="15"/>
+            <ColumnDefinition Width="170"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="20*"/>
             <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="20*"/>
+            <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="55"/>
-            <RowDefinition Height="5"/>
-            <RowDefinition Height="515"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="50*"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="1">
-
-            <StackPanel Orientation="Vertical">
-                <Label Grid.Column="1"
+        <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="1">
+            <Label Grid.Column="1"
                    Height="50"
                    Width="170"
                    Content="Travel Agency" 
@@ -32,9 +37,9 @@
                    FontWeight="Bold"
                    Foreground="#f58735"
                    HorizontalAlignment="Left"
-                   VerticalAlignment="Top" Margin="5,-10,0,0"/>
+                   VerticalAlignment="Top" Margin="10,-10,0,0"/>
 
-                <Label Grid.Row="1"
+            <Label Grid.Row="1"
                    Grid.Column="1"
                    Height="30"
                    Width="150"
@@ -45,205 +50,344 @@
                    Foreground="#00afef"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"
-                   Margin="5,-14,0,0"/>
-            </StackPanel>
-
-            <StackPanel Orientation="Horizontal">
-                <Button x:Name="ButtonNavClient"
-                        Content="Espace Client"
-                        FontFamily="Saira condensed bold"
-                        FontSize="20"
-                        Width="120"
-                        Background="#f58735"
-                        BorderBrush="#f58735"
-                        BorderThickness="0"
-                        Margin="0, 0, -1, 0" MouseEnter="ButtonNavClient_MouseEnter" MouseLeave="ButtonNavClient_MouseLeave" Click="ButtonNavClient_Click">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="#f58735"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="#f58735"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button x:Name="ButtonNavXXX5"
-                        Content="Espace Client"
-                        FontFamily="Saira condensed bold"
-                        FontSize="20"
-                        Width="200"
-                        Background="#f58735"
-                        BorderBrush="#f58735"
-                        BorderThickness="0"
-                        Margin="0, 0, -1, 0">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Black"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button x:Name="ButtonNavXXX1"
-                        Content="Espace Client"
-                        FontFamily="Saira condensed bold"
-                        FontSize="20"
-                        Width="200"
-                        Background="#f58735"
-                        BorderBrush="#f58735"
-                        BorderThickness="0"
-                        Margin="0, 0, -1, 0">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Black"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button x:Name="ButtonNavXXX2"
-                        Content="Espace Client"
-                        FontFamily="Saira condensed bold"
-                        FontSize="20"
-                        Width="200"
-                        Background="#f58735"
-                        BorderBrush="#f58735"
-                        BorderThickness="0"
-                        Margin="0, 0, -1, 0">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Black"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button x:Name="ButtonNavXXX3"
-                        Content="Espace Client"
-                        FontFamily="Saira condensed bold"
-                        FontSize="20"
-                        Width="200"
-                        Background="#f58735"
-                        BorderBrush="#f58735"
-                        BorderThickness="0"
-                        Margin="0, 0, -1, 0">
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Black"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-
-                <Button x:Name="ButtonNavParametres"
-                        Width="50"
-                        Background="#f58735"
-                        BorderBrush="#f58735"
-                        BorderThickness="0"
-                        Margin="0, 0, -1, 0">
-                    <Image Source="D:\Images\TroisLignes.png"
-                        Width="30"
-                        Height="30"/>
-                    <Button.Style>
-                        <Style TargetType="{x:Type Button}">
-                            <Setter Property="Background" Value="Black"/>
-                            <Setter Property="Template">
-                                <Setter.Value>
-                                    <ControlTemplate TargetType="{x:Type Button}">
-                                        <Border Background="{TemplateBinding Background}">
-                                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                        </Border>
-                                    </ControlTemplate>
-                                </Setter.Value>
-                            </Setter>
-                            <Style.Triggers>
-                                <Trigger Property="IsMouseOver" Value="True">
-                                    <Setter Property="Background" Value="Black"/>
-                                </Trigger>
-                            </Style.Triggers>
-                        </Style>
-                    </Button.Style>
-                </Button>
-            </StackPanel>
+                   Margin="10,-14,0,0"/>
         </StackPanel>
 
+        <Label Grid.Column="2" Grid.Row="0"
+               Width="12"
+               HorizontalAlignment="Left"
+               Foreground="#f58735">
+            <Label.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#f58735" Offset="0"/>
+                    <GradientStop Color="#00afef" Offset="0.75"/>
+                    <GradientStop Color="#f58735" Offset="0.20"/>
+                </LinearGradientBrush>
+            </Label.Background>
+        </Label>
+
+        <!-- BARRE DE NAVIGATION -->
+
+        <Button x:Name="ButtonNavClient"
+                        Content="Espace Client"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0,0,-1,0"
+                        Grid.Column="3"
+                        Grid.Row="0" MouseEnter="ButtonNavClient_MouseEnter" MouseLeave="ButtonNavClient_MouseLeave" Click="ButtonNavClient_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="ButtonNavClient111"
+                        Content="ichliebedih"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0,0,-1,0"
+                        Grid.Column="4" Grid.Row="0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="ButtonNavClient11741"
+                        Content="i love you"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0,0,-1,0"
+                        Grid.Column="5" Grid.Row="0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="ButtonNavClient1115"
+                        Content="Reton"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0,0,-1,0"
+                        Grid.Column="6" Grid.Row="0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="ButtonNavClient17115"
+                        Content="Reton"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0,0,-1,0"
+                        Grid.Column="7" Grid.Row="0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="ButtonNavClient171175"
+                        Content="Reton"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Margin="0,0,-1,0"
+                        Grid.Column="8" Grid.Row="0">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <Button x:Name="ButtonNavParametres"
+                        FontFamily="Saira condensed bold"
+                        FontSize="20"
+                        Background="#f58735"
+                        BorderBrush="#f58735"
+                        BorderThickness="0"
+                        Grid.Column="9"
+                        Grid.ColumnSpan="2" Grid.Row="0">
+
+            <Image Source="D:\Images\TroisLignes.png"
+                   Width="35"
+                   Height="35"/>
+
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
+
+        <!-- ESPACE CLIENT -->
+
         <ListView x:Name="ListViewClient"
-                  Grid.Column="2"
-                  Grid.Row="2">
+                  Grid.Column="6"
+                  Grid.ColumnSpan="4"
+                  Grid.Row="2"
+                  BorderBrush="{x:Null}"
+                  Background="{x:Null}"
+                  FontFamily="Saira condensed bold"
+                  FontSize="15"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Prenom" Width="50"/>
-                    <GridViewColumn Header="Nom"/>
-                    <GridViewColumn Header="Sexe"/>
-                    <GridViewColumn Header="Date de naissance"/>
+                    <GridViewColumn Header="Prenom" Width="120"/>
+                    <GridViewColumn Header="Nom" Width="120"/>
+                    <GridViewColumn Header="Sexe" Width="110"/>
+                    <GridViewColumn Header="Date de naissance" Width="170"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
+
+        <StackPanel x:Name="PanelLabelClient" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="125">
+            <Label Content="Prénom : "
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelPrenom"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+            <Label Content="Nom : "
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelNom"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+            <Label Content="Sexe : "
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelSexe"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+            <Label Content="Date de naissance : "
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelDateNaissance"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+        </StackPanel>
+
+        <StackPanel x:Name="PanelTextClient" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="125">
+            <TextBox x:Name="TextBoxPrenom"
+                         FontSize="15"
+                         Margin="0,4,0,5"
+                         Width="190"
+                         Height="24"/>
+
+            <TextBox x:Name="TextBoxNom"
+                         FontSize="15"
+                         Margin="0,0,0,6"
+                         Width="190"
+                         Height="24"/>
+
+            <TextBox x:Name="TextBoxSexe"
+                         FontSize="15"
+                         Margin="0,0,0,5"
+                         Width="190"
+                         Height="24"/>
+
+            <DatePicker x:Name="DatePickerDateNaissance"
+                            FontSize="15"
+                            FontFamily="Segoe UI Semibold"
+                            Width="190"
+                            Height="26"
+                            BorderBrush="#FFABADB3"
+                            Foreground="Black"/>
+        </StackPanel>
+
+        <StackPanel x:Name="PanelButtonClient" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,133,125" Height="100" Width="370">
+            <Button x:Name="ButtonAjouterClient"
+                    Content="Ajouter"
+                    FontSize="15"
+                    FontFamily="Segoe UI Semibold"
+                    HorizontalAlignment="Left"
+                    Height="30"
+                    Width="355"
+                    Margin="0,0,0,10"
+                    Background="#f58735"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button x:Name="ButtonModifierClient"
+                    Content="Modifier"
+                    FontSize="15"
+                    FontFamily="Segoe UI Semibold"
+                    Height="30"
+                    Width="175"
+                    Margin="0,0,10,0"
+                    Background="#f58735"/>
+                <Button x:Name="ButtonSupprimerClient"
+                    Content="Supprimer"
+                    FontSize="15"
+                    FontFamily="Segoe UI Semibold"
+                    Height="30"
+                    Width="170"
+                    Background="#f58735"/>
+            </StackPanel>
+        </StackPanel>
 
     </Grid>
 </Window>

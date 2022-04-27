@@ -36,7 +36,10 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonNavClient_Click(object sender, RoutedEventArgs e)
         {
-
+            PanelLabelClient.Visibility = Visibility.Visible;
+            PanelTextClient.Visibility = Visibility.Visible;
+            PanelButtonClient.Visibility = Visibility.Visible;
+            ListViewClient.Visibility = Visibility.Visible;
         }
     }
 }
