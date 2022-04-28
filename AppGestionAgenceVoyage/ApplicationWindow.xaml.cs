@@ -14,14 +14,16 @@ using System.Windows.Shapes;
 
 namespace AppGestionAgenceVoyage
 {
-    /// <summary>
-    /// Logique d'interaction pour ApplicationWindow.xaml
-    /// </summary>
     public partial class ApplicationWindow : Window
     {
+
+        private MainWindowViewModel _viewModel;
         public ApplicationWindow()
         {
             InitializeComponent();
+
+            _viewModel = new MainWindowViewModel();
+            DataContext = _viewModel;
         }
 
         private void ButtonNavClient_MouseEnter(object sender, MouseEventArgs e)
@@ -40,6 +42,26 @@ namespace AppGestionAgenceVoyage
             PanelTextClient.Visibility = Visibility.Visible;
             PanelButtonClient.Visibility = Visibility.Visible;
             ListViewClient.Visibility = Visibility.Visible;
+        }
+
+        private void ListViewClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.CurrentVoyageur = ListViewClient.SelectedItem as ClassesUtiles.Voyageur;
+        }
+
+        private void ButtonAjouterClient_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.AddClient(TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString());
+        }
+
+        private void ButtonModifierClient_Click(object sender, RoutedEventArgs e)
+        {
+            // cc
+        }
+
+        private void ButtonSupprimerClient_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

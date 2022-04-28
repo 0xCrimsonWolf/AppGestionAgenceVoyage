@@ -1,40 +1,93 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ClassesUtiles
 {
-    public class Voyageur
+    public class Voyageur : INotifyPropertyChanged
     {
         private string _nom;
         private string _prenom;
-        private bool _sexe;
-        private DateTime _datenaissance;
+        private string _sexe;
+        private string _datenaissance;
 
-        public string Nom { get => _nom; set => _nom = value; }
-        public string Prenom { get => _prenom; set => _prenom = value; }
-        public bool Sexe { get => _sexe; set => _sexe = value; }
-        public DateTime Datenaissance { get => _datenaissance; set => _datenaissance = value; }
-
-        public Voyageur()
+        public string Nom
         {
-            _nom = "Debras";
-            _prenom = "Tom";
-            _sexe = true;
-            _datenaissance = new DateTime(2002, 03, 14);
+            get { return _nom; }
+            set 
+            {
+                _nom = value;
+                OnPropertyChanged();
+            }
         }
+
+        public string Prenom
+        {
+            get { return _prenom; }
+            set 
+            {
+                _prenom = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string Sexe
+        {
+            get { return _sexe; }
+            set 
+            {
+                _sexe = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public string DateNaissance
+        {
+            get { return _datenaissance; }
+            set
+            {
+                _datenaissance = value;
+                OnPropertyChanged();
+            }
+        }
+        
+
+
+        public Voyageur(string prenom, string nom, string sexe, string datenaissance)
+        { 
+            Prenom = prenom;
+            Nom = nom;
+            Sexe = sexe;
+            DateNaissance = datenaissance;
+        }
+
+        public Voyageur() : this("Default", "Default", "H", "99/99/9999")
+        { }
 
         public int getAge()
         {
             DateTime currentDate = DateTime.Now;
-            DateTime naissance = _datenaissance;
+            DateTime naissance =  DateTime.Parse(_datenaissance);
             int age;
             
             age = currentDate.Year - naissance.Year;
 
             return age;
+        }
+
+        public override string ToString()
+        {
+            return Nom + " " + Prenom + " " + Sexe + " " + DateNaissance;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyname = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
     }
 }

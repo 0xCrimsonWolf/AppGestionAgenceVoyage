@@ -6,16 +6,37 @@ using Microsoft.Win32;
 using System.Text;
 using System.Threading.Tasks;
 using ClassesUtiles;
+using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
+using System.ComponentModel;
 
 namespace AppGestionAgenceVoyage
 {
-    public class MainWindowViewModel : ILoginUtility
+    internal class MainWindowViewModel : INotifyPropertyChanged, ILoginUtility
     {
+        public ObservableCollection<Voyageur> ListeVoyageur { get; set; }
+        private Voyageur _voyageur;
+
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "LOGIN_PASSWORD";
         const string keyName = userRoot + "\\" + subkey;
         public MainWindowViewModel()
-        {}
+        {
+            ListeVoyageur = new ObservableCollection<Voyageur>();
+            ListeVoyageur.Add(new Voyageur("Thomas", "Jehasse", "H", "20/04/2002"));
+            ListeVoyageur.Add(new Voyageur());
+            ListeVoyageur.Add(new Voyageur());
+        }
+
+        public Voyageur CurrentVoyageur
+        {
+            get { return _voyageur; }
+            set
+            {
+                _voyageur = value;
+                OnPropertyChanged();
+            }
+        }
 
         public void DataBidonnage()
         {
@@ -51,6 +72,27 @@ namespace AppGestionAgenceVoyage
                 return true;
             else 
                 return false;
+        }
+
+        public bool AddClient(string prenom, string nom, string sexe, string datenaissance)
+        {
+            if (prenom == "" || nom == "" || sexe == "" || datenaissance == "")
+            {
+                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else
+            {
+                DateTime naiss = DateTime.Parse(datenaissance);
+                ListeVoyageur.Add(new Voyageur(prenom, nom, sexe, naiss.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"))));
+                return true;
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged([CallerMemberName] string propertyname = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
         }
     }
 }

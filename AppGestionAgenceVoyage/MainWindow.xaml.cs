@@ -24,9 +24,13 @@ namespace AppGestionAgenceVoyage
         {
             InitializeComponent();
 
+            // Pour le test
+
             ApplicationWindow applicationWindow;
             applicationWindow = new ApplicationWindow();
             applicationWindow.Show();
+
+            // ---
 
             _viewModel = new MainWindowViewModel();
             _viewModel.DataBidonnage();

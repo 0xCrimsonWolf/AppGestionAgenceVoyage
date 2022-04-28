@@ -5,7 +5,7 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TEST", "TEST\TEST.csproj", "{FC231615-83F9-4B22-8F8A-3123ABE5C9C1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassesUtiles", "ClassesUtiles\ClassesUtiles.csproj", "{560D4C7D-013F-483B-8D43-B1693B913B94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "ClassesUtiles\Model.csproj", "{560D4C7D-013F-483B-8D43-B1693B913B94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppGestionAgenceVoyage", "AppGestionAgenceVoyage\AppGestionAgenceVoyage.csproj", "{8C32BD16-DC58-454C-AE61-70B9B38A7A43}"
 EndProject

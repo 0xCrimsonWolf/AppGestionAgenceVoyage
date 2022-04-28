@@ -103,9 +103,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ClassesUtiles\ClassesUtiles.csproj">
+    <ProjectReference Include="..\ClassesUtiles\Model.csproj">
       <Project>{560d4c7d-013f-483b-8d43-b1693b913b94}</Project>
-      <Name>ClassesUtiles</Name>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
