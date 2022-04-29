@@ -40,13 +40,15 @@ namespace AppGestionAgenceVoyage
 
         public void DataBidonnage()
         {
-            RegistryKey key;
+            // Vérifier si déjà pas créé grâce potentiellement à check si "admin" a bien été créé
+
+            /*RegistryKey key;
             key = Registry.CurrentUser.CreateSubKey("LOGIN_PASSWORD");
             key.SetValue("Marie", "azerty");
             key.SetValue("Kentin", "abc123");
             key.SetValue("Bunyamin", "bubu456");
             key.SetValue("admin", "admin");
-            key.Close();
+            key.Close();*/
         }
         public bool LoginCheck(string username, string password)
         {
@@ -87,6 +89,34 @@ namespace AppGestionAgenceVoyage
                 ListeVoyageur.Add(new Voyageur(prenom, nom, sexe, naiss.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"))));
                 return true;
             }
+        }
+
+        public bool ModifyClient(Voyageur voy, int num, string prenom, string nom, string sexe, string datenaissance)
+        {
+            if (voy == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un client", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (prenom == "" || nom == "" || sexe == "" || datenaissance == "")
+            {
+                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier " + ListeVoyageur[num].Prenom + " " + ListeVoyageur[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                ListeVoyageur[num].Nom = nom;
+                ListeVoyageur[num].Prenom = prenom;
+                ListeVoyageur[num].Sexe = sexe;
+                DateTime naissance = DateTime.Parse(datenaissance);
+                ListeVoyageur[num].DateNaissance = naissance.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"));
+                return true;
+            }
+            
+            return false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ClassesUtiles;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -56,7 +57,15 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonModifierClient_Click(object sender, RoutedEventArgs e)
         {
-            // cc
+            bool result;
+            result = _viewModel.ModifyClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex, TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString());
+            if (result)
+            {
+                TextBoxPrenom.Clear();
+                TextBoxNom.Clear();
+                TextBoxSexe.Clear();
+                DatePickerDateNaissance.SelectedDate = null;
+            }
         }
 
         private void ButtonSupprimerClient_Click(object sender, RoutedEventArgs e)

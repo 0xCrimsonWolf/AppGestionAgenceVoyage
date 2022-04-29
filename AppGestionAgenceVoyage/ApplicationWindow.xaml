@@ -346,18 +346,21 @@
                          Height="24"/>
 
             <TextBox x:Name="TextBoxNom"
+                         Text="{Binding CurrentVoyageur.Nom, Mode=OneWay}"
                          FontSize="15"
                          Margin="0,0,0,6"
                          Width="190"
                          Height="24"/>
 
             <TextBox x:Name="TextBoxSexe"
+                         Text="{Binding CurrentVoyageur.Sexe, Mode=OneWay}"
                          FontSize="15"
                          Margin="0,0,0,5"
                          Width="190"
                          Height="24"/>
 
             <DatePicker x:Name="DatePickerDateNaissance"
+                            Text="{Binding CurrentVoyageur.DateNaissance, Mode=OneWay}"
                             FontSize="15"
                             FontWeight="Black"
                             FontFamily="Segoe UI Semibold"
@@ -385,7 +388,8 @@
                     Height="30"
                     Width="175"
                     Margin="0,0,10,0"
-                    Background="#f58735"/>
+                    Background="#f58735"
+                    Click="ButtonModifierClient_Click"/>
                 <Button x:Name="ButtonSupprimerClient"
                     Content="Supprimer"
                     FontSize="15"

@@ -65,7 +65,7 @@ namespace ClassesUtiles
             DateNaissance = datenaissance;
         }
 
-        public Voyageur() : this("Default", "Default", "H", "99/99/9999")
+        public Voyageur() : this("Default", "Default", "H", "01/01/2000")
         { }
 
         public int getAge()
