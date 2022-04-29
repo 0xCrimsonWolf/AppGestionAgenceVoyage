@@ -27,6 +27,8 @@ namespace AppGestionAgenceVoyage
             DataContext = _viewModel;
         }
 
+        #region Navigation Bouton "Espace Client"
+
         private void ButtonNavClient_MouseEnter(object sender, MouseEventArgs e)
         {
             ButtonNavClient.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
@@ -44,6 +46,26 @@ namespace AppGestionAgenceVoyage
             PanelButtonClient.Visibility = Visibility.Visible;
             ListViewClient.Visibility = Visibility.Visible;
         }
+
+        #endregion
+
+        #region Navigation "Destination"
+        private void ButtonNavClientDestination_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavDestination.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavClientDestination_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavDestination.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+        }
+
+        private void ButtonNavClientDestination_Click(object sender, RoutedEventArgs e)
+        {
+            // Visibilité des panels
+        }
+
+        #endregion
 
         private void ListViewClient_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -70,7 +92,7 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonSupprimerClient_Click(object sender, RoutedEventArgs e)
         {
-
+            _viewModel.DeleteClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex);
         }
     }
 }

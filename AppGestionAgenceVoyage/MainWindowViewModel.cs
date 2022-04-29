@@ -105,7 +105,7 @@ namespace AppGestionAgenceVoyage
                 return false;
             }
 
-            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier " + ListeVoyageur[num].Prenom + " " + ListeVoyageur[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier" + ListeVoyageur[num].Prenom + " " + ListeVoyageur[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 ListeVoyageur[num].Nom = nom;
@@ -116,6 +116,28 @@ namespace AppGestionAgenceVoyage
                 return true;
             }
             
+            return false;
+        }
+
+        public bool DeleteClient(Voyageur voy, int num)
+        {
+            if (voy == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un client", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer" + ListeVoyageur[num].Prenom + " " + ListeVoyageur[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                ListeVoyageur.Remove(voy);
+                return true;
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                return false;
+            }
+
             return false;
         }
 

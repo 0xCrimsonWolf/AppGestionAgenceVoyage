@@ -104,15 +104,15 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="ButtonNavClient111"
-                        Content="ichliebedih"
+        <Button x:Name="ButtonNavDestination"
+                        Content="Destination"
                         FontFamily="Saira condensed bold"
                         FontSize="20"
                         Background="#f58735"
                         BorderBrush="#f58735"
                         BorderThickness="0"
                         Margin="0,0,-1,0"
-                        Grid.Column="4" Grid.Row="0">
+                        Grid.Column="4" Grid.Row="0" Click="ButtonNavClientDestination_Click" MouseEnter="ButtonNavClientDestination_MouseEnter" MouseLeave="ButtonNavClientDestination_MouseLeave">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#f58735"/>
@@ -288,9 +288,11 @@
             </Button.Style>
         </Button>
 
+        <!-- PAGE DE BIENVENUE / ACCUEIL -->
+
         <!-- NAV. ESPACE CLIENT -->
 
-        <ListView x:Name="ListViewClient"
+        <ListView x:Name="ListViewClient" Visibility="Hidden"
                   Grid.Column="6"
                   Grid.ColumnSpan="4"
                   Grid.Row="2"
@@ -311,7 +313,7 @@
             </ListView.View>
         </ListView>
 
-        <StackPanel x:Name="PanelLabelClient" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="125">
+        <StackPanel x:Name="PanelLabelClient" Visibility="Hidden" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="125">
             <Label Content="Prénom"
                        Grid.ColumnSpan="2"
                        x:Name="LabelPrenom"
@@ -337,7 +339,7 @@
                        FontFamily="Segoe UI Semibold"/>
         </StackPanel>
 
-        <StackPanel x:Name="PanelTextClient" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="125">
+        <StackPanel x:Name="PanelTextClient" Visibility="Hidden" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="125">
             <TextBox x:Name="TextBoxPrenom"
                          Text="{Binding CurrentVoyageur.Prenom, Mode=OneWay}"
                          FontSize="15"
@@ -370,7 +372,7 @@
                             Foreground="Black" Background="White"/>
         </StackPanel>
 
-        <StackPanel x:Name="PanelButtonClient" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,133,125" Height="100" Width="370">
+        <StackPanel x:Name="PanelButtonClient" Visibility="Hidden" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,133,125" Height="100" Width="370">
             <Button x:Name="ButtonAjouterClient"
                     Content="Ajouter"
                     FontSize="15"
@@ -399,6 +401,8 @@
                     Background="#f58735" Click="ButtonSupprimerClient_Click"/>
             </StackPanel>
         </StackPanel>
+        
+        <!-- NAV. DESTINATION -->
 
     </Grid>
 </Window>
