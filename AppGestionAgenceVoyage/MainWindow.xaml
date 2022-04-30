@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         xmlns:gif="http://wpfanimatedgif.codeplex.com"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="500" Width="450" ResizeMode="NoResize">
+        Title="LoginWindow" Height="500" Width="450" ResizeMode="NoResize" Icon="D:\Images\TroisLignes_1.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -54,7 +54,6 @@
         </StackPanel>
 
         <!-- Mot de passe  -->
-        <!-- Ne pas oublier de le mettre en "passwordBox" pour le projet -->
 
         <StackPanel HorizontalAlignment="Left" Grid.Column="2" Grid.Row="3" Height="30" Orientation="Horizontal">
             <Label Grid.Column="1" Grid.Row="2"

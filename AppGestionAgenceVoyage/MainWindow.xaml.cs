@@ -24,14 +24,6 @@ namespace AppGestionAgenceVoyage
         {
             InitializeComponent();
 
-            // Pour le test
-
-            ApplicationWindow applicationWindow;
-            applicationWindow = new ApplicationWindow();
-            applicationWindow.Show();
-
-            // ---
-
             _viewModel = new MainWindowViewModel();
             _viewModel.DataBidonnage();
         }
@@ -48,7 +40,10 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.LoginCheck(TextboxUsername.Text, TextboxPassword.Password.ToString());
-        }
+            bool result;
+            result = _viewModel.LoginCheck(TextboxUsername.Text, TextboxPassword.Password.ToString());
+            if (result)
+                this.Close();
+        }   
     }
 }

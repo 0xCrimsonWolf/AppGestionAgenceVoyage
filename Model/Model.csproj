@@ -46,6 +46,8 @@
     <Compile Include="ILoginUtility.cs" />
     <Compile Include="MoyenDeTransport.cs" />
     <Compile Include="TransportAerien.cs" />
+    <Compile Include="TransportMarin.cs" />
+    <Compile Include="TransportTerrestre.cs" />
     <Compile Include="Voyage.cs" />
     <Compile Include="Voyageur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
