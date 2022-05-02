@@ -30,12 +30,12 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonLogin_MouseEnter(object sender, MouseEventArgs e)
         {
-            ButtonLogin.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+            ButtonLogin.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(77, 199, 243));
         }
 
         private void ButtonLogin_MouseLeave(object sender, MouseEventArgs e)
         {
-            ButtonLogin.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+            ButtonLogin.Background = new SolidColorBrush(System.Windows.Media.Color.FromRgb(245, 135, 53));
         }
 
         private void ButtonLogin_Click(object sender, RoutedEventArgs e)

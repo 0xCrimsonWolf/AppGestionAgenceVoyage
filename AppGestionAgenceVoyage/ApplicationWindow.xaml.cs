@@ -17,8 +17,10 @@ namespace AppGestionAgenceVoyage
 {
     public partial class ApplicationWindow : Window
     {
-
         private MainWindowViewModel _viewModel;
+        public static RoutedCommand commandes = new RoutedCommand();
+
+        private static string _root;
         public ApplicationWindow(string pseudoAffich)
         {
             InitializeComponent();
@@ -26,6 +28,16 @@ namespace AppGestionAgenceVoyage
             _viewModel = new MainWindowViewModel();
             DataContext = _viewModel;
             LabelPrenomBVN.Content = pseudoAffich;
+            commandes.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));       // Permet le ctrl + s
+        }
+
+        public string Root
+        {
+            get { return _root; }
+            set
+            {
+                _root = value;
+            }
         }
 
         #region Bouton Bienvenue / Accueil
@@ -165,5 +177,28 @@ namespace AppGestionAgenceVoyage
         }
 
         #endregion
+
+        private void ButtonNavParametres_Click(object sender, RoutedEventArgs e)
+        {
+            // Obligé de s'abonner ici car dans le MainWindowViewModel ça ne reconnait pas bien ?
+
+            OptionsWindow optionsWindow = new OptionsWindow(Root);
+            optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
+            optionsWindow.ShowDialog();
+        }
+
+        private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)        // CTRL + S
+        {
+            // Vérifier si il a bien entré un chemin d'accès avant sinon lui ouvrir les paramètres
+
+            OptionsWindow optionsWindow = new OptionsWindow(Root);
+            optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
+            optionsWindow.ShowDialog();
+        }
+
+        private void OptionsWindow_OptionEvent(object sender, OptionsEvent e)
+        {
+            Root = e.SaveRoot;
+        }
     }
 }

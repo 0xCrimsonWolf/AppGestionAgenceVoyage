@@ -1,0 +1,19 @@
+﻿<Window x:Class="AppGestionAgenceVoyage.OptionsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppGestionAgenceVoyage"
+        mc:Ignorable="d"
+        Title="OptionsWindow" Height="250" Width="400">
+    <Grid>
+        <Button x:Name="ButtonOpenFile"
+                Content="BlaBla"
+                Width="50"
+                Height="50" Click="ButtonOpenFile_Click"/>
+        <TextBox x:Name="TextboxFileDirectory"
+                 Height="20"
+                 Width="200"
+                 Margin="0,0,0,-100"/>
+    </Grid>
+</Window>

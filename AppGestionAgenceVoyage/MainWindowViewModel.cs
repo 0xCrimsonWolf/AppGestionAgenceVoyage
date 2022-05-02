@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace AppGestionAgenceVoyage
 {
@@ -19,6 +20,9 @@ namespace AppGestionAgenceVoyage
         private Voyageur _voyageur;
         public ObservableCollection<Destination> ListeDestination { get; set; }
         private Destination _destination;
+
+        public ObservableCollection<MoyenDeTransport> ListeTransport { get; set; }
+        private Destination _transport;
 
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "LOGIN_PASSWORD";
@@ -31,9 +35,16 @@ namespace AppGestionAgenceVoyage
             ListeVoyageur.Add(new Voyageur("Elise", "Mahieu", "F", "02/05/2010", "mahieuelise@gmail.com", "0499.03.69.50"));
 
             ListeDestination = new ObservableCollection<Destination>();
-            ListeDestination.Add(new Destination("Afrique", "Maroc", "Marakech", "Chaud"));
-            ListeDestination.Add(new Destination("Amérique du Nord", "Texas", "Houston", "Tempéré"));
-            ListeDestination.Add(new Destination("Europe", "Belgique", "Liège", "Froid"));
+            ListeDestination.Add(new Destination("Afrique", "Maroc", "Marakech", "Chaud", "https://flagcdn.com/w20/ma.png"));
+            ListeDestination.Add(new Destination("Amérique du Nord", "Texas", "Houston", "Tempéré", "https://flagcdn.com/w20/us-tx.png"));
+            ListeDestination.Add(new Destination("Europe", "Belgique", "Liège", "Froid", "https://flagcdn.com/w20/be.png"));
+
+            ListeTransport = new ObservableCollection<MoyenDeTransport>();
+            ListeTransport.Add(new TransportMarin("Bateau", 500, (float)10.5, "WaterBoat", "Ferry"));
+            ListeTransport.Add(new TransportAerien("Avion", 600, (float)100.7, "PowerPlane", "AirBus978"));
+            ListeTransport.Add(new Voiture("Audi", 6, (float)50.2, "CabrioletA3", "Essence", 3));
+            ListeTransport.Add(new Train("Thalys", 560, (float)900.5, "TGV"));
+            ListeTransport.Add(new Autocar("Leonard", 100, (float)50.6, "R203", "Diesel"));
         }
 
         public Voyageur CurrentVoyageur
@@ -56,6 +67,16 @@ namespace AppGestionAgenceVoyage
             }
         }
 
+        public Destination CurrentTransport
+        {
+            get { return _transport; }
+            set
+            {
+                _transport = value;
+                OnPropertyChanged();
+            }
+        }
+
         public void DataBidonnage()
         {
             if ((string)Registry.GetValue(keyName, "admin", null) != GetHashSHA256("admin"))
@@ -64,10 +85,10 @@ namespace AppGestionAgenceVoyage
 
                 RegistryKey key;
                 key = Registry.CurrentUser.CreateSubKey("LOGIN_PASSWORD");
-                key.SetValue("Marie", GetHashSHA256("azerty"));
-                key.SetValue("Kentin", GetHashSHA256("abc123"));
-                key.SetValue("Bunyamin", GetHashSHA256("bubu456"));
-                key.SetValue("admin", GetHashSHA256("admin"));
+                key.SetValue("Marie", "f2d81a260dea8a100dd517984e53c56a7523d96942a834b9cdc249bd4e8c7aa9");      // MDP en clair : azerty
+                key.SetValue("Kentin", "6ca13d52ca70c883e0f0bb101e425a89e8624de51db2d2392593af6a84118090");        // MDP en clair : abc123
+                key.SetValue("Bunyamin", "8987e1174cd9077ae12f1d37281889056c1c3f3f3fb00a2d0ee901ca2f017b15");     // MDP en clair : bubu456
+                key.SetValue("admin", "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918");      // MDP en clair : admin
                 key.Close();
             }
         }
@@ -78,6 +99,7 @@ namespace AppGestionAgenceVoyage
                 ApplicationWindow applicationWindow;
                 applicationWindow = new ApplicationWindow(username);
                 applicationWindow.Show();
+
                 return true;
             }
             else
@@ -186,7 +208,7 @@ namespace AppGestionAgenceVoyage
             }
             else
             {
-                ListeDestination.Add(new Destination(continent, country, city, climate));
+                ListeDestination.Add(new Destination(continent, country, city, climate, "blbl"));
                 return true;
             }
         }
@@ -240,6 +262,17 @@ namespace AppGestionAgenceVoyage
         }
 
         #endregion
+
+        public string BrowseFileDirectory()
+        {
+            System.Windows.Forms.FolderBrowserDialog openFileDlg = new System.Windows.Forms.FolderBrowserDialog();
+            var result = openFileDlg.ShowDialog();
+            if (result.ToString() != string.Empty)
+            {
+                return openFileDlg.SelectedPath;
+            }
+            return "null";
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)
