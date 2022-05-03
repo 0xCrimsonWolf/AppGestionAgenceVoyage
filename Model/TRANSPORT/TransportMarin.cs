@@ -12,7 +12,6 @@ namespace Model
     {
         private string _compagnieMaritime;
         private string _modeleBateau;
-        private string _image;
 
         public string CompagnieMaritime
         {
@@ -32,28 +31,17 @@ namespace Model
             }
         }
 
-        public string Image
-        {
-            get { return _image; }
-            set
-            {
-                _image = value;
-            }
-        }
-
         public TransportMarin() : base()
         {
             CompagnieMaritime = "Default";
             ModeleBateau = "Default";
-            Image = "Default";
         }
 
-        public TransportMarin(string nom, int nbrpassager, float chargeutile, string compagniemaritime, string modelebateau)
-            : base (nom, nbrpassager, chargeutile)
+        public TransportMarin(string nom, int nbrpassager, float chargeutile, string typefuel, string image, string compagniemaritime, string modelebateau)
+            : base(nom, nbrpassager, chargeutile, typefuel, image)
         {
             CompagnieMaritime = compagniemaritime;
             ModeleBateau= modelebateau;
-            Image = IMG_BATEAU;
         }
 
         public override string ToString()

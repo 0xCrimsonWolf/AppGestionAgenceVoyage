@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="500" Width="450" ResizeMode="NoResize" Icon="img\TroisLignes_1.png">
+        Title="LoginWindow" Height="500" Width="450" ResizeMode="NoResize" Icon="img/TroisLignes_1.png">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -36,7 +36,7 @@
                 Height="30"
                 Margin="28, 0, 0, 168"
                 Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}">
-            <Image Source="img\TroisLignes_1.png"
+            <Image Source="img/TroisLignes_1.png"
                 Width="25"
                 Height="25"/>
         </Button>

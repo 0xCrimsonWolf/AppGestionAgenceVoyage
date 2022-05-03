@@ -12,7 +12,6 @@ namespace Model
     {
         private string _compagnieAerienne;
         private string _modeleAvion;
-        private string _image;
 
         public string CompagnieAerienne
         {
@@ -32,15 +31,6 @@ namespace Model
             }
         }
 
-        public string Image
-        {
-            get { return _image; }
-            set
-            {
-                _image = value;
-            }
-        }
-
         public TransportAerien() : base()
         {
             CompagnieAerienne = "Default";
@@ -48,12 +38,11 @@ namespace Model
             Image = "Default";
         }
 
-        public TransportAerien(string nom, int nbrpassager, float chargeutile, string compagnieaerienne, string modeleavion)
-            : base (nom, nbrpassager, chargeutile)
+        public TransportAerien(string nom, int nbrpassager, float chargeutile, string typefuel, string image, string compagnieaerienne, string modeleavion)
+            : base (nom, nbrpassager, chargeutile, typefuel, image)
         {
             CompagnieAerienne = compagnieaerienne;
             ModeleAvion = modeleavion;
-            Image = IMG_PLANE;
         }
 
         public override string ToString()

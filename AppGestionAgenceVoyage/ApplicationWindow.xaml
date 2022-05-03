@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
-        Title="TravelAgency Application" Height="600" Width="1200" MinHeight="600" MinWidth="1200" Icon="C:\Users\willi\Desktop\images\TestLogo2.png">
+        Title="TravelAgency Application" Height="600" Width="1200" MinHeight="600" MinWidth="1200" Icon="img/TestLogo2.png">
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
@@ -669,84 +669,83 @@
                   FontSize="15"
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Stretch"
-                  ItemsSource="{Binding ListeTransport, Mode=TwoWay}">
+                  ItemsSource="{Binding ListeTransport, Mode=TwoWay}"
+                  SelectionChanged="ListViewTransport_SelectionChanged">
             <ListView.View>
                 <GridView>
+                    <GridViewColumn Header=" " Width="50">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image Width="25" Height="25" Source="{Binding Image}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                     <GridViewColumn Header="Nom" Width="120" DisplayMemberBinding="{Binding Nom}"/>
+                    <GridViewColumn Header="Type de fuel" Width="120" DisplayMemberBinding="{Binding TypeFuel}"/>
                     <GridViewColumn Header="Passagers Max" Width="120" DisplayMemberBinding="{Binding NbrPassager}"/>
-                    <GridViewColumn Header="Charge utile" Width="60" DisplayMemberBinding="{Binding ChargeUtile}"/>
+                    <GridViewColumn Header="Charge utile" Width="120" DisplayMemberBinding="{Binding ChargeUtile}"/>
                 </GridView>
             </ListView.View>
         </ListView>
 
-        <!-- 
-        
         <StackPanel x:Name="PanelLabelTransport" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="120">
-            <Label Content="Continent"
+            <Label Content="Nom"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelContinent"
+                       x:Name="LabelNomTransport"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
-            <Label Content="Pays"
+            <Label Content="Type fuel"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelCountry"
+                       x:Name="LabelFuel"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
-            <Label Content="Localité"
+            <Label Content="Passager max."
                        Grid.ColumnSpan="2"
-                       x:Name="LabelCity"
+                       x:Name="LabelPassager"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
-            <Label Content="Climat"
+            <Label Content="Charge utile"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelClimate"
+                       x:Name="LabelChargeUtile"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="PanelTextDestination" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="120">
-            <ComboBox x:Name="TextBoxContinent"
-                         Text="{Binding CurrentDestination.Continent, Mode=OneWay}"
+        <StackPanel x:Name="PanelTextTransport" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="120">
+            <TextBox x:Name="TextBoxNomTransport"
+                         Text="{Binding CurrentTransport.Nom, Mode=OneWay}"
                          FontSize="15"
-                         Margin="0,4,0,5"
+                         Margin="0,3,0,6"
                          Width="190"
-                         Height="25">
-                <ComboBoxItem Content="Europe"/>
-                <ComboBoxItem Content="Amérique du Nord"/>
-                <ComboBoxItem Content="Amérique du Sud"/>
-                <ComboBoxItem Content="Afrique"/>
-                <ComboBoxItem Content="Asie"/>
-                <ComboBoxItem Content="Océanie"/>
-                <ComboBoxItem Content="Antarctique"/>
-            </ComboBox>
+                         Height="24"/>
 
-            <TextBox x:Name="TextBoxCountry"
-                         Text="{Binding CurrentDestination.Country, Mode=OneWay}"
+            <TextBox x:Name="TextBoxTypeFuel"
+                         Text="{Binding CurrentTransport.TypeFuel, Mode=OneWay}"
                          FontSize="15"
                          Margin="0,0,0,6"
                          Width="190"
                          Height="24"/>
 
-            <TextBox x:Name="TextBoxCity"
-                         Text="{Binding CurrentDestination.City, Mode=OneWay}"
+            <TextBox x:Name="TextBoxNbrPassager"
+                         Text="{Binding CurrentTransport.NbrPassager, Mode=OneWay}"
                          FontSize="15"
-                         Margin="0,0,0,5"
+                         Margin="0,0,0,6"
                          Width="190"
                          Height="24"/>
 
-            <TextBox x:Name="TextBoxClimate"
-                         Text="{Binding CurrentDestination.Climate, Mode=OneWay}"
+            <TextBox x:Name="TextBoxChargeUtile"
+                         Text="{Binding CurrentTransport.ChargeUtile, Mode=OneWay}"
                          FontSize="15"
                          Margin="0,0,0,5"
                          Width="190"
                          Height="24"/>
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="PanelButtonDestination" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,133,130" Height="100" Width="370">
-            <Button x:Name="ButtonAjouterDestination"
+        <StackPanel x:Name="PanelButtonTransport" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,133,130" Height="100" Width="370">
+            <Button x:Name="ButtonAjouterTransport"
                     Content="Ajouter"
                     FontSize="15"
                     FontFamily="Segoe UI Semibold"
@@ -754,34 +753,29 @@
                     Height="30"
                     Width="355"
                     Margin="0,0,0,10"
-                    Background="#f58735"
-                    Click="ButtonAjouterDestination_Click"/>
+                    Background="#f58735"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Button x:Name="ButtonModifierDestination"
+                <Button x:Name="ButtonModifierTransport"
                     Content="Modifier"
                     FontSize="15"
                     FontFamily="Segoe UI Semibold"
                     Height="30"
                     Width="175"
                     Margin="0,0,10,0"
-                    Background="#f58735"
-                    Click="ButtonModifierDestination_Click"/>
+                    Background="#f58735"/>
 
-                <Button x:Name="ButtonSupprimerDestination"
+                <Button x:Name="ButtonSupprimerTransport"
                     Content="Supprimer"
                     FontSize="15"
                     FontFamily="Segoe UI Semibold"
                     Height="30"
                     Width="170"
-                    Background="#f58735"
-                    Click="ButtonSupprimerDestination_Click"/>
+                    Background="#f58735"/>
             </StackPanel>
         </StackPanel>
-        
-        -->
 
-            <!--#endregion-->
+        <!--#endregion-->
 
     </Grid>
 </Window>

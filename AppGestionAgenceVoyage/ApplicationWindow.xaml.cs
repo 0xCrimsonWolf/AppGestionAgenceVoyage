@@ -200,5 +200,25 @@ namespace AppGestionAgenceVoyage
         {
             Root = e.SaveRoot;
         }
+
+        private void ListViewTransport_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.CurrentTransport = ListViewTransport.SelectedItem as MoyenDeTransport;
+        }
+
+        private void ButtonAjouterTransport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonModifierTransport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonSupprimerTransport_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -57,11 +57,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
     <Page Include="ApplicationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -109,10 +104,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -128,16 +119,23 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\TestLogo2.png" />
+    <Resource Include="img\TestLogo2.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\TravelAgency.png" />
+    <Resource Include="img\TravelAgency.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\TroisLignes.png" />
+    <Resource Include="img\TroisLignes.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\TroisLignes_1.png" />
+    <Resource Include="img\TroisLignes_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="img\autocar.png" />
+    <Resource Include="img\boat.png" />
+    <Resource Include="img\car.png" />
+    <Resource Include="img\plane.png" />
+    <Resource Include="img\train.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

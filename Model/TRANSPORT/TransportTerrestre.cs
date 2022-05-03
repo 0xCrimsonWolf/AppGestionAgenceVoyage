@@ -10,6 +10,7 @@ namespace Model
 {
     public class TransportTerrestre : MoyenDeTransport
     {
+        private string _type;
         private string _modele;
 
         public string Modele
@@ -20,6 +21,15 @@ namespace Model
                 _modele = value;
             }
         }
+        public string Type
+        {
+            get { return _type; }
+            set
+            {
+                _type = value;
+            }
+        }
+
         public override string ToString()
         {
             return base.ToString() + " " + Modele;
@@ -30,10 +40,11 @@ namespace Model
             Modele = "Default";
         }
 
-        public TransportTerrestre(string nom, int nbrpassager, float chargeutile, string modele)
-            : base(nom, nbrpassager, chargeutile)
+        public TransportTerrestre(string nom, int nbrpassager, float chargeutile, string typefuel, string image, string modele, string type)
+            : base(nom, nbrpassager, chargeutile, typefuel, image)
         {
             Modele = modele;
+            Type = type;
         }
 
         /*public event PropertyChangedEventHandler PropertyChanged;

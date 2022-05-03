@@ -17,8 +17,10 @@ namespace Model
         static public string IMG_AUTOCAR = "img/autocar.png";
 
         private string _nom;
+        private string _typeFuel;
         private int _nbrPassager;
         private float _chargeUtile;
+        private string _image;
 
         public string Nom
         {
@@ -26,6 +28,15 @@ namespace Model
             set
             {
                 _nom = value;
+            }
+        }
+
+        public string TypeFuel
+        {
+            get { return _typeFuel; }
+            set
+            {
+                _typeFuel = value;
             }
         }
 
@@ -47,18 +58,31 @@ namespace Model
             }
         }
 
-        public MoyenDeTransport()
+        public string Image
         {
-            _nom = "Default";
-            _nbrPassager = 0;
-            _chargeUtile = 0;
+            get { return _image; }
+            set
+            {
+                _image = value;
+            }
         }
 
-        public MoyenDeTransport(string nom, int nbrpassager, float chargeutile)
+        public MoyenDeTransport()
+        {
+            Nom = "Default";
+            NbrPassager = 0;
+            ChargeUtile = 0;
+            TypeFuel = "Default";
+            Image = "Default";
+        }
+
+        public MoyenDeTransport(string nom, int nbrpassager, float chargeutile, string typefuel, string image)
         {
             Nom = nom;
             NbrPassager = nbrpassager;
             ChargeUtile = chargeutile;
+            TypeFuel = typefuel;
+            Image = image;
         }
 
         public override string ToString()

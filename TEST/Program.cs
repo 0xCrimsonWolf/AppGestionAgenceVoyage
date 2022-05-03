@@ -13,11 +13,11 @@ namespace TEST
         {
             List<MoyenDeTransport> list = new List<MoyenDeTransport>();
 
-            TransportMarin transportMarin = new TransportMarin("Bateau", 500, (float)10.5, "WaterBoat", "Ferry");
-            TransportAerien transportAerien = new TransportAerien("Avion", 600, (float)100.7, "PowerPlane", "AirBus978");
-            Voiture voiture = new Voiture("Audi", 6, (float)50.2, "CabrioletA3", "Essence", 3);
-            Train train = new Train("Thalys", 560, (float)900.5, "TGV");
-            Autocar autocar = new Autocar("Leonard", 100, (float)50.6, "R203", "Diesel");
+            TransportMarin transportMarin = new TransportMarin("Bateau", 500, (float)10.5, "Diesel", "Default", "WaterBoat", "Ferry");
+            TransportAerien transportAerien = new TransportAerien("Avion", 600, (float)100.7, "Kérozène", "Default",  "PowerPlane", "Airbus789");
+            TransportTerrestre voiture = new TransportTerrestre("Audi", 6, (float)50.2, "Essence", "Default",  "Cabriolet", "Voiture");
+            TransportTerrestre train = new TransportTerrestre("Thalys", 560, (float)900.5, "Electrique", "Default", "TGV", "Train");
+            TransportTerrestre autocar = new TransportTerrestre("Leonard", 100, (float)50.6, "Diesel", "Default", "AR301", "Autocar");
 
             list.Add(transportMarin);
             list.Add(transportAerien);

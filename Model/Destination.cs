@@ -15,7 +15,6 @@ namespace Model
         private string _country;
         private string _city;
         private string _climate;
-        private string _image;
         public string Continent
         {
             get { return _continent; }
@@ -55,31 +54,21 @@ namespace Model
                 OnPropertyChanged();
             }
         }
-        public string Image
-        {
-            get { return _image; }
-            set
-            { 
-                _image = value;
-                OnPropertyChanged();
-            }
-        }
 
-        public Destination(string continent, string country, string city, string climate, string image)
+        public Destination(string continent, string country, string city, string climate)
         {
             Continent = continent;
             Country = country;
             City = city;
             Climate = climate;
-            Image = image;
         }
 
-        public Destination() : this("Continent", "Country", "City", "Climat", "https://flagcdn.com/")
+        public Destination() : this("Continent", "Country", "City", "Climat")
         { }
 
         public override string ToString()
         {
-            return Continent + " " + Country + " " + City + " " + Climate + " " + Image;
+            return Continent + " " + Country + " " + City + " " + Climate;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

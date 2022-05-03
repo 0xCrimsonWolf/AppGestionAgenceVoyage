@@ -42,44 +42,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Resource.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resource.resx</DependentUpon>
-    </Compile>
-    <Compile Include="TRANSPORT\Autocar.cs" />
     <Compile Include="Destination.cs" />
     <Compile Include="ILoginUtility.cs" />
     <Compile Include="TRANSPORT\MoyenDeTransport.cs" />
-    <Compile Include="TRANSPORT\Train.cs" />
     <Compile Include="TRANSPORT\TransportAerien.cs" />
     <Compile Include="TRANSPORT\TransportMarin.cs" />
     <Compile Include="TRANSPORT\TransportTerrestre.cs" />
-    <Compile Include="TRANSPORT\Voiture.cs" />
     <Compile Include="Voyage.cs" />
     <Compile Include="Voyageur.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resource.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
+    <Resource Include="img\autocar.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\autocar.png" />
+    <Resource Include="img\boat.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\boat.png" />
+    <Resource Include="img\car.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\car.png" />
+    <Resource Include="img\plane.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="img\plane.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="img\train.png" />
+    <Resource Include="img\train.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
