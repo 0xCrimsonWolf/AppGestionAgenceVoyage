@@ -47,10 +47,16 @@ namespace AppGestionAgenceVoyage
             PanelTextClient.Visibility = Visibility.Hidden;
             PanelButtonClient.Visibility = Visibility.Hidden;
             ListViewClient.Visibility = Visibility.Hidden;
+
             PanelLabelDestination.Visibility = Visibility.Hidden;
             PanelTextDestination.Visibility = Visibility.Hidden;
             PanelButtonDestination.Visibility = Visibility.Hidden;
             ListViewDestination.Visibility = Visibility.Hidden;
+
+            PanelLabelTransport.Visibility = Visibility.Hidden;
+            PanelTextTransport.Visibility = Visibility.Hidden;
+            PanelButtonTransport.Visibility = Visibility.Hidden;
+            ListViewTransport.Visibility = Visibility.Hidden;
 
             PanelLabelBienvenue.Visibility = Visibility.Visible;
         }
@@ -77,10 +83,16 @@ namespace AppGestionAgenceVoyage
             ListViewClient.Visibility = Visibility.Visible;
 
             PanelLabelBienvenue.Visibility = Visibility.Hidden;
+
             PanelLabelDestination.Visibility = Visibility.Hidden;
             PanelTextDestination.Visibility = Visibility.Hidden;
             PanelButtonDestination.Visibility = Visibility.Hidden;
             ListViewDestination.Visibility = Visibility.Hidden;
+
+            PanelLabelTransport.Visibility = Visibility.Hidden;
+            PanelTextTransport.Visibility = Visibility.Hidden;
+            PanelButtonTransport.Visibility = Visibility.Hidden;
+            ListViewTransport.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -107,6 +119,45 @@ namespace AppGestionAgenceVoyage
             PanelTextClient.Visibility = Visibility.Hidden;
             PanelButtonClient.Visibility = Visibility.Hidden;
             ListViewClient.Visibility = Visibility.Hidden;
+            PanelLabelBienvenue.Visibility = Visibility.Hidden;
+
+            PanelLabelTransport.Visibility = Visibility.Hidden;
+            PanelTextTransport.Visibility = Visibility.Hidden;
+            PanelButtonTransport.Visibility = Visibility.Hidden;
+            ListViewTransport.Visibility = Visibility.Hidden;
+        }
+
+        #endregion
+
+        #region Navigation Bouton "Transport"
+
+        private void ButtonNavTransport_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavTransport.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavTransport_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavTransport.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+        }
+
+        private void ButtonNavTransport_Click(object sender, RoutedEventArgs e)
+        {
+            PanelLabelTransport.Visibility = Visibility.Visible;
+            PanelTextTransport.Visibility = Visibility.Visible;
+            PanelButtonTransport.Visibility = Visibility.Visible;
+            ListViewTransport.Visibility = Visibility.Visible;
+
+            PanelLabelDestination.Visibility = Visibility.Hidden;
+            PanelTextDestination.Visibility = Visibility.Hidden;
+            PanelButtonDestination.Visibility = Visibility.Hidden;
+            ListViewDestination.Visibility = Visibility.Hidden;
+
+            PanelLabelClient.Visibility = Visibility.Hidden;
+            PanelTextClient.Visibility = Visibility.Hidden;
+            PanelButtonClient.Visibility = Visibility.Hidden;
+            ListViewClient.Visibility = Visibility.Hidden;
+
             PanelLabelBienvenue.Visibility = Visibility.Hidden;
         }
 
@@ -204,11 +255,57 @@ namespace AppGestionAgenceVoyage
         private void ListViewTransport_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _viewModel.CurrentTransport = ListViewTransport.SelectedItem as MoyenDeTransport;
+            ComboBoxTypeTransport.Text = _viewModel.ShowTypeOfTransport(ListViewTransport.SelectedItem as MoyenDeTransport);
+            
+            switch (_viewModel.TYpeOfTransport(ListViewTransport.SelectedItem as MoyenDeTransport))
+            {
+                case 1:     // Adapte le format pour le formulaire de l'Avion
+                    {
+                        TransportAerien transportAerien = ListViewTransport.SelectedItem as TransportAerien;
+                        PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                        LabelCompagnie.Content = "Compagnie";
+                        LabelCompagnie.Visibility = Visibility.Visible;
+                        LabelModele.Visibility = Visibility.Visible;
+                        TextBoxCompagnie.Visibility = Visibility.Visible;
+                        TextBoxCompagnie.Text = transportAerien.CompagnieAerienne;
+                        TextBoxModele.Visibility = Visibility.Visible;
+                        TextBoxModele.Text = transportAerien.ModeleAvion;
+
+                        break;
+                    }
+                case 2:     // Adapte le format pour le formulaire du Bateau
+                    {
+                        TransportMarin transportMarin = ListViewTransport.SelectedItem as TransportMarin;
+                        PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                        LabelCompagnie.Content = "Compagnie";
+                        LabelCompagnie.Visibility = Visibility.Visible;
+                        LabelModele.Visibility = Visibility.Visible;
+                        TextBoxCompagnie.Visibility = Visibility.Visible;
+                        TextBoxCompagnie.Text = transportMarin.CompagnieMaritime;
+                        TextBoxModele.Visibility = Visibility.Visible;
+                        TextBoxModele.Text = transportMarin.ModeleBateau;
+
+                        break;
+                    }
+                case 3:     // Adapte le format pour le formulaire des transports Terrestre
+                    {
+                        TransportTerrestre transportTerrestre = ListViewTransport.SelectedItem as TransportTerrestre;
+                        PanelButtonTransport.Margin = new Thickness(0, 0, 133, 0);
+                        LabelModele.Visibility = Visibility.Hidden;
+                        TextBoxModele.Visibility = Visibility.Hidden;
+                        LabelCompagnie.Content = "Modèle";
+                        LabelCompagnie.Visibility = Visibility.Visible;
+                        TextBoxCompagnie.Visibility = Visibility.Visible;
+                        TextBoxCompagnie.Text = transportTerrestre.Modele;
+
+                        break;
+                    }
+            }
         }
 
         private void ButtonAjouterTransport_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void ButtonModifierTransport_Click(object sender, RoutedEventArgs e)

@@ -40,11 +40,11 @@ namespace AppGestionAgenceVoyage
             ListeDestination.Add(new Destination("Europe", "Belgique", "Liège", "Froid"));
 
             ListeTransport = new ObservableCollection<MoyenDeTransport>();
-            ListeTransport.Add(new TransportMarin("Bateau", 500, (float)10.5, "Diesel", "img/boat.png", "WaterBoat", "Ferry"));
-            ListeTransport.Add(new TransportAerien("Avion", 600, (float)100.7, "Kérozène", "img/plane.png", "PowerPlane", "Airbus789"));
+            ListeTransport.Add(new TransportMarin("NomDuBateau", 500, (float)10.5, "Diesel", "img/boat.png", "WaterBoat", "Ferry"));
+            ListeTransport.Add(new TransportAerien("NomAvion", 600, (float)100.7, "Kérozène", "img/plane.png", "PowerPlane", "Airbus789"));
             ListeTransport.Add(new TransportTerrestre("Audi", 6, (float)50.2, "Essence", "img/car.png", "Cabriolet", "Voiture"));
             ListeTransport.Add(new TransportTerrestre("Thalys", 560, (float)900.5, "Electrique", "img/train.png", "TGV", "Train"));
-            ListeTransport.Add(new TransportTerrestre("Leonard", 100, (float)50.6, "Diesel", "img/autocar.png", "Autocar", "AutocarV2"));
+            ListeTransport.Add(new TransportTerrestre("Leonard", 100, (float)50.6, "Diesel", "img/autocar.png", "AutocarV2", "Autocar"));
         }
 
         public Voyageur CurrentVoyageur
@@ -93,6 +93,9 @@ namespace AppGestionAgenceVoyage
                 key.Close();
             }
         }
+
+        #region Méthodes "ILoginUtility"
+
         public bool LoginCheck(string username, string password)
         {
             if (LoginCheckRegistry(username, password))
@@ -130,6 +133,10 @@ namespace AppGestionAgenceVoyage
 
             return hash;
         }
+
+        #endregion
+
+        #region Méthodes "Client"
 
         public bool AddClient(string prenom, string nom, string sexe, string datenaissance, string email, string numtel)
         {
@@ -198,6 +205,8 @@ namespace AppGestionAgenceVoyage
             return false;
         }
 
+        #endregion
+
         #region Méthodes "Destination"
 
         public bool AddDestination(string continent, string country, string city, string climate)
@@ -260,6 +269,113 @@ namespace AppGestionAgenceVoyage
             }
 
             return false;
+        }
+
+        #endregion
+
+        #region Méthodes "Transport"
+
+        /*public bool AddTransport(string type, string nom, string typefuel, int passagermax, float chargeutile)
+        {
+            if (type == "" || nom == "" || typefuel == "" || passagermax <= 0 || chargeutile <= 0)
+            {
+                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+            else
+            {
+                switch (type)
+                {
+                    case "Voiture":
+                }
+
+                
+            }
+        }
+        
+        public bool ModifyDestination(Destination dest, int num, string continent, string country, string city, string climate)
+        {
+            if (dest == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné une destination", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (continent == "" || country == "" || city == "" || climate == "")
+            {
+                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier la destination vers " + ListeDestination[num].City, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                ListeDestination[num].Continent = continent;
+                ListeDestination[num].Country = country;
+                ListeDestination[num].City = city;
+                ListeDestination[num].Climate = climate;
+                return true;
+            }
+            return false;
+        }*/
+
+        public bool DeleteTransport(MoyenDeTransport transport, int num)
+        {
+            if (transport == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un moyen de transport", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer le moyen de transport " + ListeTransport[num].Nom + " ?", "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                ListeTransport.Remove(transport);
+                return true;
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                return false;
+            }
+
+            return false;
+        }
+
+        public string ShowTypeOfTransport(MoyenDeTransport transport)
+        {
+            if (transport is TransportAerien)
+            {
+                return "Avion";
+            }
+            else if (transport is TransportMarin)
+            {
+                return "Bateau";
+            }
+            else if (transport is TransportTerrestre)
+            {
+                TransportTerrestre transportTerrestre = transport as TransportTerrestre;
+                return transportTerrestre.Type;
+            }
+
+            return "null";
+        }
+
+        public int TYpeOfTransport(MoyenDeTransport transport)
+        {
+            if (transport is TransportAerien)
+            {
+                return 1;
+            }
+            else if (transport is TransportMarin)
+            {
+                return 2;
+            }
+            else if (transport is TransportTerrestre)
+            {
+                return 3;
+            }
+
+            return 0;
         }
 
         #endregion
