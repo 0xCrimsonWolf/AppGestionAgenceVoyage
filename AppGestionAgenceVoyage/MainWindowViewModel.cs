@@ -27,6 +27,8 @@ namespace AppGestionAgenceVoyage
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "LOGIN_PASSWORD";
         const string keyName = userRoot + "\\" + subkey;
+
+        public string img;
         public MainWindowViewModel()
         {
             ListeVoyageur = new ObservableCollection<Voyageur>();
@@ -94,6 +96,7 @@ namespace AppGestionAgenceVoyage
             }
         }
 
+        // Méthodes de l'interface ILoginUtility
         #region Méthodes "ILoginUtility"
 
         public bool LoginCheck(string username, string password)
@@ -103,14 +106,13 @@ namespace AppGestionAgenceVoyage
                 ApplicationWindow applicationWindow;
                 applicationWindow = new ApplicationWindow(username);
                 applicationWindow.Show();
-
                 return true;
             }
             else
             {
                 MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
-            return true;
         }
 
         public bool LoginCheckRegistry(string username, string password)
@@ -136,6 +138,7 @@ namespace AppGestionAgenceVoyage
 
         #endregion
 
+        // Méthodes pour la gestion des clients
         #region Méthodes "Client"
 
         public bool AddClient(string prenom, string nom, string sexe, string datenaissance, string email, string numtel)
@@ -207,6 +210,7 @@ namespace AppGestionAgenceVoyage
 
         #endregion
 
+        // Méthodes pour la gestion des destinations
         #region Méthodes "Destination"
 
         public bool AddDestination(string continent, string country, string city, string climate)
@@ -273,9 +277,10 @@ namespace AppGestionAgenceVoyage
 
         #endregion
 
+        // Méthodes pour la gestion des transports
         #region Méthodes "Transport"
 
-        /*public bool AddTransport(string type, string nom, string typefuel, int passagermax, float chargeutile)
+        public bool AddTransport(string type, string nom, string typefuel, int passagermax, float chargeutile, string compagnie, string modele)
         {
             if (type == "" || nom == "" || typefuel == "" || passagermax <= 0 || chargeutile <= 0)
             {
@@ -287,37 +292,144 @@ namespace AppGestionAgenceVoyage
                 switch (type)
                 {
                     case "Voiture":
+                    case "Autocar":
+                    case "Train":
+                        {
+                            if (compagnie == "")
+                                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            else
+                            {
+                                if (type == "Voiture")
+                                    img = "img/car.png";
+                                else if (type == "Autocar")
+                                    img = "img/autocar.png";
+                                else if (type == "Train")
+                                    img = "img/train.png";
+                                ListeTransport.Add(new TransportTerrestre(nom, passagermax, chargeutile, typefuel, img, compagnie, type));
+                            }
+                            break;
+                        }
+                    case "Avion":
+                        {
+                            if (compagnie == "" || modele == "")
+                                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            else
+                                ListeTransport.Add(new TransportAerien(nom, passagermax, chargeutile, typefuel, "img/plane.png", compagnie, modele));
+                            break; 
+                        }
+                    case "Bateau":
+                        {
+                            if (compagnie == "" || modele == "")
+                                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                            else 
+                                ListeTransport.Add(new TransportMarin(nom, passagermax, chargeutile, typefuel, "img/boat.png", compagnie, modele));
+                            break;
+                        }
                 }
-
-                
+                return true;
             }
         }
-        
-        public bool ModifyDestination(Destination dest, int num, string continent, string country, string city, string climate)
+
+        public bool ModifyTransport(MoyenDeTransport transport, int num, string type, string nom, string typefuel, int passagermax, float chargeutile, string compagnie, string modele)
         {
-            if (dest == null)
+            if (transport == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné une destination", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Vous n'avez pas sélectionné un moyen de transport", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
 
-            if (continent == "" || country == "" || city == "" || climate == "")
+            if (type == "" || nom == "" || typefuel == "" || passagermax <= 0 || chargeutile <= 0)
             {
                 MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-
-            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier la destination vers " + ListeDestination[num].City, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-            if (result == MessageBoxResult.Yes)
+            else
             {
-                ListeDestination[num].Continent = continent;
-                ListeDestination[num].Country = country;
-                ListeDestination[num].City = city;
-                ListeDestination[num].Climate = climate;
-                return true;
+                MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier le transport " + ListeTransport[num].Nom + " ?", "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    switch (type)
+                    {
+                        case "Voiture":
+                        case "Autocar":
+                        case "Train":
+                            {
+                                TransportTerrestre transportTerrestre = new TransportTerrestre();
+                                if (compagnie == "")
+                                {
+                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return false;
+                                }
+                                else
+                                {
+                                    transportTerrestre.Nom = nom;
+                                    transportTerrestre.TypeFuel = typefuel;
+                                    transportTerrestre.NbrPassager = passagermax;
+                                    transportTerrestre.ChargeUtile = chargeutile;
+                                    transportTerrestre.Modele = modele;
+                                    if (type == "Voiture")
+                                        img = "img/car.png";
+                                    else if (type == "Autocar")
+                                        img = "img/autocar.png";
+                                    else if (type == "Train")
+                                        img = "img/train.png";
+                                    transportTerrestre.Image = img;
+
+                                    ListeTransport[num] = transportTerrestre;
+                                }
+                                break;
+                            }
+                        case "Avion":
+                            {
+                                TransportAerien transportAerien = new TransportAerien();
+                                if (compagnie == "" || modele == "")
+                                {
+                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return false;
+                                }
+                                else
+                                {
+                                    transportAerien.Nom = nom;
+                                    transportAerien.TypeFuel = typefuel;
+                                    transportAerien.NbrPassager = passagermax;
+                                    transportAerien.ChargeUtile = chargeutile;
+                                    transportAerien.CompagnieAerienne = compagnie;
+                                    transportAerien.ModeleAvion = modele;
+                                    transportAerien.Image = "img/plane.png";
+
+                                    ListeTransport[num] = transportAerien;
+                                }
+                                break;
+                            }
+                        case "Bateau":
+                            {
+                                TransportMarin transportMarin = new TransportMarin();
+                                if (compagnie == "" || modele == "")
+                                {
+                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    return false;
+                                }
+                                else
+                                {
+                                    transportMarin.Nom = nom;
+                                    transportMarin.TypeFuel = typefuel;
+                                    transportMarin.NbrPassager = passagermax;
+                                    transportMarin.ChargeUtile = chargeutile;
+                                    transportMarin.CompagnieMaritime = compagnie;
+                                    transportMarin.ModeleBateau = modele;
+                                    transportMarin.Image = "img/boat.png";
+
+                                    ListeTransport[num] = transportMarin;
+                                }
+                                break;
+                            }
+                    }
+                }
+                else
+                    return false;
             }
-            return false;
-        }*/
+            return true;
+        }
 
         public bool DeleteTransport(MoyenDeTransport transport, int num)
         {

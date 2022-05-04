@@ -256,11 +256,12 @@ namespace AppGestionAgenceVoyage
         {
             _viewModel.CurrentTransport = ListViewTransport.SelectedItem as MoyenDeTransport;
             ComboBoxTypeTransport.Text = _viewModel.ShowTypeOfTransport(ListViewTransport.SelectedItem as MoyenDeTransport);
-            
+
             switch (_viewModel.TYpeOfTransport(ListViewTransport.SelectedItem as MoyenDeTransport))
             {
                 case 1:     // Adapte le format pour le formulaire de l'Avion
                     {
+                        ComboBoxTypeTransport.IsEnabled = false;
                         TransportAerien transportAerien = ListViewTransport.SelectedItem as TransportAerien;
                         PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
                         LabelCompagnie.Content = "Compagnie";
@@ -275,6 +276,7 @@ namespace AppGestionAgenceVoyage
                     }
                 case 2:     // Adapte le format pour le formulaire du Bateau
                     {
+                        ComboBoxTypeTransport.IsEnabled = false;
                         TransportMarin transportMarin = ListViewTransport.SelectedItem as TransportMarin;
                         PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
                         LabelCompagnie.Content = "Compagnie";
@@ -289,6 +291,7 @@ namespace AppGestionAgenceVoyage
                     }
                 case 3:     // Adapte le format pour le formulaire des transports Terrestre
                     {
+                        ComboBoxTypeTransport.IsEnabled = false;
                         TransportTerrestre transportTerrestre = ListViewTransport.SelectedItem as TransportTerrestre;
                         PanelButtonTransport.Margin = new Thickness(0, 0, 133, 0);
                         LabelModele.Visibility = Visibility.Hidden;
@@ -305,17 +308,83 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonAjouterTransport_Click(object sender, RoutedEventArgs e)
         {
-            
+            _viewModel.AddTransport(ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, Convert.ToInt32(TextBoxNbrPassager.Text), (float)Convert.ToDouble(TextBoxChargeUtile.Text), TextBoxCompagnie.Text, TextBoxModele.Text);
         }
 
         private void ButtonModifierTransport_Click(object sender, RoutedEventArgs e)
         {
-
+            bool result;
+            result = _viewModel.ModifyTransport((MoyenDeTransport)ListViewTransport.SelectedItem, ListViewTransport.SelectedIndex, ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, Convert.ToInt32(TextBoxNbrPassager.Text), (float)Convert.ToDouble(TextBoxChargeUtile.Text), TextBoxCompagnie.Text, TextBoxModele.Text);
+            if (result)
+            {
+                ComboBoxTypeTransport.IsEnabled = true;
+                TextBoxCompagnie.Clear();
+                TextBoxModele.Clear();
+            }
         }
 
         private void ButtonSupprimerTransport_Click(object sender, RoutedEventArgs e)
         {
+            bool result;
+            result = _viewModel.DeleteTransport(ListViewTransport.SelectedItem as MoyenDeTransport, ListViewTransport.SelectedIndex);
+            if (result)
+            {
+                ComboBoxTypeTransport.IsEnabled = true;
+                TextBoxCompagnie.Clear();
+                TextBoxModele.Clear();
+            }
+        }
 
+        private void ComboBoxTypeTransport_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Adapte le format pour le formulaire des transports (sans avoir cliqué dessus mais en ayant sélectionné par exemple "voiture" dans la combobox)
+
+            if (ListViewTransport.SelectedItem == null)
+            {
+                switch (Convert.ToString(ComboBoxTypeTransport.SelectedItem))
+                {
+                    case "System.Windows.Controls.ComboBoxItem: Voiture":
+                    case "System.Windows.Controls.ComboBoxItem: Autocar":
+                    case "System.Windows.Controls.ComboBoxItem: Train":
+                        {
+                            PanelButtonTransport.Margin = new Thickness(0, 0, 133, 0);
+                            LabelModele.Visibility = Visibility.Hidden;
+                            TextBoxModele.Visibility = Visibility.Hidden;
+                            LabelCompagnie.Content = "Modèle";
+                            LabelCompagnie.Visibility = Visibility.Visible;
+                            TextBoxCompagnie.Visibility = Visibility.Visible;
+                            break;
+                        }
+                    case "System.Windows.Controls.ComboBoxItem: Avion":
+                        {
+                            PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                            LabelCompagnie.Content = "Compagnie";
+                            LabelCompagnie.Visibility = Visibility.Visible;
+                            LabelModele.Visibility = Visibility.Visible;
+                            TextBoxCompagnie.Visibility = Visibility.Visible;
+                            TextBoxModele.Visibility = Visibility.Visible;
+                            break;
+                        }
+                    case "System.Windows.Controls.ComboBoxItem: Bateau":
+                        {
+                            PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                            LabelCompagnie.Content = "Compagnie";
+                            LabelCompagnie.Visibility = Visibility.Visible;
+                            LabelModele.Visibility = Visibility.Visible;
+                            TextBoxCompagnie.Visibility = Visibility.Visible;
+                            TextBoxModele.Visibility = Visibility.Visible;
+                            break;
+                        }
+                }
+            }
+        }
+
+        private void ListViewTransport_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ComboBoxTypeTransport.IsEnabled = true;
+            TextBoxCompagnie.Clear();
+            TextBoxModele.Clear();
+            ListViewTransport.SelectedItems.Clear();
         }
     }
 }
