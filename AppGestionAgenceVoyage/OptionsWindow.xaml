@@ -5,15 +5,122 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
-        Title="OptionsWindow" Height="250" Width="400">
-    <Grid>
-        <Button x:Name="ButtonOpenFile"
-                Content="BlaBla"
-                Width="50"
-                Height="50" Click="ButtonOpenFile_Click"/>
+        Title="Paramètres" Height="250" Width="600" Background="#f58735" ResizeMode="NoResize" Icon="img/TroisLignes_1.png">
+    <Canvas>
+        <Label Content="Dossier d'enregistrement : "
+               FontFamily="Saira condensed bold"
+               FontSize="20"
+               Margin="10,10,0,0"/>
         <TextBox x:Name="TextboxFileDirectory"
-                 Height="20"
-                 Width="200"
-                 Margin="0,0,0,-100"/>
-    </Grid>
+                 Height="25"
+                 Width="281"
+                 FontSize="15"
+                 Canvas.Left="212" Canvas.Top="18"/>
+        <Button x:Name="ButtonOpenFile"
+                Content="Parcourir..."
+                Width="79"
+                Height="25" Click="ButtonOpenFile_Click"
+                Canvas.Left="492" Canvas.Top="18"/>
+
+        <Label Content="Thème : "
+               FontFamily="Saira condensed bold"
+               FontSize="20"
+               Margin="10,58,0,0"/>
+
+        <Button Background="#FF505050"
+                x:Name="ButtonSombre"
+                Content="  Sombre"
+                FontFamily="Saira condensed bold"
+                FontSize="20"
+                Canvas.Left="85" Canvas.Top="62"
+                Height="35" Width="100" Click="ButtonSombre_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <CheckBox x:Name="CheckBoxSombre" Canvas.Left="90" Canvas.Top="73" Checked="CheckBoxSombre_Checked">
+            <CheckBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                </Style>
+            </CheckBox.Resources>
+        </CheckBox>
+
+        <Button Background="White"
+                x:Name="ButtonClair"
+                Content="Clair"
+                FontFamily="Saira condensed bold"
+                FontSize="20"
+                Canvas.Left="200" Canvas.Top="62"
+                Height="35" Width="100" Click="ButtonClair_Click">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Background" Value="#f58735"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#f58735"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="10"/>
+                </Style>
+            </Button.Resources>
+        </Button>
+        <CheckBox x:Name="CheckBoxClair" Canvas.Left="206" Canvas.Top="73" Checked="CheckBoxClair_Checked">
+            <CheckBox.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="4"/>
+                </Style>
+            </CheckBox.Resources>
+        </CheckBox>
+
+        <Button x:Name="ButtonOk"
+                Content="Ok"
+                Width="60"
+                Height="22"
+                Canvas.Left="345" Canvas.Top="182" Click="ButtonOk_Click"/>
+        <Button x:Name="ButtonAppliquer"
+                Content="Appliquer"
+                Width="80"
+                Height="22"
+                Canvas.Left="415" Canvas.Top="182" Click="ButtonAppliquer_Click"/>
+        <Button x:Name="ButtonAnnuler"
+                Content="Annuler"
+                Width="70"
+                Height="22"
+                Canvas.Left="505" Canvas.Top="182" Click="ButtonAnnuler_Click"/>
+    </Canvas>
 </Window>

@@ -16,29 +16,91 @@ namespace AppGestionAgenceVoyage
 {
     public partial class OptionsWindow : Window
     {
-        private MainWindowViewModel _viewModel;
-
         public delegate void OptionDelegate(object sender, OptionsEvent e);
         public event OptionDelegate OptionEvent;
-        public OptionsWindow(string root)
+
+        private SolidColorBrush _brush;
+
+        public SolidColorBrush Brush
+        {
+            get { return _brush; }
+            set { _brush = value; }
+        }
+
+        public OptionsWindow(string root, SolidColorBrush brush)
         {
             InitializeComponent();
-            _viewModel = new MainWindowViewModel();
-            DataContext = _viewModel;
-            TextboxFileDirectory.Text = root;   // Permet de garder le root
+
+            TextboxFileDirectory.Text = root;       // Permet de garder le root directory
+
+            if (brush != null)
+            {
+                if (brush.ToString() == ButtonSombre.Background.ToString())
+                    CheckBoxSombre.IsChecked = true;
+                else
+                    CheckBoxClair.IsChecked = true;
+            }
+            else
+                CheckBoxClair.IsChecked = true;
         }
 
         public OptionsWindow()
         {
             InitializeComponent();
-            _viewModel = new MainWindowViewModel();
-            DataContext = _viewModel;
         }
 
         private void ButtonOpenFile_Click(object sender, RoutedEventArgs e)
         {
-            TextboxFileDirectory.Text = _viewModel.BrowseFileDirectory();
-            OptionEvent(this, new OptionsEvent(TextboxFileDirectory.Text));
+            System.Windows.Forms.FolderBrowserDialog openFileDlg = new System.Windows.Forms.FolderBrowserDialog();
+            var result = openFileDlg.ShowDialog();
+            if (result.ToString() != string.Empty)
+            {
+                TextboxFileDirectory.Text = openFileDlg.SelectedPath;
+            }
+        }
+
+        private void ButtonSombre_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBoxClair.IsChecked = false;
+            CheckBoxSombre.IsChecked = true;
+            Brush = (SolidColorBrush)ButtonSombre.Background;
+        }
+
+        private void CheckBoxSombre_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBoxClair.IsChecked = false;
+            CheckBoxSombre.IsChecked = true;
+            Brush = (SolidColorBrush)ButtonSombre.Background;
+        }
+
+        private void ButtonClair_Click(object sender, RoutedEventArgs e)
+        {
+            CheckBoxSombre.IsChecked = false;
+            CheckBoxClair.IsChecked = true;
+            Brush = (SolidColorBrush)ButtonClair.Background;
+        }
+
+        private void CheckBoxClair_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBoxSombre.IsChecked = false;
+            CheckBoxClair.IsChecked = true;
+            Brush = (SolidColorBrush)ButtonClair.Background;
+        }
+
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
+            OptionEvent(this, new OptionsEvent(TextboxFileDirectory.Text, Brush));
+            this.Close();
+        }
+
+        private void ButtonAppliquer_Click(object sender, RoutedEventArgs e)
+        {
+            OptionEvent(this, new OptionsEvent(TextboxFileDirectory.Text, Brush));
+        }
+
+        private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

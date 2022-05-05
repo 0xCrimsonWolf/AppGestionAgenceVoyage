@@ -21,6 +21,7 @@ namespace AppGestionAgenceVoyage
         public static RoutedCommand commandes = new RoutedCommand();
 
         private static string _root;
+        private static SolidColorBrush _colorBrush;
         public ApplicationWindow(string pseudoAffich)
         {
             InitializeComponent();
@@ -37,6 +38,15 @@ namespace AppGestionAgenceVoyage
             set
             {
                 _root = value;
+            }
+        }
+
+        public SolidColorBrush Brushhh
+        {
+            get { return _colorBrush; }
+            set
+            {
+                _colorBrush = value;
             }
         }
 
@@ -206,16 +216,16 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonAjouterDestination_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.AddDestination(TextBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text);
+            _viewModel.AddDestination(ComboBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text);
         }
 
         private void ButtonModifierDestination_Click(object sender, RoutedEventArgs e)
         {
             bool result;
-            result = _viewModel.ModifyDestination((Destination)ListViewDestination.SelectedItem, ListViewDestination.SelectedIndex, TextBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text);
+            result = _viewModel.ModifyDestination((Destination)ListViewDestination.SelectedItem, ListViewDestination.SelectedIndex, ComboBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text);
             if (result)
             {
-                TextBoxContinent.SelectedItem = null;
+                ComboBoxContinent.SelectedItem = null;
                 TextBoxCountry.Clear();
                 TextBoxCity.Clear();
                 TextBoxClimate.Clear();
@@ -231,9 +241,7 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonNavParametres_Click(object sender, RoutedEventArgs e)
         {
-            // Obligé de s'abonner ici car dans le MainWindowViewModel ça ne reconnait pas bien ?
-
-            OptionsWindow optionsWindow = new OptionsWindow(Root);
+            OptionsWindow optionsWindow = new OptionsWindow(Root, Brushhh);
             optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
             optionsWindow.ShowDialog();
         }
@@ -242,7 +250,7 @@ namespace AppGestionAgenceVoyage
         {
             // Vérifier si il a bien entré un chemin d'accès avant sinon lui ouvrir les paramètres
 
-            OptionsWindow optionsWindow = new OptionsWindow(Root);
+            OptionsWindow optionsWindow = new OptionsWindow(Root, Brushhh);
             optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
             optionsWindow.ShowDialog();
         }
@@ -250,6 +258,25 @@ namespace AppGestionAgenceVoyage
         private void OptionsWindow_OptionEvent(object sender, OptionsEvent e)
         {
             Root = e.SaveRoot;
+            Brushhh = e.ColorBrush;
+            this.Background = e.ColorBrush;
+            TextBoxChargeUtile.Background = e.ColorBrush;
+            TextBoxNomTransport.Background = e.ColorBrush;
+            TextBoxCountry.Background = e.ColorBrush;
+            ComboBoxTypeTransport.Background = e.ColorBrush;
+            ComboBoxContinent.Background = e.ColorBrush;
+            TextBoxCity.Background = e.ColorBrush;
+            TextBoxClimate.Background = e.ColorBrush;
+            TextBoxModele.Background = e.ColorBrush;
+            TextBoxCompagnie.Background = e.ColorBrush;
+            TextBoxNbrPassager.Background = e.ColorBrush;
+            TextBoxNbrTypeFuel.Background = e.ColorBrush;
+            TextBoxSexe.Background = e.ColorBrush;
+            TextBoxNom.Background = e.ColorBrush;
+            TextBoxEmail.Background = e.ColorBrush;
+            TextBoxPrenom.Background = e.ColorBrush;
+            TextBoxNumtel.Background = e.ColorBrush;
+
         }
 
         private void ListViewTransport_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -385,6 +412,16 @@ namespace AppGestionAgenceVoyage
             TextBoxCompagnie.Clear();
             TextBoxModele.Clear();
             ListViewTransport.SelectedItems.Clear();
+        }
+
+        private void ButtonNavParametres_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavParametres.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavParametres_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavParametres.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
         }
     }
 }

@@ -101,7 +101,13 @@ namespace AppGestionAgenceVoyage
 
         public bool LoginCheck(string username, string password)
         {
-            if (LoginCheckRegistry(username, password))
+            ApplicationWindow applicationWindow;
+            applicationWindow = new ApplicationWindow(username);
+            applicationWindow.Show();
+
+            return true;
+
+            /*if (LoginCheckRegistry(username, password))
             {
                 ApplicationWindow applicationWindow;
                 applicationWindow = new ApplicationWindow(username);
@@ -112,7 +118,7 @@ namespace AppGestionAgenceVoyage
             {
                 MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
-            }
+            }*/
         }
 
         public bool LoginCheckRegistry(string username, string password)
@@ -491,17 +497,6 @@ namespace AppGestionAgenceVoyage
         }
 
         #endregion
-
-        public string BrowseFileDirectory()
-        {
-            System.Windows.Forms.FolderBrowserDialog openFileDlg = new System.Windows.Forms.FolderBrowserDialog();
-            var result = openFileDlg.ShowDialog();
-            if (result.ToString() != string.Empty)
-            {
-                return openFileDlg.SelectedPath;
-            }
-            return "null";
-        }
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)
