@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Drawing;
+using Microsoft.Win32;
 
 namespace AppGestionAgenceVoyage
 {
@@ -20,12 +21,24 @@ namespace AppGestionAgenceVoyage
     {
 
         private MainWindowViewModel _viewModel;
+
+        const string userRoot = "HKEY_CURRENT_USER";
+        const string subkey = "OPTIONS_PATH";
+        const string keyName = userRoot + "\\" + subkey;
         public MainWindow()
         {
             InitializeComponent();
 
             _viewModel = new MainWindowViewModel();
             _viewModel.DataBidonnage();
+            if (Registry.CurrentUser.OpenSubKey(subkey) != null)
+            {
+                SolidColorBrush brush = (SolidColorBrush)new BrushConverter().ConvertFrom(Registry.GetValue(keyName, "Thème", null).ToString());
+
+                this.Background = brush;
+                TextboxUsername.Background = brush;
+                TextboxPassword.Background = brush;
+            }
         }
 
         private void ButtonLogin_MouseEnter(object sender, MouseEventArgs e)

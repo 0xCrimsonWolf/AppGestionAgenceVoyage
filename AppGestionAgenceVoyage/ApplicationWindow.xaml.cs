@@ -1,4 +1,5 @@
-﻿using Model;
+﻿using Microsoft.Win32;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,10 @@ namespace AppGestionAgenceVoyage
 
         private static string _root;
         private static SolidColorBrush _colorBrush;
+
+        const string userRoot = "HKEY_CURRENT_USER";
+        const string subkey = "OPTIONS_PATH";
+        const string keyName = userRoot + "\\" + subkey;
         public ApplicationWindow(string pseudoAffich)
         {
             InitializeComponent();
@@ -30,6 +35,31 @@ namespace AppGestionAgenceVoyage
             DataContext = _viewModel;
             LabelPrenomBVN.Content = pseudoAffich;
             commandes.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));       // Permet le ctrl + s
+
+            if (Registry.CurrentUser.OpenSubKey(subkey) != null)
+            {
+                SolidColorBrush brush = (SolidColorBrush)new BrushConverter().ConvertFrom(Registry.GetValue(keyName, "Thème", null).ToString());
+
+                Root = Registry.GetValue(keyName, "DirectoryPath", null).ToString();
+                Brushhh = brush;
+                this.Background = brush;
+                TextBoxChargeUtile.Background = brush;
+                TextBoxNomTransport.Background = brush;
+                TextBoxCountry.Background = brush;
+                ComboBoxTypeTransport.Background = brush;
+                ComboBoxContinent.Background = brush;
+                TextBoxCity.Background = brush;
+                TextBoxClimate.Background = brush;
+                TextBoxModele.Background = brush;
+                TextBoxCompagnie.Background = brush;
+                TextBoxNbrPassager.Background = brush;
+                TextBoxNbrTypeFuel.Background = brush;
+                TextBoxSexe.Background = brush;
+                TextBoxNom.Background = brush;
+                TextBoxEmail.Background = brush;
+                TextBoxPrenom.Background = brush;
+                TextBoxNumtel.Background = brush;
+            }
         }
 
         public string Root
@@ -241,7 +271,7 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonNavParametres_Click(object sender, RoutedEventArgs e)
         {
-            OptionsWindow optionsWindow = new OptionsWindow(Root, Brushhh);
+            OptionsWindow optionsWindow = new OptionsWindow();
             optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
             optionsWindow.ShowDialog();
         }
@@ -250,7 +280,7 @@ namespace AppGestionAgenceVoyage
         {
             // Vérifier si il a bien entré un chemin d'accès avant sinon lui ouvrir les paramètres
 
-            OptionsWindow optionsWindow = new OptionsWindow(Root, Brushhh);
+            OptionsWindow optionsWindow = new OptionsWindow();
             optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
             optionsWindow.ShowDialog();
         }

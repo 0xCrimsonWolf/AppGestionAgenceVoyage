@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,32 +22,34 @@ namespace AppGestionAgenceVoyage
 
         private SolidColorBrush _brush;
 
+        const string userRoot = "HKEY_CURRENT_USER";
+        const string subkey = "OPTIONS_PATH";
+        const string keyName = userRoot + "\\" + subkey;
+
         public SolidColorBrush Brush
         {
             get { return _brush; }
             set { _brush = value; }
         }
 
-        public OptionsWindow(string root, SolidColorBrush brush)
-        {
-            InitializeComponent();
-
-            TextboxFileDirectory.Text = root;       // Permet de garder le root directory
-
-            if (brush != null)
-            {
-                if (brush.ToString() == ButtonSombre.Background.ToString())
-                    CheckBoxSombre.IsChecked = true;
-                else
-                    CheckBoxClair.IsChecked = true;
-            }
-            else
-                CheckBoxClair.IsChecked = true;
-        }
-
         public OptionsWindow()
         {
             InitializeComponent();
+
+            if (Registry.CurrentUser.OpenSubKey("OPTIONS_PATH") == null)
+            {
+                CheckBoxClair.IsChecked = true;
+            }
+            else
+            {
+                TextboxFileDirectory.Text = (string)Registry.GetValue(keyName, "DirectoryPath", null);
+                if (ButtonSombre.Background.ToString() == Registry.GetValue(keyName, "Thème", null).ToString())
+                {
+                    CheckBoxSombre.IsChecked = true;
+                }
+                else
+                    CheckBoxClair.IsChecked = true;
+            }
         }
 
         private void ButtonOpenFile_Click(object sender, RoutedEventArgs e)
@@ -90,12 +93,48 @@ namespace AppGestionAgenceVoyage
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
             OptionEvent(this, new OptionsEvent(TextboxFileDirectory.Text, Brush));
+
+            if (Registry.CurrentUser.OpenSubKey("OPTIONS_PATH") == null)
+            {
+                RegistryKey key;
+                key = Registry.CurrentUser.CreateSubKey("OPTIONS_PATH");
+                key.SetValue("DirectoryPath", TextboxFileDirectory.Text);
+                key.SetValue("Thème", Brush.ToString());
+                key.Close();
+            }
+            else
+            {
+                RegistryKey key;
+                key = Registry.CurrentUser.OpenSubKey("OPTIONS_PATH", true);
+                key.SetValue("DirectoryPath", TextboxFileDirectory.Text);
+                if (Brush.ToString() != null)
+                    key.SetValue("Thème", Brush.ToString());
+                key.Close();
+            }
             this.Close();
         }
 
         private void ButtonAppliquer_Click(object sender, RoutedEventArgs e)
         {
             OptionEvent(this, new OptionsEvent(TextboxFileDirectory.Text, Brush));
+
+            if (Registry.CurrentUser.OpenSubKey("OPTIONS_PATH") == null)
+            {
+                RegistryKey key;
+                key = Registry.CurrentUser.CreateSubKey("OPTIONS_PATH", RegistryKeyPermissionCheck.ReadWriteSubTree);
+                key.SetValue("DirectoryPath", TextboxFileDirectory.Text);
+                key.SetValue("Thème", Brush.ToString());
+                key.Close();
+            }
+            else
+            {
+                RegistryKey key;
+                key = Registry.CurrentUser.OpenSubKey("OPTIONS_PATH", true);
+                key.SetValue("DirectoryPath", TextboxFileDirectory.Text);
+                if (Brush.ToString() != null)
+                    key.SetValue("Thème", Brush.ToString());
+                key.Close();
+            }
         }
 
         private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)

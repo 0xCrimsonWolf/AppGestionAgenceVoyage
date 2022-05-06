@@ -28,8 +28,9 @@
         <Image x:Name="img"
                Grid.Column="2" Grid.Row="1"
                Height="250" Width="215"
-               Source="img/TravelAgency.png"/>
-
+               Margin="0,-15,0,0"
+               Source="img/LogoAgency.png"/>
+        <!--
         <Button x:Name="ButtonParametre"
                 Grid.Row="1" Grid.Column="3"
                 Width="30"
@@ -40,6 +41,7 @@
                 Width="25"
                 Height="25"/>
         </Button>
+        -->
 
         <!-- Nom d'utilisateur -->
 
