@@ -44,6 +44,7 @@
   <ItemGroup>
     <Compile Include="Destination.cs" />
     <Compile Include="ILoginUtility.cs" />
+    <Compile Include="Logement.cs" />
     <Compile Include="TRANSPORT\MoyenDeTransport.cs" />
     <Compile Include="TRANSPORT\TransportAerien.cs" />
     <Compile Include="TRANSPORT\TransportMarin.cs" />

@@ -59,6 +59,11 @@ namespace AppGestionAgenceVoyage
                 TextBoxEmail.Background = brush;
                 TextBoxPrenom.Background = brush;
                 TextBoxNumtel.Background = brush;
+                TextBoxAdrPostale.Background = brush;
+                TextBoxNomLogement.Background = brush;
+                TextBoxCommentaire.Background = brush;
+                TextBoxTypeLogement.Background = brush;
+                TextBoxNbrPersonne.Background = brush;
             }
         }
 
@@ -83,6 +88,11 @@ namespace AppGestionAgenceVoyage
         #region Bouton Bienvenue / Accueil
         private void ButtonBienvenue_Click(object sender, RoutedEventArgs e)
         {
+            PanelTextLogement.Visibility = Visibility.Hidden;
+            PanelButtonLogement.Visibility = Visibility.Hidden;
+            PanelLabelLogement.Visibility = Visibility.Hidden;
+            ListViewLogement.Visibility = Visibility.Hidden;
+
             PanelLabelClient.Visibility = Visibility.Hidden;
             PanelTextClient.Visibility = Visibility.Hidden;
             PanelButtonClient.Visibility = Visibility.Hidden;
@@ -133,6 +143,11 @@ namespace AppGestionAgenceVoyage
             PanelTextTransport.Visibility = Visibility.Hidden;
             PanelButtonTransport.Visibility = Visibility.Hidden;
             ListViewTransport.Visibility = Visibility.Hidden;
+
+            PanelTextLogement.Visibility = Visibility.Hidden;
+            PanelButtonLogement.Visibility = Visibility.Hidden;
+            PanelLabelLogement.Visibility = Visibility.Hidden;
+            ListViewLogement.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -165,6 +180,11 @@ namespace AppGestionAgenceVoyage
             PanelTextTransport.Visibility = Visibility.Hidden;
             PanelButtonTransport.Visibility = Visibility.Hidden;
             ListViewTransport.Visibility = Visibility.Hidden;
+
+            PanelTextLogement.Visibility = Visibility.Hidden;
+            PanelButtonLogement.Visibility = Visibility.Hidden;
+            PanelLabelLogement.Visibility = Visibility.Hidden;
+            ListViewLogement.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -199,6 +219,69 @@ namespace AppGestionAgenceVoyage
             ListViewClient.Visibility = Visibility.Hidden;
 
             PanelLabelBienvenue.Visibility = Visibility.Hidden;
+
+            PanelTextLogement.Visibility = Visibility.Hidden;
+            PanelButtonLogement.Visibility = Visibility.Hidden;
+            PanelLabelLogement.Visibility = Visibility.Hidden;
+            ListViewLogement.Visibility = Visibility.Hidden;
+        }
+
+        #endregion
+
+        #region Navigation Bouton "Logement"
+
+        private void ButtonNavLogement_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavLogement.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavLogement_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavLogement.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+        }
+
+        private void ButtonNavLogement_Click(object sender, RoutedEventArgs e)
+        {
+            PanelTextLogement.Visibility = Visibility.Visible;
+            PanelButtonLogement.Visibility = Visibility.Visible;
+            PanelLabelLogement.Visibility = Visibility.Visible;
+            ListViewLogement.Visibility= Visibility.Visible;
+
+            PanelLabelTransport.Visibility = Visibility.Hidden;
+            PanelTextTransport.Visibility = Visibility.Hidden;
+            PanelButtonTransport.Visibility = Visibility.Hidden;
+            ListViewTransport.Visibility = Visibility.Hidden;
+
+            PanelLabelDestination.Visibility = Visibility.Hidden;
+            PanelTextDestination.Visibility = Visibility.Hidden;
+            PanelButtonDestination.Visibility = Visibility.Hidden;
+            ListViewDestination.Visibility = Visibility.Hidden;
+
+            PanelLabelClient.Visibility = Visibility.Hidden;
+            PanelTextClient.Visibility = Visibility.Hidden;
+            PanelButtonClient.Visibility = Visibility.Hidden;
+            ListViewClient.Visibility = Visibility.Hidden;
+
+            PanelLabelBienvenue.Visibility = Visibility.Hidden;
+        }
+
+        #endregion
+
+        #region Navigation Bouton "Voyages"
+
+        private void ButtonNavVoyages_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavVoyages.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavVoyages_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavVoyages.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+        }
+
+        private void ButtonNavVoyages_Click(object sender, RoutedEventArgs e)
+        {
+            // TO DO
         }
 
         #endregion
@@ -269,45 +352,7 @@ namespace AppGestionAgenceVoyage
 
         #endregion
 
-        private void ButtonNavParametres_Click(object sender, RoutedEventArgs e)
-        {
-            OptionsWindow optionsWindow = new OptionsWindow();
-            optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
-            optionsWindow.ShowDialog();
-        }
-
-        private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)        // CTRL + S
-        {
-            // Vérifier si il a bien entré un chemin d'accès avant sinon lui ouvrir les paramètres
-
-            OptionsWindow optionsWindow = new OptionsWindow();
-            optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
-            optionsWindow.ShowDialog();
-        }
-
-        private void OptionsWindow_OptionEvent(object sender, OptionsEvent e)
-        {
-            Root = e.SaveRoot;
-            Brushhh = e.ColorBrush;
-            this.Background = e.ColorBrush;
-            TextBoxChargeUtile.Background = e.ColorBrush;
-            TextBoxNomTransport.Background = e.ColorBrush;
-            TextBoxCountry.Background = e.ColorBrush;
-            ComboBoxTypeTransport.Background = e.ColorBrush;
-            ComboBoxContinent.Background = e.ColorBrush;
-            TextBoxCity.Background = e.ColorBrush;
-            TextBoxClimate.Background = e.ColorBrush;
-            TextBoxModele.Background = e.ColorBrush;
-            TextBoxCompagnie.Background = e.ColorBrush;
-            TextBoxNbrPassager.Background = e.ColorBrush;
-            TextBoxNbrTypeFuel.Background = e.ColorBrush;
-            TextBoxSexe.Background = e.ColorBrush;
-            TextBoxNom.Background = e.ColorBrush;
-            TextBoxEmail.Background = e.ColorBrush;
-            TextBoxPrenom.Background = e.ColorBrush;
-            TextBoxNumtel.Background = e.ColorBrush;
-
-        }
+        #region Boutons "Transport"
 
         private void ListViewTransport_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -365,7 +410,7 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonAjouterTransport_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.AddTransport(ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, Convert.ToInt32(TextBoxNbrPassager.Text), (float)Convert.ToDouble(TextBoxChargeUtile.Text), TextBoxCompagnie.Text, TextBoxModele.Text);
+            _viewModel.AddTransport(ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, TextBoxNbrPassager.Text, TextBoxChargeUtile.Text, TextBoxCompagnie.Text, TextBoxModele.Text);
         }
 
         private void ButtonModifierTransport_Click(object sender, RoutedEventArgs e)
@@ -444,6 +489,66 @@ namespace AppGestionAgenceVoyage
             ListViewTransport.SelectedItems.Clear();
         }
 
+        #endregion
+
+        #region Boutons "Logement"
+
+        private void ListViewLogement_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.CurrentLogement = ListViewLogement.SelectedItem as Logement;
+        }
+
+        private void ButtonAjouterLogement_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.AddLogement(TextBoxTypeLogement.Text, TextBoxNomLogement.Text, TextBoxAdrPostale.Text, TextBoxNbrPersonne.Text, TextBoxCommentaire.Text);
+        }
+
+        private void ButtonModifierLogement_Click(object sender, RoutedEventArgs e)
+        {
+            bool result;
+            result = _viewModel.ModifyLogement((Logement)ListViewLogement.SelectedItem, ListViewLogement.SelectedIndex, TextBoxTypeLogement.Text, TextBoxNomLogement.Text, TextBoxAdrPostale.Text, Convert.ToInt32(TextBoxNbrPersonne.Text), TextBoxCommentaire.Text);
+            if (result)
+            {
+                TextBoxTypeLogement.Clear();
+                TextBoxNomLogement.Clear();
+                TextBoxAdrPostale.Clear();
+                TextBoxNbrPersonne.Clear();
+                TextBoxCommentaire.Clear();
+            }
+        }
+
+        private void ButtonSupprimerLogement_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.DeleteLogement((Logement)ListViewLogement.SelectedItem, ListViewLogement.SelectedIndex);
+        }
+
+        #endregion
+
+        #region Boutons "Voyages"
+
+        private void ButtonAjouterVoyage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonModifierVoyage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ButtonSupprimerVoyage_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        #endregion
+
+
+
+
+
+        #region Boutons "Paramètres"
+
         private void ButtonNavParametres_MouseEnter(object sender, MouseEventArgs e)
         {
             ButtonNavParametres.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
@@ -453,5 +558,57 @@ namespace AppGestionAgenceVoyage
         {
             ButtonNavParametres.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
         }
+
+        private void ButtonNavParametres_Click(object sender, RoutedEventArgs e)
+        {
+            OptionsWindow optionsWindow = new OptionsWindow();
+            optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
+            optionsWindow.ShowDialog();
+        }
+
+        private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)        // CTRL + S
+        {
+            // Vérifier si il a bien entré un chemin d'accès avant sinon lui ouvrir les paramètres
+
+            OptionsWindow optionsWindow = new OptionsWindow();
+            optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
+            optionsWindow.ShowDialog();
+        }
+
+        private void OptionsWindow_OptionEvent(object sender, OptionsEvent e)
+        {
+            Root = e.SaveRoot;
+            Brushhh = e.ColorBrush;
+            this.Background = e.ColorBrush;
+
+            TextBoxChargeUtile.Background = e.ColorBrush;
+            TextBoxNomTransport.Background = e.ColorBrush;
+            TextBoxCountry.Background = e.ColorBrush;
+            ComboBoxTypeTransport.Background = e.ColorBrush;
+            ComboBoxContinent.Background = e.ColorBrush;
+            TextBoxCity.Background = e.ColorBrush;
+            TextBoxClimate.Background = e.ColorBrush;
+            TextBoxModele.Background = e.ColorBrush;
+            TextBoxCompagnie.Background = e.ColorBrush;
+            TextBoxNbrPassager.Background = e.ColorBrush;
+            TextBoxNbrTypeFuel.Background = e.ColorBrush;
+            TextBoxSexe.Background = e.ColorBrush;
+            TextBoxNom.Background = e.ColorBrush;
+            TextBoxEmail.Background = e.ColorBrush;
+            TextBoxPrenom.Background = e.ColorBrush;
+            TextBoxNumtel.Background = e.ColorBrush;
+            TextBoxAdrPostale.Background = e.ColorBrush;
+            TextBoxNomLogement.Background = e.ColorBrush;
+            TextBoxCommentaire.Background = e.ColorBrush;
+            TextBoxTypeLogement.Background = e.ColorBrush;
+            TextBoxNbrPersonne.Background = e.ColorBrush;
+        }
+
+
+
+
+        #endregion
+
+        
     }
 }

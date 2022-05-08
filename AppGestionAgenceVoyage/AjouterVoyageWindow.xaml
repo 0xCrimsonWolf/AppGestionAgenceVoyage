@@ -1,0 +1,74 @@
+﻿<Window x:Class="AppGestionAgenceVoyage.AjouterVoyageWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppGestionAgenceVoyage"
+        mc:Ignorable="d"
+        Title="AjouterVoyageWindow" Height="450" Width="600" ResizeMode="NoResize">
+    <Grid>
+        <StackPanel Orientation="Horizontal">
+            <StackPanel x:Name="PanelLabelVoyage" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="180">
+                <Label Content="Nom voyageur"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelPrenom"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+                <Label Content="Date début"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelNom"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+                <Label Content="Date fin"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelSexe"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+                <Label Content="Destination"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelDateNaissance"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+                
+                <Label Content="Moyen de transport"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelEmail"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+            </StackPanel>
+
+            <StackPanel x:Name="PanelTextVoyage" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="180">
+                <TextBox x:Name="TextBoxPrenom"
+                         FontSize="15"
+                         Margin="0,4,0,5"
+                         Width="190"
+                         Height="24"/>
+
+                <TextBox x:Name="TextBoxNom"
+                         FontSize="15"
+                         Margin="0,0,0,6"
+                         Width="190"
+                         Height="24"/>
+
+                <TextBox x:Name="TextBoxSexe"
+                         FontSize="15"
+                         Margin="0,0,0,5"
+                         Width="190"
+                         Height="24"/>
+
+                <DatePicker x:Name="DatePickerDateNaissance"
+                            Text="{Binding CurrentVoyageur.DateNaissance, Mode=OneWay}"
+                            FontSize="15"
+                            FontWeight="Black"
+                            FontFamily="Segoe UI Semibold"
+                            Width="190"
+                            Height="26"
+                            BorderBrush="#FFABADB3"
+                            Foreground="Black" Background="White"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

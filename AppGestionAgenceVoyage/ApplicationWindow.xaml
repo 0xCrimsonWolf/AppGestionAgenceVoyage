@@ -211,15 +211,18 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="ButtonNavClientVoyage"
-                        Content="Voyages"
+        <Button x:Name="ButtonNavLogement"
+                        Content="Logement"
                         FontFamily="Saira condensed bold"
                         FontSize="20"
                         Background="#f58735"
                         BorderBrush="#f58735"
                         BorderThickness="0"
                         Margin="0,0,-1,0"
-                        Grid.Column="6" Grid.Row="0">
+                        Grid.Column="6" Grid.Row="0"
+                        MouseEnter="ButtonNavLogement_MouseEnter"
+                        MouseLeave="ButtonNavLogement_MouseLeave"
+                        Click="ButtonNavLogement_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#f58735"/>
@@ -241,15 +244,18 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="ButtonNavClient17115"
-                        Content="Reton"
+        <Button x:Name="ButtonNavVoyages"
+                        Content="Voyages"
                         FontFamily="Saira condensed bold"
                         FontSize="20"
                         Background="#f58735"
                         BorderBrush="#f58735"
                         BorderThickness="0"
                         Margin="0,0,-1,0"
-                        Grid.Column="7" Grid.Row="0">
+                        Grid.Column="7" Grid.Row="0"
+                        MouseEnter="ButtonNavVoyages_MouseEnter"
+                        MouseLeave="ButtonNavVoyages_MouseLeave"
+                        Click="ButtonNavVoyages_Click">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#f58735"/>
@@ -412,7 +418,7 @@
                     <GridViewColumn Header="Sexe" Width="60" DisplayMemberBinding="{Binding Sexe}"/>
                     <GridViewColumn Header="Date de naissance" Width="145" DisplayMemberBinding="{Binding DateNaissance}"/>
                     <GridViewColumn Header="Adresse email" Width="180" DisplayMemberBinding="{Binding Email}"/>
-                    <GridViewColumn Header="Numéro de téléphone" Width="160" DisplayMemberBinding="{Binding Numtel}"/>
+                    <GridViewColumn Header="Numéro de téléphone" Width="152" DisplayMemberBinding="{Binding Numtel}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -821,26 +827,178 @@
         </StackPanel>
 
         <!--#endregion-->
-        
+
+        <!-- NAV. LOGEMENT -->
+        <!--#region NAV. LOGEMENT -->
+
+        <ListView x:Name="ListViewLogement" Visibility="Hidden"
+                  Grid.Column="4"
+                  Grid.ColumnSpan="6"
+                  Grid.Row="2"
+                  Margin="30,0,0,0"
+                  BorderBrush="{x:Null}"
+                  Background="{x:Null}"
+                  FontFamily="Saira condensed bold"
+                  FontSize="15"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  ItemsSource="{Binding ListeLogement, Mode=TwoWay}"
+                  SelectionChanged="ListViewLogement_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Type" Width="120" DisplayMemberBinding="{Binding Type}"/>
+                    <GridViewColumn Header="Nom" Width="120" DisplayMemberBinding="{Binding Nom}"/>
+                    <GridViewColumn Header="Nbre de personne" Width="120" DisplayMemberBinding="{Binding NbrPersonnes}"/>
+                    <GridViewColumn Header="Adresse Postale" Width="180" DisplayMemberBinding="{Binding AdressePostale}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <StackPanel Visibility="Hidden" x:Name="PanelLabelLogement" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="220">
+            <Label Content="Type"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabeTypeLogement"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+            <Label Content="Nom"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelNomLogement"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+            <Label Content="Adresse postale"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelAdrPostale"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+            <Label Content="Nombre de personne"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabeNbrPersonne"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+            <Label Content="Commentaire"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabeCommentaire"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+        </StackPanel>
+
+        <StackPanel Visibility="Hidden" x:Name="PanelTextLogement" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="220">
+            <TextBox x:Name="TextBoxTypeLogement"
+                         Text="{Binding CurrentLogement.Type, Mode=OneWay}"
+                         FontSize="15"
+                         Margin="0,4,0,5"
+                         Width="190"
+                         Height="24"
+                         ToolTip="Hôtel, Villa, Gîte, ..."/>
+
+            <TextBox x:Name="TextBoxNomLogement"
+                         Text="{Binding CurrentLogement.Nom, Mode=OneWay}"
+                         FontSize="15"
+                         Margin="0,0,0,6"
+                         Width="190"
+                         Height="24"/>
+
+            <TextBox x:Name="TextBoxAdrPostale"
+                         Text="{Binding CurrentLogement.AdressePostale, Mode=OneWay}"
+                         FontSize="15"
+                         Margin="0,0,0,5"
+                         Width="190"
+                         Height="24"/>
+
+            <TextBox x:Name="TextBoxNbrPersonne"
+                         Text="{Binding CurrentLogement.NbrPersonnes, Mode=OneWay}"
+                         FontSize="15"
+                         Margin="0,0,0,6"
+                         Width="190"
+                         Height="24"/>
+
+            <TextBox x:Name="TextBoxCommentaire" TextWrapping="Wrap"
+                         Text="{Binding CurrentLogement.Commentary, Mode=OneWay}"
+                         FontSize="15"
+                         Margin="0,0,0,5"
+                         Width="190"
+                         Height="96"/>
+        </StackPanel>
+
+        <StackPanel Visibility="Hidden" x:Name="PanelButtonLogement" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,133,-100" HorizontalAlignment="Left" Height="100" Width="370">
+            <Button x:Name="ButtonAjouterLogement"
+                    Content="Ajouter"
+                    FontSize="15"
+                    FontFamily="Segoe UI Semibold"
+                    HorizontalAlignment="Left"
+                    Height="30"
+                    Width="355"
+                    Margin="0,0,0,10"
+                    Background="#f58735" Click="ButtonAjouterLogement_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button x:Name="ButtonModifierLogement"
+                    Content="Modifier"
+                    FontSize="15"
+                    FontFamily="Segoe UI Semibold"
+                    Height="30"
+                    Width="175"
+                    Margin="0,0,10,0"
+                    Background="#f58735"
+                    Click="ButtonModifierLogement_Click"/>
+                <Button x:Name="ButtonSupprimerLogement"
+                    Content="Supprimer"
+                    FontSize="15"
+                    FontFamily="Segoe UI Semibold"
+                    Height="30"
+                    Width="170"
+                    Background="#f58735" Click="ButtonSupprimerLogement_Click"/>
+            </StackPanel>
+        </StackPanel>
+
+        <!--#endregion NAV. LOGEMENT -->
+
         <!-- NAV. VOYAGES -->
         <!--#region NAV. VOYAGES -->
 
-        <StackPanel x:Name="PanelVoyages"
-                    Grid.Column="3"
-                    Grid.Row="2"
-                    Grid.ColumnSpan="7">
-            <DataGrid x:Name="DataGridVoyages">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Width="50"/>
-                    <DataGridTextColumn Header="ID" Width="50"/>
-                    <DataGridTextColumn Header="ID" Width="50"/>
-                    <DataGridTextColumn Header="ID" Width="50"/>
-                    <DataGridTextColumn Header="ID" Width="50"/>
-                </DataGrid.Columns>
-            </DataGrid>
+        <DataGrid x:Name="DataGridVoyages"
+                  Grid.Column="3"
+                  Grid.Row="2"
+                  Grid.ColumnSpan="7">
+            <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Width="50" />
+                    <DataGridTextColumn Header="Client" Width="100"/>
+                    <DataGridTextColumn Header="Date début" Width="100"/>
+                    <DataGridTextColumn Header="Date fin" Width="100"/>
+                    <DataGridTextColumn Header="Destination" Width="100"/>
+                    <DataGridTextColumn Header="Transport" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel x:Name="PanelButtonVoyages" Grid.Column="1" Grid.Row="2" Orientation="Vertical" Height="160" VerticalAlignment="Top" Margin="0,15,0,0">
+            <Button x:Name="ButtonAjouterVoyage"
+                    Height="40"
+                    Content="Ajouter"
+                    FontSize="15"
+                    FontFamily="Segoe UI Semibold"
+                    Background="#f58735" Click="ButtonAjouterVoyage_Click"/>
+
+            <Button x:Name="ButtonModifierVoyage"
+                    Height="40"
+                    Content="Modifier"
+                    FontSize="15"
+                    Margin="0,15,0,0"
+                    FontFamily="Segoe UI Semibold"
+                    Background="#f58735" Click="ButtonModifierVoyage_Click"/>
+
+            <Button x:Name="ButtonSupprimerVoyage"
+                    Height="40"
+                    Content="Supprimer"
+                    FontSize="15"
+                    Margin="0,15,0,0"
+                    FontFamily="Segoe UI Semibold"
+                    Background="#f58735" Click="ButtonSupprimerVoyage_Click"/>
         </StackPanel>
 
-            <!--#endregion-->
+        <!--#endregion-->
 
     </Grid>
 </Window>

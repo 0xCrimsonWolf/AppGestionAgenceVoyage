@@ -46,12 +46,5 @@ namespace Model
             Modele = modele;
             Type = type;
         }
-
-        /*public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChanged([CallerMemberName] string propertyname = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
-        }*/
-
     }
 }

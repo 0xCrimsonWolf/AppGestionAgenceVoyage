@@ -18,6 +18,8 @@
                  Canvas.Left="212" Canvas.Top="18"/>
         <Button x:Name="ButtonOpenFile"
                 Content="Parcourir..."
+                FontFamily="Saira condensed bold"
+                FontSize="14"
                 Width="79"
                 Height="25" Click="ButtonOpenFile_Click"
                 Canvas.Left="492" Canvas.Top="18"/>
@@ -109,18 +111,24 @@
 
         <Button x:Name="ButtonOk"
                 Content="Ok"
+                FontFamily="Saira condensed bold"
+                FontSize="14"
                 Width="60"
-                Height="22"
-                Canvas.Left="345" Canvas.Top="182" Click="ButtonOk_Click"/>
+                Height="27"
+                Canvas.Left="345" Canvas.Top="177" Click="ButtonOk_Click"/>
         <Button x:Name="ButtonAppliquer"
                 Content="Appliquer"
+                FontFamily="Saira condensed bold"
+                FontSize="14"
                 Width="80"
-                Height="22"
-                Canvas.Left="415" Canvas.Top="182" Click="ButtonAppliquer_Click"/>
+                Height="27"
+                Canvas.Left="415" Canvas.Top="177" Click="ButtonAppliquer_Click"/>
         <Button x:Name="ButtonAnnuler"
                 Content="Annuler"
+                FontFamily="Saira condensed bold"
+                FontSize="14"
                 Width="70"
-                Height="22"
-                Canvas.Left="505" Canvas.Top="182" Click="ButtonAnnuler_Click"/>
+                Height="27"
+                Canvas.Left="505" Canvas.Top="177" Click="ButtonAnnuler_Click"/>
     </Canvas>
 </Window>

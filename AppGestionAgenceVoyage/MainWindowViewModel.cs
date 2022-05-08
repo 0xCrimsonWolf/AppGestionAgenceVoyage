@@ -24,6 +24,9 @@ namespace AppGestionAgenceVoyage
         public ObservableCollection<MoyenDeTransport> ListeTransport { get; set; }
         private MoyenDeTransport _transport;
 
+        public ObservableCollection<Logement> ListeLogement { get; set; }
+        private Logement _logement;
+
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "LOGIN_PASSWORD";
         const string keyName = userRoot + "\\" + subkey;
@@ -47,6 +50,9 @@ namespace AppGestionAgenceVoyage
             ListeTransport.Add(new TransportTerrestre("Audi", 6, (float)50.2, "Essence", "img/car.png", "Cabriolet", "Voiture"));
             ListeTransport.Add(new TransportTerrestre("Thalys", 560, (float)900.5, "Electrique", "img/train.png", "TGV", "Train"));
             ListeTransport.Add(new TransportTerrestre("Leonard", 100, (float)50.6, "Diesel", "img/autocar.png", "AutocarV2", "Autocar"));
+
+            ListeLogement = new ObservableCollection<Logement>();
+            ListeLogement.Add(new Logement("Hotel", "Ibis", "Rue du Vieux Bac 17/3", 5, "Bonsoir !"));
         }
 
         public Voyageur CurrentVoyageur
@@ -75,6 +81,16 @@ namespace AppGestionAgenceVoyage
             set
             {
                 _transport = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Logement CurrentLogement
+        {
+            get { return _logement; }
+            set
+            {
+                _logement = value;
                 OnPropertyChanged();
             }
         }
@@ -286,53 +302,61 @@ namespace AppGestionAgenceVoyage
         // Méthodes pour la gestion des transports
         #region Méthodes "Transport"
 
-        public bool AddTransport(string type, string nom, string typefuel, int passagermax, float chargeutile, string compagnie, string modele)
+        public bool AddTransport(string type, string nom, string typefuel, string passagermax, string chargeutile, string compagnie, string modele)
         {
-            if (type == "" || nom == "" || typefuel == "" || passagermax <= 0 || chargeutile <= 0)
+            try
+            {
+                if (type == "" || nom == "" || typefuel == "")
+                {
+                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+                else
+                {
+                    switch (type)
+                    {
+                        case "Voiture":
+                        case "Autocar":
+                        case "Train":
+                            {
+                                if (compagnie == "")
+                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                else
+                                {
+                                    if (type == "Voiture")
+                                        img = "img/car.png";
+                                    else if (type == "Autocar")
+                                        img = "img/autocar.png";
+                                    else if (type == "Train")
+                                        img = "img/train.png";
+                                    ListeTransport.Add(new TransportTerrestre(nom, Convert.ToInt32(passagermax), (float)Convert.ToDouble(chargeutile), typefuel, img, compagnie, type));
+                                }
+                                break;
+                            }
+                        case "Avion":
+                            {
+                                if (compagnie == "" || modele == "")
+                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                else
+                                    ListeTransport.Add(new TransportAerien(nom, Convert.ToInt32(passagermax), (float)Convert.ToDouble(chargeutile), typefuel, "img/plane.png", compagnie, modele));
+                                break;
+                            }
+                        case "Bateau":
+                            {
+                                if (compagnie == "" || modele == "")
+                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                else
+                                    ListeTransport.Add(new TransportMarin(nom, Convert.ToInt32(passagermax), (float)Convert.ToDouble(chargeutile), typefuel, "img/boat.png", compagnie, modele));
+                                break;
+                            }
+                    }
+                    return true;
+                }
+            }
+            catch (FormatException)
             {
                 MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
-            }
-            else
-            {
-                switch (type)
-                {
-                    case "Voiture":
-                    case "Autocar":
-                    case "Train":
-                        {
-                            if (compagnie == "")
-                                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            else
-                            {
-                                if (type == "Voiture")
-                                    img = "img/car.png";
-                                else if (type == "Autocar")
-                                    img = "img/autocar.png";
-                                else if (type == "Train")
-                                    img = "img/train.png";
-                                ListeTransport.Add(new TransportTerrestre(nom, passagermax, chargeutile, typefuel, img, compagnie, type));
-                            }
-                            break;
-                        }
-                    case "Avion":
-                        {
-                            if (compagnie == "" || modele == "")
-                                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            else
-                                ListeTransport.Add(new TransportAerien(nom, passagermax, chargeutile, typefuel, "img/plane.png", compagnie, modele));
-                            break; 
-                        }
-                    case "Bateau":
-                        {
-                            if (compagnie == "" || modele == "")
-                                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                            else 
-                                ListeTransport.Add(new TransportMarin(nom, passagermax, chargeutile, typefuel, "img/boat.png", compagnie, modele));
-                            break;
-                        }
-                }
-                return true;
             }
         }
 
@@ -494,6 +518,82 @@ namespace AppGestionAgenceVoyage
             }
 
             return 0;
+        }
+
+        #endregion
+
+        // Méthodes pour la gestion des logements
+        #region Méthodes "Logement"
+
+        public bool AddLogement(string type, string nom, string adressepostale, string nbrpersonnes, string commentary)
+        {
+            try
+            {
+                if (type == "" || nom == "" || adressepostale == "")
+                {
+                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return false;
+                }
+                else
+                {
+                    ListeLogement.Add(new Logement(type, nom, adressepostale, Convert.ToInt32(nbrpersonnes), commentary));
+                    return true;
+                }
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+        }
+
+        public bool ModifyLogement(Logement logement, int num, string type, string nom, string adressepostale, int nbrpersonnes, string commentary)
+        {
+            if (logement == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un logement", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            if (type == "" || nom == "" || adressepostale == "")
+            {
+                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier le logement " + ListeLogement[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                ListeLogement[num].Nom = nom;
+                ListeLogement[num].Type = type;
+                ListeLogement[num].AdressePostale = adressepostale;
+                ListeLogement[num].NbrPersonnes = nbrpersonnes;
+                ListeLogement[num].Commentary = commentary;
+                return true;
+            }
+            return false;
+        }
+
+        public bool DeleteLogement(Logement logement, int num)
+        {
+            if (logement == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un logement", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer le logement " + ListeLogement[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                ListeLogement.Remove(logement);
+                return true;
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                return false;
+            }
+
+            return false;
         }
 
         #endregion
