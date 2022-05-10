@@ -6,47 +6,58 @@
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AjouterVoyageWindow" Height="265" Width="400" ResizeMode="NoResize">
+        Title="AjouterVoyageWindow" Background="#f58735" Height="300" Width="400" ResizeMode="NoResize">
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <StackPanel x:Name="PanelLabelVoyage" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="180">
+            <StackPanel x:Name="PanelLabelVoyage" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="210" Margin="5,5,5,0">
                 <Label Content="Nom voyageur"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelPrenom" 
+                       Margin="0,0,0,5"
+                       x:Name="LabelAddNom" 
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
                 <Label Content="Date début"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelNom"
+                       Margin="0,0,0,5"
+                       x:Name="LabelAddDateDebut"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
                 <Label Content="Date fin"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelSexe"
+                       Margin="0,0,0,5"
+                       x:Name="LabelAddDateFin"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
                 <Label Content="Destination"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelDateNaissance"
+                       Margin="0,0,0,5"
+                       x:Name="LabelAddDestination"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
                 <Label Content="Moyen de transport"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelEmail"
+                       Margin="0,0,0,5"
+                       x:Name="LabelAddTransport"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+                <Label Content="Logement"
+                       Grid.ColumnSpan="2"
+                       x:Name="LabelAddLogement"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
             </StackPanel>
 
-            <StackPanel x:Name="PanelTextVoyage" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="180">
-                <ComboBox x:Name="ListBoxNom"
+            <StackPanel x:Name="PanelTextVoyage" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="210">
+                <ComboBox x:Name="ComboBoxAddNom"
                          FontSize="15"
-                         Margin="0,4,0,5"
+                         Margin="0,6,0,8"
                          Width="190"
-                         Height="24">
+                         Height="28">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
@@ -60,7 +71,6 @@
                             </Grid>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
-
                 </ComboBox>
 
                 <DatePicker x:Name="DatePickerDateDebut"
@@ -68,8 +78,8 @@
                             FontWeight="Black"
                             FontFamily="Segoe UI Semibold"
                             Width="190"
-                            Height="26"
-                            Margin="0,0,0,4"
+                            Height="28"
+                            Margin="0,0,0,6"
                             BorderBrush="#FFABADB3"
                             Foreground="Black" Background="White"/>
 
@@ -78,22 +88,67 @@
                             FontWeight="Black"
                             FontFamily="Segoe UI Semibold"
                             Width="190"
-                            Height="26"
-                            Margin="0,0,0,4"
+                            Height="28"
+                            Margin="0,0,0,7"
                             BorderBrush="#FFABADB3"
                             Foreground="Black" Background="White"/>
 
-                <TextBox x:Name="TextBoxDestination"
+                <ComboBox x:Name="ComboBoxAddDestination"
+                         FontSize="15"
+                         Margin="0,0,0,7"
+                         Width="190"
+                         Height="28">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding City}" />
+                                <TextBlock Grid.Column="2" Text="{Binding Country}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <ComboBox x:Name="ComboBoxAddTransport"
                          FontSize="15"
                          Margin="0,0,0,6"
                          Width="190"
-                         Height="24"/>
+                         Height="28">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Nom}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
 
-                <TextBox x:Name="TextBoxTransport"
+                <ComboBox x:Name="ComboBoxAddLogement"
                          FontSize="15"
-                         Margin="0,0,0,5"
+                         Margin="0,0,0,6"
                          Width="190"
-                         Height="24"/>
+                         Height="28">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Type}" />
+                                <TextBlock Grid.Column="2" Text="{Binding Nom}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </StackPanel>
         </StackPanel>
 
@@ -104,23 +159,15 @@
                 FontSize="14"
                 Width="60"
                 Height="27"
-                Canvas.Left="145" Canvas.Top="190"/>
-            
-            <Button x:Name="ButtonAppliquer"
-                Content="Appliquer"
-                FontFamily="Saira condensed bold"
-                FontSize="14"
-                Width="80"
-                Height="27"
-                Canvas.Left="215" Canvas.Top="190"/>
-            
+                Canvas.Left="235" Canvas.Top="225" Click="ButtonOk_Click"/>
+
             <Button x:Name="ButtonAnnuler"
                 Content="Annuler"
                 FontFamily="Saira condensed bold"
                 FontSize="14"
                 Width="70"
                 Height="27"
-                Canvas.Left="305" Canvas.Top="190"/>
+                Canvas.Left="305" Canvas.Top="225" Click="ButtonAnnuler_Click"/>
         </Canvas>
     </Grid>
 </Window>

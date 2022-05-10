@@ -12,11 +12,11 @@ namespace Model
     {
         private int _id;
         private Voyageur _voyageur;
-        private DateTime _dateDebut;
-        private DateTime _dateFin;
+        private string _dateDebut;
+        private string _dateFin;
         private Destination _destination;
         private MoyenDeTransport _moyenDeTransport;
-        // ...
+        private Logement _logement;
 
         public int Id
         {
@@ -38,7 +38,7 @@ namespace Model
             }
         }
 
-        public DateTime DateDebut
+        public string DateDebut
         {
             get { return _dateDebut; }
             set
@@ -48,7 +48,7 @@ namespace Model
             }
         }
 
-        public DateTime DateFin
+        public string DateFin
         {
             get { return _dateFin; }
             set
@@ -76,6 +76,38 @@ namespace Model
                 _moyenDeTransport = value;
                 OnPropertyChanged();
             }
+        }
+
+        public Logement LogementProp
+        {
+            get { return _logement; }
+            set
+            {
+                _logement = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Voyage()
+        {
+            Id = -1;
+            VoyageurProp = null;
+            DateDebut = DateTime.MinValue.ToString();
+            DateFin = DateTime.MinValue.ToString();
+            DestinationProp = null;
+            TransportProp = null;
+            LogementProp = null;
+        }
+
+        public Voyage(int id, Voyageur voyageur, string debut, string fin, Destination destination, MoyenDeTransport transport, Logement logement)
+        {
+            Id = id;
+            VoyageurProp = voyageur;
+            DateDebut = debut;
+            DateFin = fin;
+            DestinationProp = destination;
+            TransportProp = transport;
+            LogementProp = logement;
         }
 
         public override string ToString()

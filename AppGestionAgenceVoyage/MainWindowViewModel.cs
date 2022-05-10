@@ -27,6 +27,9 @@ namespace AppGestionAgenceVoyage
         public ObservableCollection<Logement> ListeLogement { get; set; }
         private Logement _logement;
 
+        public ObservableCollection<Voyage> ListeVoyage { get; set; }
+        private Voyage _voyage;
+
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "LOGIN_PASSWORD";
         const string keyName = userRoot + "\\" + subkey;
@@ -36,23 +39,40 @@ namespace AppGestionAgenceVoyage
         {
             ListeVoyageur = new ObservableCollection<Voyageur>();
             ListeVoyageur.Add(new Voyageur("Thomas", "Jehasse", "H", "20/04/2002", "thomas.jehasse@gmail.com", "0496.75.68.45"));
-            ListeVoyageur.Add(new Voyageur("Frank", "Niouk", "H", "19/04/1996", "frank94@gmail.com", "0497.20.65.57"));
-            ListeVoyageur.Add(new Voyageur("Elise", "Mahieu", "F", "02/05/2010", "mahieuelise@gmail.com", "0499.03.69.50"));
+            ListeVoyageur.Add(new Voyageur("Frank", "Aroush", "H", "19/04/1996", "frank94@gmail.com", "0497.20.65.57"));
+            ListeVoyageur.Add(new Voyageur("Elise", "Beri", "F", "02/05/2010", "mahieuelise@gmail.com", "0499.03.69.50"));
+            ListeVoyageur.Add(new Voyageur("Alix", "Hernish", "H", "03/02/1998", "Alix14@gmail.com", "0476.74.68.65"));
+            ListeVoyageur.Add(new Voyageur("Clara", "François", "F", "18/12/1982", "cla.ra@hotmail.com", "0477.02.01.58"));
+            ListeVoyageur.Add(new Voyageur("Tom", "Tailor", "H", "12/07/2001", "tomtailor9@outlook.com", "0498.08.68.42"));
 
             ListeDestination = new ObservableCollection<Destination>();
-            ListeDestination.Add(new Destination("Afrique", "Maroc", "Marakech", "Chaud"));
-            ListeDestination.Add(new Destination("Amérique du Nord", "Texas", "Houston", "Tempéré"));
-            ListeDestination.Add(new Destination("Europe", "Belgique", "Liège", "Froid"));
+            ListeDestination.Add(new Destination("Afrique", "Maroc", "Marrakech", "Subhumide/aride"));
+            ListeDestination.Add(new Destination("Amérique du Nord", "Texas", "Houston", "Subtropical"));
+            ListeDestination.Add(new Destination("Europe", "Belgique", "Liège", "Océanique chaud"));
+            ListeDestination.Add(new Destination("Europe", "Espagne", "Barcelone", "Méditerranéen"));
+            ListeDestination.Add(new Destination("Europe", "Russie", "Moscou", "Continental humide"));
+            ListeDestination.Add(new Destination("Asie", "Japon", "Tokyo", "Subtropical humide"));
 
             ListeTransport = new ObservableCollection<MoyenDeTransport>();
-            ListeTransport.Add(new TransportMarin("NomDuBateau", 500, (float)10.5, "Diesel", "img/boat.png", "WaterBoat", "Ferry"));
-            ListeTransport.Add(new TransportAerien("NomAvion", 600, (float)100.7, "Kérozène", "img/plane.png", "PowerPlane", "Airbus789"));
-            ListeTransport.Add(new TransportTerrestre("Audi", 6, (float)50.2, "Essence", "img/car.png", "Cabriolet", "Voiture"));
+            ListeTransport.Add(new TransportMarin("Balancelle", 500, (float)10.5, "Diesel", "img/boat.png", "WaterBoat", "Ferry"));
+            ListeTransport.Add(new TransportAerien("AriPlane", 600, (float)100.7, "Kérozène", "img/plane.png", "PowerPlane", "Airbus789"));
+            ListeTransport.Add(new TransportTerrestre("Audi SLine", 6, (float)50.2, "Essence", "img/car.png", "Cabriolet", "Voiture"));
             ListeTransport.Add(new TransportTerrestre("Thalys", 560, (float)900.5, "Electrique", "img/train.png", "TGV", "Train"));
             ListeTransport.Add(new TransportTerrestre("Leonard", 100, (float)50.6, "Diesel", "img/autocar.png", "AutocarV2", "Autocar"));
 
             ListeLogement = new ObservableCollection<Logement>();
-            ListeLogement.Add(new Logement("Hotel", "Ibis", "Rue du Vieux Bac 17/3", 5, "Bonsoir !"));
+            ListeLogement.Add(new Logement("Hotel", "Ibis", "Rue du Vieux Bac, 17/3", 5, "jacuzzi, sauna, massage"));
+            ListeLogement.Add(new Logement("Villa", "Nature&Co", "Rue des amoureux, 8", 15, "3 salles de bains, 2 toilettes, 1 piscine"));
+            ListeLogement.Add(new Logement("Hotel", "RHotel's", "Rue Victor Hugo, 45", 2, "5 étoiles"));
+
+            ListeLogement.Add(new Logement("Gîte", "La maison nature", "Rue du peuplier libre, 17", 20, "Vue sur la forêt et sur le lac"));
+            ListeLogement.Add(new Logement("Appartement", "Appart's You", "Avenue de l'Oracle, 2 bis", 10, "1 salles de bains, 1 toilette"));
+            ListeLogement.Add(new Logement("Villa", "BeautyAir", "Rue de l'espérance, 54", 50, "Endroit posé pour plusieurs, en famille ou avec amis"));
+
+            ListeVoyage = new ObservableCollection<Voyage>();
+            ListeVoyage.Add(new Voyage(1, ListeVoyageur[1], DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy"), ListeDestination[2], ListeTransport[3], ListeLogement[0]));
+            ListeVoyage.Add(new Voyage(2, ListeVoyageur[2], DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.AddDays(45).ToString("dd/MM/yyyy"), ListeDestination[1], ListeTransport[4], ListeLogement[1]));
+            ListeVoyage.Add(new Voyage(3, ListeVoyageur[0], DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy"), ListeDestination[0], ListeTransport[0], ListeLogement[2]));
         }
 
         public Voyageur CurrentVoyageur
@@ -91,6 +111,16 @@ namespace AppGestionAgenceVoyage
             set
             {
                 _logement = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public Voyage CurrentVoyage
+        {
+            get { return _voyage; }
+            set
+            {
+                _voyage = value;
                 OnPropertyChanged();
             }
         }
@@ -594,6 +624,24 @@ namespace AppGestionAgenceVoyage
             }
 
             return false;
+        }
+
+        #endregion
+
+        // Méthodes pour la gestion des voyages
+        #region Méthodes "Voyage"
+
+        public bool AddVoyage(Voyageur voyageur, string dateDebut, string dateFin, Destination destination, MoyenDeTransport transport, Logement logement)
+        {
+            int num = ListeVoyage.Count + 1;
+
+            DateTime fin = DateTime.Parse(dateDebut);
+            DateTime debut = DateTime.Parse(dateFin);
+
+            Voyage voyage = new Voyage(num, voyageur, debut.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), fin.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), destination, transport, logement);
+            ListeVoyage.Add(voyage);
+
+            return true;
         }
 
         #endregion

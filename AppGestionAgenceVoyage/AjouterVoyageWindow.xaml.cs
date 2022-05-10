@@ -18,11 +18,37 @@ namespace AppGestionAgenceVoyage
 {
     public partial class AjouterVoyageWindow : Window
     {
+        MainWindowViewModel _viewModel;
         public AjouterVoyageWindow(MainWindowViewModel viewModel)
         {
             InitializeComponent();
 
-            ListBoxNom.ItemsSource = viewModel.ListeVoyageur;
+            _viewModel = viewModel;
+            ComboBoxAddNom.ItemsSource = viewModel.ListeVoyageur;
+            ComboBoxAddDestination.ItemsSource = viewModel.ListeDestination;
+            ComboBoxAddTransport.ItemsSource = viewModel.ListeTransport;
+            ComboBoxAddLogement.ItemsSource = viewModel.ListeLogement;
+        }
+
+        private void ButtonOk_Click(object sender, RoutedEventArgs e)
+        {
+            if (ComboBoxAddNom.Text == "" || DatePickerDateDebut.Text == "" || DatePickerDateFin.Text == "" || ComboBoxAddDestination.Text == "" || ComboBoxAddTransport.Text == "")
+            {
+                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else
+            {
+                _viewModel.AddVoyage(ComboBoxAddNom.SelectedItem as Voyageur, DatePickerDateDebut.Text, DatePickerDateFin.Text,
+                                        ComboBoxAddDestination.SelectedItem as Destination,
+                                        ComboBoxAddTransport.SelectedItem as MoyenDeTransport,
+                                        ComboBoxAddLogement.SelectedItem as Logement);
+            }
+            this.Close();
+        }
+
+        private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
