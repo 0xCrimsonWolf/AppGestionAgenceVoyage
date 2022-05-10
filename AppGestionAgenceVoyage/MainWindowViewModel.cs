@@ -14,7 +14,7 @@ using System.Globalization;
 
 namespace AppGestionAgenceVoyage
 {
-    internal class MainWindowViewModel : INotifyPropertyChanged, ILoginUtility
+    public class MainWindowViewModel : INotifyPropertyChanged, ILoginUtility
     {
         public ObservableCollection<Voyageur> ListeVoyageur { get; set; }
         private Voyageur _voyageur;

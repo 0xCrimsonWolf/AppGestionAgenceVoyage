@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
         Title="TravelAgency Application" Height="600" Width="1200" MinHeight="600" MinWidth="1200" Icon="img/TestLogo2.png">
     <Window.DataContext>
         <local:MainWindowViewModel/>
@@ -683,7 +684,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header=" " Width="50">
-                        <GridViewColumn.CellTemplate> 
+                        <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <Image Width="25" Height="25" Source="{Binding Image}"/>
                             </DataTemplate>
@@ -964,16 +965,17 @@
                   Grid.Row="2"
                   Grid.ColumnSpan="7">
             <DataGrid.Columns>
-                    <DataGridTextColumn Header="ID" Width="50" />
-                    <DataGridTextColumn Header="Client" Width="100"/>
-                    <DataGridTextColumn Header="Date début" Width="100"/>
-                    <DataGridTextColumn Header="Date fin" Width="100"/>
-                    <DataGridTextColumn Header="Destination" Width="100"/>
-                    <DataGridTextColumn Header="Transport" Width="100"/>
+                <DataGridTextColumn Header="ID" Width="50" />
+                <DataGridTextColumn Header="Client" Width="100"/>
+                <DataGridTextColumn Header="Date début" Width="100"/>
+                <DataGridTextColumn Header="Date fin" Width="100"/>
+                <DataGridTextColumn Header="Destination" Width="100"/>
+                <DataGridTextColumn Header="Transport" Width="100"/>
             </DataGrid.Columns>
         </DataGrid>
 
         <StackPanel x:Name="PanelButtonVoyages" Grid.Column="1" Grid.Row="2" Orientation="Vertical" Height="160" VerticalAlignment="Top" Margin="0,15,0,0">
+
             <Button x:Name="ButtonAjouterVoyage"
                     Height="40"
                     Content="Ajouter"

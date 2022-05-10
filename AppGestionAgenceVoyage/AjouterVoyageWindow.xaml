@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
-        Title="AjouterVoyageWindow" Height="450" Width="600" ResizeMode="NoResize">
+        WindowStartupLocation="CenterScreen"
+        Title="AjouterVoyageWindow" Height="265" Width="400" ResizeMode="NoResize">
     <Grid>
         <StackPanel Orientation="Horizontal">
             <StackPanel x:Name="PanelLabelVoyage" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="180">
                 <Label Content="Nom voyageur"
                        Grid.ColumnSpan="2"
-                       x:Name="LabelPrenom"
+                       x:Name="LabelPrenom" 
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
 
@@ -32,7 +33,7 @@
                        x:Name="LabelDateNaissance"
                        FontSize="15"
                        FontFamily="Segoe UI Semibold"/>
-                
+
                 <Label Content="Moyen de transport"
                        Grid.ColumnSpan="2"
                        x:Name="LabelEmail"
@@ -41,34 +42,85 @@
             </StackPanel>
 
             <StackPanel x:Name="PanelTextVoyage" Orientation="Vertical" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" HorizontalAlignment="Left" VerticalAlignment="Top" Height="180">
-                <TextBox x:Name="TextBoxPrenom"
+                <ComboBox x:Name="ListBoxNom"
                          FontSize="15"
                          Margin="0,4,0,5"
                          Width="190"
-                         Height="24"/>
+                         Height="24">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="5" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Prenom}" />
+                                <TextBlock Grid.Column="2" Text="{Binding Nom}" />
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
 
-                <TextBox x:Name="TextBoxNom"
-                         FontSize="15"
-                         Margin="0,0,0,6"
-                         Width="190"
-                         Height="24"/>
+                </ComboBox>
 
-                <TextBox x:Name="TextBoxSexe"
-                         FontSize="15"
-                         Margin="0,0,0,5"
-                         Width="190"
-                         Height="24"/>
-
-                <DatePicker x:Name="DatePickerDateNaissance"
-                            Text="{Binding CurrentVoyageur.DateNaissance, Mode=OneWay}"
+                <DatePicker x:Name="DatePickerDateDebut"
                             FontSize="15"
                             FontWeight="Black"
                             FontFamily="Segoe UI Semibold"
                             Width="190"
                             Height="26"
+                            Margin="0,0,0,4"
                             BorderBrush="#FFABADB3"
                             Foreground="Black" Background="White"/>
+
+                <DatePicker x:Name="DatePickerDateFin"
+                            FontSize="15"
+                            FontWeight="Black"
+                            FontFamily="Segoe UI Semibold"
+                            Width="190"
+                            Height="26"
+                            Margin="0,0,0,4"
+                            BorderBrush="#FFABADB3"
+                            Foreground="Black" Background="White"/>
+
+                <TextBox x:Name="TextBoxDestination"
+                         FontSize="15"
+                         Margin="0,0,0,6"
+                         Width="190"
+                         Height="24"/>
+
+                <TextBox x:Name="TextBoxTransport"
+                         FontSize="15"
+                         Margin="0,0,0,5"
+                         Width="190"
+                         Height="24"/>
             </StackPanel>
         </StackPanel>
+
+        <Canvas>
+            <Button x:Name="ButtonOk"
+                Content="Ok"
+                FontFamily="Saira condensed bold"
+                FontSize="14"
+                Width="60"
+                Height="27"
+                Canvas.Left="145" Canvas.Top="190"/>
+            
+            <Button x:Name="ButtonAppliquer"
+                Content="Appliquer"
+                FontFamily="Saira condensed bold"
+                FontSize="14"
+                Width="80"
+                Height="27"
+                Canvas.Left="215" Canvas.Top="190"/>
+            
+            <Button x:Name="ButtonAnnuler"
+                Content="Annuler"
+                FontFamily="Saira condensed bold"
+                FontSize="14"
+                Width="70"
+                Height="27"
+                Canvas.Left="305" Canvas.Top="190"/>
+        </Canvas>
     </Grid>
 </Window>

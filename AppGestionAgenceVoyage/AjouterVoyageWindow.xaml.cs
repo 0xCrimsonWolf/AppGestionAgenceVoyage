@@ -1,5 +1,7 @@
 ﻿using System;
+using Model;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,9 +18,11 @@ namespace AppGestionAgenceVoyage
 {
     public partial class AjouterVoyageWindow : Window
     {
-        public AjouterVoyageWindow()
+        public AjouterVoyageWindow(MainWindowViewModel viewModel)
         {
             InitializeComponent();
+
+            ListBoxNom.ItemsSource = viewModel.ListeVoyageur;
         }
     }
 }

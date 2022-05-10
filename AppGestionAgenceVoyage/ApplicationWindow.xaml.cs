@@ -108,6 +108,9 @@ namespace AppGestionAgenceVoyage
             PanelButtonTransport.Visibility = Visibility.Hidden;
             ListViewTransport.Visibility = Visibility.Hidden;
 
+            PanelButtonVoyages.Visibility = Visibility.Hidden;
+            DataGridVoyages.Visibility = Visibility.Hidden;
+
             PanelLabelBienvenue.Visibility = Visibility.Visible;
         }
 
@@ -148,6 +151,9 @@ namespace AppGestionAgenceVoyage
             PanelButtonLogement.Visibility = Visibility.Hidden;
             PanelLabelLogement.Visibility = Visibility.Hidden;
             ListViewLogement.Visibility = Visibility.Hidden;
+
+            PanelButtonVoyages.Visibility = Visibility.Hidden;
+            DataGridVoyages.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -174,6 +180,7 @@ namespace AppGestionAgenceVoyage
             PanelTextClient.Visibility = Visibility.Hidden;
             PanelButtonClient.Visibility = Visibility.Hidden;
             ListViewClient.Visibility = Visibility.Hidden;
+
             PanelLabelBienvenue.Visibility = Visibility.Hidden;
 
             PanelLabelTransport.Visibility = Visibility.Hidden;
@@ -185,6 +192,9 @@ namespace AppGestionAgenceVoyage
             PanelButtonLogement.Visibility = Visibility.Hidden;
             PanelLabelLogement.Visibility = Visibility.Hidden;
             ListViewLogement.Visibility = Visibility.Hidden;
+
+            PanelButtonVoyages.Visibility = Visibility.Hidden;
+            DataGridVoyages.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -219,6 +229,9 @@ namespace AppGestionAgenceVoyage
             ListViewClient.Visibility = Visibility.Hidden;
 
             PanelLabelBienvenue.Visibility = Visibility.Hidden;
+
+            PanelButtonVoyages.Visibility = Visibility.Hidden;
+            DataGridVoyages.Visibility = Visibility.Hidden;
 
             PanelTextLogement.Visibility = Visibility.Hidden;
             PanelButtonLogement.Visibility = Visibility.Hidden;
@@ -262,6 +275,9 @@ namespace AppGestionAgenceVoyage
             PanelButtonClient.Visibility = Visibility.Hidden;
             ListViewClient.Visibility = Visibility.Hidden;
 
+            PanelButtonVoyages.Visibility = Visibility.Hidden;
+            DataGridVoyages.Visibility = Visibility.Hidden;
+
             PanelLabelBienvenue.Visibility = Visibility.Hidden;
         }
 
@@ -281,7 +297,31 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonNavVoyages_Click(object sender, RoutedEventArgs e)
         {
-            // TO DO
+
+            PanelButtonVoyages.Visibility = Visibility.Visible;
+            DataGridVoyages.Visibility = Visibility.Visible;
+
+            PanelTextLogement.Visibility = Visibility.Hidden;
+            PanelButtonLogement.Visibility = Visibility.Hidden;
+            PanelLabelLogement.Visibility = Visibility.Hidden;
+            ListViewLogement.Visibility = Visibility.Hidden;
+
+            PanelLabelTransport.Visibility = Visibility.Hidden;
+            PanelTextTransport.Visibility = Visibility.Hidden;
+            PanelButtonTransport.Visibility = Visibility.Hidden;
+            ListViewTransport.Visibility = Visibility.Hidden;
+
+            PanelLabelDestination.Visibility = Visibility.Hidden;
+            PanelTextDestination.Visibility = Visibility.Hidden;
+            PanelButtonDestination.Visibility = Visibility.Hidden;
+            ListViewDestination.Visibility = Visibility.Hidden;
+
+            PanelLabelClient.Visibility = Visibility.Hidden;
+            PanelTextClient.Visibility = Visibility.Hidden;
+            PanelButtonClient.Visibility = Visibility.Hidden;
+            ListViewClient.Visibility = Visibility.Hidden;
+
+            PanelLabelBienvenue.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -528,6 +568,8 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonAjouterVoyage_Click(object sender, RoutedEventArgs e)
         {
+            AjouterVoyageWindow ajouterVoyageWindow = new AjouterVoyageWindow(_viewModel);
+            ajouterVoyageWindow.ShowDialog();
 
         }
 
