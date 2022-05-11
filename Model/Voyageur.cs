@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public class Voyageur : INotifyPropertyChanged
     {
         private string _nom;
@@ -106,7 +107,7 @@ namespace Model
             return Nom + " " + Prenom + " " + Sexe + " " + DateNaissance + " " + Email + " " + Numtel;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [field: NonSerializedAttribute()]  public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));

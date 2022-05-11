@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public abstract class MoyenDeTransport
     {
         static public string IMG_BATEAU = "img/boat.png";

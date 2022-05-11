@@ -13,9 +13,11 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
 
 namespace AppGestionAgenceVoyage
 {
+    [Serializable]
     public class MainWindowViewModel : INotifyPropertyChanged, ILoginUtility
     {
         public ObservableCollection<Voyageur> ListeVoyageur { get; set; }
@@ -692,11 +694,15 @@ namespace AppGestionAgenceVoyage
 
         public bool SaveAsBinary(string root)
         {
-            Destination dest = new Destination("Europe", "Belgique", "Liège", "Océanique chaud");
-            BinaryFormatter binFormat = new BinaryFormatter();
-            using (Stream fStream = new FileStream("C:/Users/willi/Desktop/Test.dat", FileMode.Create, FileAccess.Write, FileShare.None))
+            if (MessageBox.Show("Voulez-vous sauvegarder en fichier binaire ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
             {
-                binFormat.Serialize(fStream, dest);
+                BinaryFormatter binFormat = new BinaryFormatter();
+                using (Stream fStream = new FileStream("C:/Users/willi/Desktop/Test.dat", FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    binFormat.Serialize(fStream, this.ListeVoyage);
+                }
+
+                MessageBox.Show("Fichier binaire sauvegardé", "Message", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
             return true;

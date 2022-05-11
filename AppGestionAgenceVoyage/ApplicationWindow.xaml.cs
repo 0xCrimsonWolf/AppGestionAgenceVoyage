@@ -625,9 +625,6 @@ namespace AppGestionAgenceVoyage
                 // Sérialisation
                 _viewModel.SaveAsBinary(Root);
             }
-
-
-            
         }
 
         private void OptionsWindow_OptionEvent(object sender, OptionsEvent e)
@@ -662,8 +659,23 @@ namespace AppGestionAgenceVoyage
             DataGridVoyages.RowBackground = e.ColorBrush;
         }
 
+
         #endregion
 
-        
+        private void ButtonNavEnregistrement_Click(object sender, RoutedEventArgs e)
+        {
+            EnregistrementWindow enregistrementWindow = new EnregistrementWindow(Root);
+            enregistrementWindow.ShowDialog();
+        }
+
+        private void ButtonNavEnregistrement_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavEnregistrement.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavEnregistrement_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavEnregistrement.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+        }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public class TransportMarin : MoyenDeTransport
     {
         private string _compagnieMaritime;

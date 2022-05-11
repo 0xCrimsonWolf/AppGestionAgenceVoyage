@@ -278,15 +278,18 @@
             </Button.Style>
         </Button>
 
-        <Button x:Name="ButtonNavClient171175"
-                        Content="Reton"
+        <Button x:Name="ButtonNavEnregistrement"
+                        Content="Enregistrement"
                         FontFamily="Saira condensed bold"
                         FontSize="20"
                         Background="#f58735"
                         BorderBrush="#f58735"
                         BorderThickness="0"
                         Margin="0,0,-1,0"
-                        Grid.Column="8" Grid.Row="0">
+                        Grid.Column="8" Grid.Row="0"
+                        Click="ButtonNavEnregistrement_Click"
+                        MouseEnter="ButtonNavEnregistrement_MouseEnter"
+                        MouseLeave="ButtonNavEnregistrement_MouseLeave">
             <Button.Style>
                 <Style TargetType="{x:Type Button}">
                     <Setter Property="Background" Value="#f58735"/>

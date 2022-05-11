@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Model
 {
@@ -72,7 +73,7 @@ namespace Model
             return Continent + " " + Country + " " + City + " " + Climate;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [field: NonSerializedAttribute()] public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public class Logement
     {
         private string _type;
@@ -89,7 +90,7 @@ namespace Model
             return Type + " " + Nom + " " + AdressePostale + " " + NbrPersonnes + "" + Commentary;
         }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        [field: NonSerializedAttribute()] public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
