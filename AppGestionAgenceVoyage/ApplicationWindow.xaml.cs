@@ -64,6 +64,9 @@ namespace AppGestionAgenceVoyage
                 TextBoxCommentaire.Background = brush;
                 TextBoxTypeLogement.Background = brush;
                 TextBoxNbrPersonne.Background = brush;
+
+                DataGridVoyages.Background = brush;
+                DataGridVoyages.RowBackground = brush;
             }
         }
 
@@ -570,17 +573,17 @@ namespace AppGestionAgenceVoyage
         {
             AjouterVoyageWindow ajouterVoyageWindow = new AjouterVoyageWindow(_viewModel);
             ajouterVoyageWindow.ShowDialog();
-
         }
 
         private void ButtonModifierVoyage_Click(object sender, RoutedEventArgs e)
         {
-
+            ModifierVoyageWindow modifierVoyageWindow = new ModifierVoyageWindow(_viewModel, DataGridVoyages.SelectedItem as Voyage, DataGridVoyages.SelectedIndex);
+            modifierVoyageWindow.ShowDialog();
         }
 
         private void ButtonSupprimerVoyage_Click(object sender, RoutedEventArgs e)
         {
-
+            _viewModel.DeleteVoyage(DataGridVoyages.SelectedItem as Voyage, DataGridVoyages.SelectedIndex);
         }
 
         #endregion
@@ -610,11 +613,21 @@ namespace AppGestionAgenceVoyage
 
         private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)        // CTRL + S
         {
-            // Vérifier si il a bien entré un chemin d'accès avant sinon lui ouvrir les paramètres
+            if (Root == "")
+            {
+                OptionsWindow optionsWindow = new OptionsWindow();
+                optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
+                optionsWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Voulez vous enregistrer le fichier ?");
+                // Sérialisation
+                _viewModel.SaveAsBinary(Root);
+            }
 
-            OptionsWindow optionsWindow = new OptionsWindow();
-            optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
-            optionsWindow.ShowDialog();
+
+            
         }
 
         private void OptionsWindow_OptionEvent(object sender, OptionsEvent e)
@@ -644,10 +657,10 @@ namespace AppGestionAgenceVoyage
             TextBoxCommentaire.Background = e.ColorBrush;
             TextBoxTypeLogement.Background = e.ColorBrush;
             TextBoxNbrPersonne.Background = e.ColorBrush;
+
+            DataGridVoyages.Background = e.ColorBrush;
+            DataGridVoyages.RowBackground = e.ColorBrush;
         }
-
-
-
 
         #endregion
 

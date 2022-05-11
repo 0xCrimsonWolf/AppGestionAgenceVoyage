@@ -11,6 +11,8 @@ using System.Collections.ObjectModel;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace AppGestionAgenceVoyage
 {
@@ -127,7 +129,7 @@ namespace AppGestionAgenceVoyage
 
         public void DataBidonnage()
         {
-            if ((string)Registry.GetValue(keyName, "admin", null) != GetHashSHA256("admin"))
+            if ((string)Registry.GetValue(keyName, "admin", null) != "8C6976E5B5410415BDE908BD4DEE15DFB167A9C873FC4BB8A81F6F2AB448A918")
             {
                 // Création des RegistryValues (password en sha256)
 
@@ -644,7 +646,74 @@ namespace AppGestionAgenceVoyage
             return true;
         }
 
+        public bool ModifyVoyage(Voyage voyage, int num, Voyageur voyageur, string dateDebut, string dateFin, Destination destination, MoyenDeTransport transport, Logement logement)
+        {
+            if (voyage == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un logement", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier le voyage numero " + ListeVoyage[num].Id + " ?", "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                Voyage currentVoyage = new Voyage(num+1, voyageur, dateDebut, dateFin, destination, transport, logement);
+                ListeVoyage[num] = currentVoyage;
+
+                return true;
+            }
+            return false;
+        }
+
+        public bool DeleteVoyage(Voyage voyage, int num)
+        {
+            if (voyage == null)
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un voyage", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
+            }
+
+            MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer le voyage numéro " + ListeVoyage[num].Id + " ?", "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                ListeVoyage.Remove(voyage);
+                return true;
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                return false;
+            }
+            return false;
+        }
+
         #endregion
+
+        // Méthodes pour la sérialisation
+
+        public bool SaveAsBinary(string root)
+        {
+            Destination dest = new Destination("Europe", "Belgique", "Liège", "Océanique chaud");
+            BinaryFormatter binFormat = new BinaryFormatter();
+            using (Stream fStream = new FileStream("C:/Users/willi/Desktop/Test.dat", FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                binFormat.Serialize(fStream, dest);
+            }
+
+            return true;
+        }
+
+        /*public bool LoadAsBinary(string root)
+        {
+            Destination dest = new Destination("Europe", "Belgique", "Liège", "Océanique chaud");
+            BinaryFormatter binFormat = new BinaryFormatter();
+            using (Stream fStream = new FileStream("C:/Users/willi/Desktop/Test.dat", FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                binFormat.Serialize(fStream, dest);
+            }
+
+            return true;
+        }*/
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Model
 {
+    [Serializable]
     public class Destination : INotifyPropertyChanged
     {
         private string _continent;

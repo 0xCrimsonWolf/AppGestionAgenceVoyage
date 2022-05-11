@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title="AjouterVoyageWindow" Background="#f58735" Height="300" Width="400" ResizeMode="NoResize">
+        Title=" Ajout" Background="#f58735" Height="300" Width="400" ResizeMode="NoResize">
     <Grid>
         <StackPanel Orientation="Horizontal">
             <StackPanel x:Name="PanelLabelVoyage" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="210" Margin="5,5,5,0">

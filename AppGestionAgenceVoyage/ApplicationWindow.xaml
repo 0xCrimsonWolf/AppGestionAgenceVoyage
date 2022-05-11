@@ -961,6 +961,7 @@
         <!--#region NAV. VOYAGES -->
 
         <DataGrid x:Name="DataGridVoyages"
+                  IsReadOnly="True"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
                   FontFamily="Segoe UI Semibold"
