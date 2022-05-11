@@ -69,7 +69,7 @@
             </Button.Style>
         </Button>
 
-        <StackPanel Visibility="Hidden" x:Name="PanelExporter" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+        <StackPanel x:Name="PanelExporter" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal" Margin="5,10,0,15">
                 <Label Content="Dossier d'exportation"
                        FontFamily="Saira condensed bold"
@@ -84,7 +84,7 @@
                         FontSize="16"
                         Width="180"
                         Height="40"
-                        Margin="0,0,15,0"/>
+                        Margin="0,0,15,0" Click="ButtonExporterBinaire_Click"/>
                 
                 <Button Content="Exporter en XML"
                         x:Name="ButtonExporterXML"
@@ -92,13 +92,13 @@
                         FontSize="16"
                         Width="180"
                         Height="40"
-                        Margin="0,0,0,0"/>
+                        Margin="0,0,0,0" Click="ButtonExporterXML_Click"/>
             </StackPanel>
         </StackPanel>
 
-        <StackPanel x:Name="PanelImporter" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
+        <StackPanel Visibility="Hidden" x:Name="PanelImporter" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="3">
             <StackPanel Orientation="Horizontal" Margin="5,10,0,15">
-                <Label Content="Dossier d'importation"
+                <Label Content="Fichier d'importation"
                        FontFamily="Saira condensed bold"
                        FontSize="15"
                        Margin="0,0,10,0"/>
@@ -111,7 +111,7 @@
                         FontFamily="Saira condensed bold"
                         FontSize="14"
                         Width="75"
-                        Height="25"/>
+                        Height="25" Click="ButtonImportationOpenFile_Click"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button Content="Importer en binaire"
@@ -120,7 +120,7 @@
                         FontSize="16"
                         Width="180"
                         Height="40"
-                        Margin="0,0,15,0"/>
+                        Margin="0,0,15,0" Click="ButtonImporterBinaire_Click"/>
 
                 <Button Content="Importer en XML"
                         x:Name="ButtonImporterXML"

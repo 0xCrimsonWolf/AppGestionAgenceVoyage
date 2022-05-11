@@ -16,10 +16,12 @@ namespace AppGestionAgenceVoyage
 {
     public partial class EnregistrementWindow : Window
     {
-        public EnregistrementWindow(string root)
+        MainWindowViewModel _viewModel;
+        public EnregistrementWindow(MainWindowViewModel viewModel, string root)
         {
             InitializeComponent();
 
+            _viewModel = viewModel;
             TextBoxExportation.Text = root;
         }
 
@@ -37,6 +39,32 @@ namespace AppGestionAgenceVoyage
             ButtonImporter.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
             PanelExporter.Visibility = Visibility.Hidden;
             PanelImporter.Visibility = Visibility.Visible;
+        }
+
+        private void ButtonImportationOpenFile_Click(object sender, RoutedEventArgs e)
+        {
+            System.Windows.Forms.OpenFileDialog openFileDlg = new System.Windows.Forms.OpenFileDialog();
+            var result = openFileDlg.ShowDialog();
+            if (result.ToString() != string.Empty)
+            {
+                TextBoxImportation.Text = openFileDlg.FileName;
+            }
+        }
+
+        private void ButtonExporterBinaire_Click(object sender, RoutedEventArgs e)
+        {
+            _viewModel.SaveAsBinary(TextBoxExportation.Text);
+        }
+
+        private void ButtonImporterBinaire_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowViewModel bla = _viewModel.LoadFromBinary(TextBoxImportation.Text);
+            MessageBox.Show(bla.ListeDestination[5].ToString());
+        }
+
+        private void ButtonExporterXML_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

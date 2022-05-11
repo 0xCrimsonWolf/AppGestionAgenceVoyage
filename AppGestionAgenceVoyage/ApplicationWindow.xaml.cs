@@ -664,7 +664,7 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonNavEnregistrement_Click(object sender, RoutedEventArgs e)
         {
-            EnregistrementWindow enregistrementWindow = new EnregistrementWindow(Root);
+            EnregistrementWindow enregistrementWindow = new EnregistrementWindow(_viewModel, Root);
             enregistrementWindow.ShowDialog();
         }
 

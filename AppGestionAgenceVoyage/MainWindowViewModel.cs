@@ -696,32 +696,45 @@ namespace AppGestionAgenceVoyage
         {
             if (MessageBox.Show("Voulez-vous sauvegarder en fichier binaire ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
             {
+                root = Path.Combine(root, "Test.dat");
                 BinaryFormatter binFormat = new BinaryFormatter();
-                using (Stream fStream = new FileStream("C:/Users/willi/Desktop/Test.dat", FileMode.Create, FileAccess.Write, FileShare.None))
+                using (Stream fStream = new FileStream(root, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    binFormat.Serialize(fStream, this.ListeVoyage);
+                    binFormat.Serialize(fStream, this);
                 }
 
-                MessageBox.Show("Fichier binaire sauvegardé", "Message", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                MessageBox.Show("Fichier binaire sauvegardé", "Info", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
 
             return true;
         }
 
-        /*public bool LoadAsBinary(string root)
+        public MainWindowViewModel LoadFromBinary(string filename)
         {
-            Destination dest = new Destination("Europe", "Belgique", "Liège", "Océanique chaud");
-            BinaryFormatter binFormat = new BinaryFormatter();
-            using (Stream fStream = new FileStream("C:/Users/willi/Desktop/Test.dat", FileMode.Create, FileAccess.Write, FileShare.None))
-            {
-                binFormat.Serialize(fStream, dest);
-            }
+            if (filename == "")
+                return null;
 
-            return true;
+            BinaryFormatter binFormat = new BinaryFormatter();
+
+            using (Stream fstream = File.OpenRead(filename))
+            {
+                MainWindowViewModel binImport = (MainWindowViewModel)binFormat.Deserialize(fstream);
+                return binImport;
+            }
+        }
+
+        /*public void ExportAsXML(string root)
+        {
+            root = Path.Combine(root, "Test.xml");
+            XmlSerializer xmlSerialize = new XmlSerializer(typeof(ObservableCollection<Voyage>));
+            using (StreamWriter writer = new StreamWriter(root))
+            {
+                xmlSerialize.Serialize(writer, this.ListeVoyage);
+            }
+            MessageBox.Show("Fichier XML sauvegardé", "Info", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }*/
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
+        [field: NonSerializedAttribute()] public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyname));
