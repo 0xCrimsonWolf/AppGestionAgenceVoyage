@@ -17,6 +17,9 @@ namespace AppGestionAgenceVoyage
     public partial class EnregistrementWindow : Window
     {
         MainWindowViewModel _viewModel;
+
+        public delegate void EnregistrementDelegate(object sender, EnregistrementEvent e);
+        public event EnregistrementDelegate _enregistrementEvent;
         public EnregistrementWindow(MainWindowViewModel viewModel, string root)
         {
             InitializeComponent();
@@ -54,12 +57,15 @@ namespace AppGestionAgenceVoyage
         private void ButtonExporterBinaire_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.SaveAsBinary(TextBoxExportation.Text);
+            this.Close();
         }
 
         private void ButtonImporterBinaire_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowViewModel bla = _viewModel.LoadFromBinary(TextBoxImportation.Text);
-            MessageBox.Show(bla.ListeDestination[5].ToString());
+            MainWindowViewModel binaryData = _viewModel.LoadFromBinary(TextBoxImportation.Text);
+            if (binaryData != null)
+                _enregistrementEvent(this, new EnregistrementEvent(binaryData));
+            this.Close();
         }
 
         private void ButtonExporterXML_Click(object sender, RoutedEventArgs e)

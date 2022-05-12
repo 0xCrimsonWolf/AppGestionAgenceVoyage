@@ -113,7 +113,7 @@ namespace Model
 
         public override string ToString()
         {
-            return "";
+            return Id + " " + VoyageurProp + " " + DateDebut + " " + DateFin + " " + DestinationProp + "" + TransportProp + " " + LogementProp;
         }
 
         [field: NonSerializedAttribute()] public event PropertyChangedEventHandler PropertyChanged;

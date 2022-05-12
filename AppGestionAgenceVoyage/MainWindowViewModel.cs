@@ -14,6 +14,7 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
+using System.Windows.Media;
 
 namespace AppGestionAgenceVoyage
 {
@@ -38,7 +39,13 @@ namespace AppGestionAgenceVoyage
         const string subkey = "LOGIN_PASSWORD";
         const string keyName = userRoot + "\\" + subkey;
 
+        const string userRoot1 = "HKEY_CURRENT_USER";
+        const string subkey1 = "OPTIONS_PATH";
+        const string keyName1 = userRoot1 + "\\" + subkey1;
+
         public string img;
+        private static string _root;
+        private static SolidColorBrush _colorBrush;
         public MainWindowViewModel()
         {
             ListeVoyageur = new ObservableCollection<Voyageur>();
@@ -126,6 +133,24 @@ namespace AppGestionAgenceVoyage
             {
                 _voyage = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public string Root
+        {
+            get { return _root; }
+            set
+            {
+                _root = value;
+            }
+        }
+
+        public SolidColorBrush Brushhh
+        {
+            get { return _colorBrush; }
+            set
+            {
+                _colorBrush = value;
             }
         }
 
@@ -691,7 +716,7 @@ namespace AppGestionAgenceVoyage
         #endregion
 
         // Méthodes pour la sérialisation
-
+        #region Méthodes "Enregistrement"
         public bool SaveAsBinary(string root)
         {
             if (MessageBox.Show("Voulez-vous sauvegarder en fichier binaire ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
@@ -712,8 +737,10 @@ namespace AppGestionAgenceVoyage
         public MainWindowViewModel LoadFromBinary(string filename)
         {
             if (filename == "")
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un dossier à charger", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return null;
-
+            }
             BinaryFormatter binFormat = new BinaryFormatter();
 
             using (Stream fstream = File.OpenRead(filename))
@@ -733,6 +760,22 @@ namespace AppGestionAgenceVoyage
             }
             MessageBox.Show("Fichier XML sauvegardé", "Info", MessageBoxButton.OK, MessageBoxImage.Exclamation);
         }*/
+
+        #endregion
+
+        // Méthodes autres utiles
+        #region Méthodes utiles
+
+        public SolidColorBrush OpenRegistry_OptionsPath()
+        {
+            if (Registry.CurrentUser.OpenSubKey(subkey1) != null)
+            {
+                Root = Registry.GetValue(keyName1, "DirectoryPath", null).ToString();
+                return (SolidColorBrush)new BrushConverter().ConvertFrom(Registry.GetValue(keyName1, "Thème", null).ToString());
+            }
+            return null;
+        }
+        #endregion
 
         [field: NonSerializedAttribute()] public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string propertyname = null)

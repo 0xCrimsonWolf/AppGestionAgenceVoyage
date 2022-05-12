@@ -20,13 +20,6 @@ namespace AppGestionAgenceVoyage
     {
         private MainWindowViewModel _viewModel;
         public static RoutedCommand commandes = new RoutedCommand();
-
-        private static string _root;
-        private static SolidColorBrush _colorBrush;
-
-        const string userRoot = "HKEY_CURRENT_USER";
-        const string subkey = "OPTIONS_PATH";
-        const string keyName = userRoot + "\\" + subkey;
         public ApplicationWindow(string pseudoAffich)
         {
             InitializeComponent();
@@ -36,57 +29,37 @@ namespace AppGestionAgenceVoyage
             LabelPrenomBVN.Content = pseudoAffich;
             commandes.InputGestures.Add(new KeyGesture(Key.S, ModifierKeys.Control));       // Permet le ctrl + s
 
-            if (Registry.CurrentUser.OpenSubKey(subkey) != null)
-            {
-                SolidColorBrush brush = (SolidColorBrush)new BrushConverter().ConvertFrom(Registry.GetValue(keyName, "Thème", null).ToString());
+            SolidColorBrush brush = _viewModel.OpenRegistry_OptionsPath();
 
-                Root = Registry.GetValue(keyName, "DirectoryPath", null).ToString();
-                Brushhh = brush;
-                this.Background = brush;
-                TextBoxChargeUtile.Background = brush;
-                TextBoxNomTransport.Background = brush;
-                TextBoxCountry.Background = brush;
-                ComboBoxTypeTransport.Background = brush;
-                ComboBoxContinent.Background = brush;
-                TextBoxCity.Background = brush;
-                TextBoxClimate.Background = brush;
-                TextBoxModele.Background = brush;
-                TextBoxCompagnie.Background = brush;
-                TextBoxNbrPassager.Background = brush;
-                TextBoxNbrTypeFuel.Background = brush;
-                TextBoxSexe.Background = brush;
-                TextBoxNom.Background = brush;
-                TextBoxEmail.Background = brush;
-                TextBoxPrenom.Background = brush;
-                TextBoxNumtel.Background = brush;
-                TextBoxAdrPostale.Background = brush;
-                TextBoxNomLogement.Background = brush;
-                TextBoxCommentaire.Background = brush;
-                TextBoxTypeLogement.Background = brush;
-                TextBoxNbrPersonne.Background = brush;
+            _viewModel.Brushhh = brush;
+            this.Background = brush;
+            TextBoxChargeUtile.Background = brush;
+            TextBoxNomTransport.Background = brush;
+            TextBoxCountry.Background = brush;
+            ComboBoxTypeTransport.Background = brush;
+            ComboBoxContinent.Background = brush;
+            TextBoxCity.Background = brush;
+            TextBoxClimate.Background = brush;
+            TextBoxModele.Background = brush;
+            TextBoxCompagnie.Background = brush;
+            TextBoxNbrPassager.Background = brush;
+            TextBoxNbrTypeFuel.Background = brush;
+            TextBoxSexe.Background = brush;
+            TextBoxNom.Background = brush;
+            TextBoxEmail.Background = brush;
+            TextBoxPrenom.Background = brush;
+            TextBoxNumtel.Background = brush;
+            TextBoxAdrPostale.Background = brush;
+            TextBoxNomLogement.Background = brush;
+            TextBoxCommentaire.Background = brush;
+            TextBoxTypeLogement.Background = brush;
+            TextBoxNbrPersonne.Background = brush;
 
-                DataGridVoyages.Background = brush;
-                DataGridVoyages.RowBackground = brush;
-            }
+            DataGridVoyages.Background = brush;
+            DataGridVoyages.RowBackground = brush;
         }
 
-        public string Root
-        {
-            get { return _root; }
-            set
-            {
-                _root = value;
-            }
-        }
-
-        public SolidColorBrush Brushhh
-        {
-            get { return _colorBrush; }
-            set
-            {
-                _colorBrush = value;
-            }
-        }
+        // Bouton dans la barre de navigation (full esthétique : background + visibilité des différents panels)
 
         #region Bouton Bienvenue / Accueil
         private void ButtonBienvenue_Click(object sender, RoutedEventArgs e)
@@ -328,6 +301,22 @@ namespace AppGestionAgenceVoyage
         }
 
         #endregion
+
+        #region Navigation Bouton "Enregistrement"
+
+        private void ButtonNavEnregistrement_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ButtonNavEnregistrement.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+        }
+
+        private void ButtonNavEnregistrement_MouseLeave(object sender, MouseEventArgs e)
+        {
+            ButtonNavEnregistrement.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
+        }
+
+        #endregion
+
+        // Méthodes utiles pour les différents boutons 
 
         #region Boutons "Client"
 
@@ -588,10 +577,6 @@ namespace AppGestionAgenceVoyage
 
         #endregion
 
-
-
-
-
         #region Boutons "Paramètres"
 
         private void ButtonNavParametres_MouseEnter(object sender, MouseEventArgs e)
@@ -611,9 +596,9 @@ namespace AppGestionAgenceVoyage
             optionsWindow.ShowDialog();
         }
 
-        private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)        // CTRL + S
+        private void MyCommandExecuted(object sender, ExecutedRoutedEventArgs e)        // CTRL + S : Ouvre la page d'enregistrement
         {
-            if (Root == "")
+            if (_viewModel.Root == "")
             {
                 OptionsWindow optionsWindow = new OptionsWindow();
                 optionsWindow.OptionEvent += OptionsWindow_OptionEvent;
@@ -621,16 +606,16 @@ namespace AppGestionAgenceVoyage
             }
             else
             {
-                MessageBox.Show("Voulez vous enregistrer le fichier ?");
-                // Sérialisation
-                _viewModel.SaveAsBinary(Root);
+                EnregistrementWindow enregistrementWindow = new EnregistrementWindow(_viewModel, _viewModel.Root);
+                enregistrementWindow._enregistrementEvent += EnregistrementWindow_EnregistrementEvent;
+                enregistrementWindow.ShowDialog();
             }
         }
 
         private void OptionsWindow_OptionEvent(object sender, OptionsEvent e)
         {
-            Root = e.SaveRoot;
-            Brushhh = e.ColorBrush;
+            _viewModel.Root = e.SaveRoot;
+            _viewModel.Brushhh = e.ColorBrush;
             this.Background = e.ColorBrush;
 
             TextBoxChargeUtile.Background = e.ColorBrush;
@@ -659,23 +644,47 @@ namespace AppGestionAgenceVoyage
             DataGridVoyages.RowBackground = e.ColorBrush;
         }
 
-
         #endregion
+
+        #region Boutons "Enregistrement"
 
         private void ButtonNavEnregistrement_Click(object sender, RoutedEventArgs e)
         {
-            EnregistrementWindow enregistrementWindow = new EnregistrementWindow(_viewModel, Root);
+            EnregistrementWindow enregistrementWindow = new EnregistrementWindow(_viewModel, _viewModel.Root);
+            enregistrementWindow._enregistrementEvent += EnregistrementWindow_EnregistrementEvent;
             enregistrementWindow.ShowDialog();
         }
 
-        private void ButtonNavEnregistrement_MouseEnter(object sender, MouseEventArgs e)
+        private void EnregistrementWindow_EnregistrementEvent(object sender, EnregistrementEvent e)
         {
-            ButtonNavEnregistrement.Background = new SolidColorBrush(Color.FromRgb(77, 199, 243));
+            this._viewModel.ListeVoyageur.Clear();
+            for (int i = 0; i < e.ViewModel.ListeVoyageur.Count; i++)
+            {
+                this._viewModel.ListeVoyageur.Add(e.ViewModel.ListeVoyageur[i]);
+            }
+            this._viewModel.ListeDestination.Clear();
+            for (int i = 0; i < e.ViewModel.ListeDestination.Count; i++)
+            {
+                this._viewModel.ListeDestination.Add(e.ViewModel.ListeDestination[i]);
+            }
+            this._viewModel.ListeLogement.Clear();
+            for (int i = 0; i < e.ViewModel.ListeLogement.Count; i++)
+            {
+                this._viewModel.ListeLogement.Add(e.ViewModel.ListeLogement[i]);
+            }
+            this._viewModel.ListeTransport.Clear();
+            for (int i = 0; i < e.ViewModel.ListeTransport.Count; i++)
+            {
+                this._viewModel.ListeTransport.Add(e.ViewModel.ListeTransport[i]);
+            }
+            this._viewModel.ListeVoyage.Clear();
+            for (int i = 0; i < e.ViewModel.ListeVoyage.Count; i++)
+            {
+                this._viewModel.ListeVoyage.Add(e.ViewModel.ListeVoyage[i]);
+            }
         }
 
-        private void ButtonNavEnregistrement_MouseLeave(object sender, MouseEventArgs e)
-        {
-            ButtonNavEnregistrement.Background = new SolidColorBrush(Color.FromRgb(245, 135, 53));
-        }
+        #endregion
+
     }
 }

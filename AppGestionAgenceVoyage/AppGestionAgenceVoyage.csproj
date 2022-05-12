@@ -83,6 +83,7 @@
     <Compile Include="ApplicationWindow.xaml.cs">
       <DependentUpon>ApplicationWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EnregistrementEvent.cs" />
     <Compile Include="EnregistrementWindow.xaml.cs">
       <DependentUpon>EnregistrementWindow.xaml</DependentUpon>
     </Compile>
