@@ -5,12 +5,18 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace Model
 {
+    [XmlInclude(typeof(TransportMarin))]
+    [XmlInclude(typeof(TransportAerien))]
+    [XmlInclude(typeof(TransportTerrestre))]
+    
     [Serializable]
     public abstract class MoyenDeTransport
     {
+        [XmlAttribute]
         static public string IMG_BATEAU = "img/boat.png";
         static public string IMG_PLANE = "img/plane.png";
         static public string IMG_TRAIN = "img/train.png";

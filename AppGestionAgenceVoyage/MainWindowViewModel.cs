@@ -18,6 +18,7 @@ using System.Windows.Media;
 
 namespace AppGestionAgenceVoyage
 {
+    [XmlInclude(typeof(System.Windows.Media.MatrixTransform))]
     [Serializable]
     public class MainWindowViewModel : INotifyPropertyChanged, ILoginUtility
     {
@@ -182,7 +183,7 @@ namespace AppGestionAgenceVoyage
 
             return true;
 
-            /*if (LoginCheckRegistry(username, password))
+            /*if (LoginCheckRegistry(username, password))       // A remettre !
             {
                 ApplicationWindow applicationWindow;
                 applicationWindow = new ApplicationWindow(username);
@@ -750,16 +751,16 @@ namespace AppGestionAgenceVoyage
             }
         }
 
-        /*public void ExportAsXML(string root)
+        public void SaveAsXML(string root)
         {
             root = Path.Combine(root, "Test.xml");
-            XmlSerializer xmlSerialize = new XmlSerializer(typeof(ObservableCollection<Voyage>));
-            using (StreamWriter writer = new StreamWriter(root))
+            XmlSerializer xs = new XmlSerializer(typeof(MainWindowViewModel), new Type[] { typeof(MoyenDeTransport) });
+            using (StreamWriter wr = new StreamWriter(root))
             {
-                xmlSerialize.Serialize(writer, this.ListeVoyage);
+                xs.Serialize(wr, this);
             }
             MessageBox.Show("Fichier XML sauvegardé", "Info", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-        }*/
+        }
 
         #endregion
 
