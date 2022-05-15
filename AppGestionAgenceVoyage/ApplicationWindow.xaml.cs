@@ -147,10 +147,10 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonNavDestination_Click(object sender, RoutedEventArgs e)
         {
-            PanelLabelDestination.Visibility= Visibility.Visible;
-            PanelTextDestination.Visibility= Visibility.Visible;
-            PanelButtonDestination.Visibility= Visibility.Visible;
-            ListViewDestination.Visibility= Visibility.Visible;
+            PanelLabelDestination.Visibility = Visibility.Visible;
+            PanelTextDestination.Visibility = Visibility.Visible;
+            PanelButtonDestination.Visibility = Visibility.Visible;
+            ListViewDestination.Visibility = Visibility.Visible;
 
             PanelLabelClient.Visibility = Visibility.Hidden;
             PanelTextClient.Visibility = Visibility.Hidden;
@@ -234,7 +234,7 @@ namespace AppGestionAgenceVoyage
             PanelTextLogement.Visibility = Visibility.Visible;
             PanelButtonLogement.Visibility = Visibility.Visible;
             PanelLabelLogement.Visibility = Visibility.Visible;
-            ListViewLogement.Visibility= Visibility.Visible;
+            ListViewLogement.Visibility = Visibility.Visible;
 
             PanelLabelTransport.Visibility = Visibility.Hidden;
             PanelTextTransport.Visibility = Visibility.Hidden;
@@ -341,7 +341,7 @@ namespace AppGestionAgenceVoyage
                 TextBoxSexe.Clear();
                 DatePickerDateNaissance.SelectedDate = null;
                 TextBoxEmail.Clear();
-                TextBoxNumtel.Clear(); 
+                TextBoxNumtel.Clear();
             }
         }
 
@@ -657,7 +657,7 @@ namespace AppGestionAgenceVoyage
 
         private void EnregistrementWindow_EnregistrementEvent(object sender, EnregistrementEvent e)
         {
-            this._viewModel.ListeVoyageur.Clear();
+            _viewModel.ListeVoyageur.Clear();
             for (int i = 0; i < e.ViewModel.ListeVoyageur.Count; i++)
             {
                 this._viewModel.ListeVoyageur.Add(e.ViewModel.ListeVoyageur[i]);
@@ -682,9 +682,18 @@ namespace AppGestionAgenceVoyage
             {
                 this._viewModel.ListeVoyage.Add(e.ViewModel.ListeVoyage[i]);
             }
+
+            /*int count = _viewModel.ListeVoyageur.Count;
+            _viewModel.ListeVoyageur.Clear();
+            MessageBox.Show("" + (e.ViewModel.ListeVoyageur.Count - count));
+
+            for (int i = 0; i < e.ViewModel.ListeVoyageur.Count - count; i++)
+            {
+                this._viewModel.ListeVoyageur.Add(e.ViewModel.ListeVoyageur[i]);
+            }*/
+
+            #endregion
+
         }
-
-        #endregion
-
     }
 }

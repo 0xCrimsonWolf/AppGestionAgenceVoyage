@@ -19,7 +19,7 @@
 
         <Button x:Name="ButtonExporter"
                 Content="Exporter"
-                Background="#f58735"
+                Background="#00afef"
                 FontFamily="Saira condensed bold"
                 FontSize="20" Click="Exporter_Click">
             <Button.Style>
@@ -128,7 +128,7 @@
                         FontSize="16"
                         Width="180"
                         Height="40"
-                        Margin="0,0,0,0"/>
+                        Margin="0,0,0,0" Click="ButtonImporterXML_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

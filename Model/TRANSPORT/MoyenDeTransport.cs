@@ -16,7 +16,6 @@ namespace Model
     [Serializable]
     public abstract class MoyenDeTransport
     {
-        [XmlAttribute]
         static public string IMG_BATEAU = "img/boat.png";
         static public string IMG_PLANE = "img/plane.png";
         static public string IMG_TRAIN = "img/train.png";

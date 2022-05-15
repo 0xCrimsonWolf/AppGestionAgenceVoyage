@@ -10,6 +10,9 @@
     <Window.DataContext>
         <local:MainWindowViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <local:DataConverterToColor x:Key="DataConverterToColor"/>
+    </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static local:ApplicationWindow.commandes}" 
                      Executed="MyCommandExecuted"/>
@@ -982,7 +985,20 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Date début" Width="100" Binding="{Binding DateDebut}"/>
+                <DataGridTextColumn Header="Date début" Width="100" Binding="{Binding DateDebut}">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Background">
+                                <Setter.Value>
+                                    <MultiBinding Converter="{StaticResource DataConverterToColor}">
+                                        <Binding Path="DateDebut"/>
+                                        <Binding Path="DateFin"/>
+                                    </MultiBinding>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Date fin" Width="100" Binding="{Binding DateFin}"/>
                 <DataGridTextColumn Header="Destination" Width="150">
                     <DataGridTextColumn.Binding>

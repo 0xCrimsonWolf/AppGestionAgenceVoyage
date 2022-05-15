@@ -72,6 +72,15 @@ namespace AppGestionAgenceVoyage
         private void ButtonExporterXML_Click(object sender, RoutedEventArgs e)
         {
             _viewModel.SaveAsXML(TextBoxExportation.Text);
+            this.Close();
+        }
+
+        private void ButtonImporterXML_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindowViewModel xmlData = _viewModel.LoadFromXML(TextBoxImportation.Text);
+            if (xmlData != null)
+                _enregistrementEvent(this, new EnregistrementEvent(xmlData));
+            this.Close();
         }
     }
 }

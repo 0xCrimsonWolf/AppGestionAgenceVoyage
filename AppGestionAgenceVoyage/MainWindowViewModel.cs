@@ -22,6 +22,7 @@ namespace AppGestionAgenceVoyage
     [Serializable]
     public class MainWindowViewModel : INotifyPropertyChanged, ILoginUtility
     {
+        [XmlElement("Voyageur")]
         public ObservableCollection<Voyageur> ListeVoyageur { get; set; }
         private Voyageur _voyageur;
         public ObservableCollection<Destination> ListeDestination { get; set; }
@@ -82,9 +83,9 @@ namespace AppGestionAgenceVoyage
             ListeLogement.Add(new Logement("Villa", "BeautyAir", "Rue de l'espérance, 54", 50, "Endroit posé pour plusieurs, en famille ou avec amis"));
 
             ListeVoyage = new ObservableCollection<Voyage>();
-            ListeVoyage.Add(new Voyage(1, ListeVoyageur[1], DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy"), ListeDestination[2], ListeTransport[3], ListeLogement[0]));
-            ListeVoyage.Add(new Voyage(2, ListeVoyageur[2], DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.AddDays(45).ToString("dd/MM/yyyy"), ListeDestination[1], ListeTransport[4], ListeLogement[1]));
-            ListeVoyage.Add(new Voyage(3, ListeVoyageur[0], DateTime.Now.ToString("dd/MM/yyyy"), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy"), ListeDestination[0], ListeTransport[0], ListeLogement[2]));
+            ListeVoyage.Add(new Voyage(1, ListeVoyageur[1], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[2], ListeTransport[3], ListeLogement[0]));
+            ListeVoyage.Add(new Voyage(2, ListeVoyageur[2], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(45).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[1], ListeTransport[4], ListeLogement[1]));
+            ListeVoyage.Add(new Voyage(3, ListeVoyageur[0], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[0], ListeTransport[0], ListeLogement[2]));
         }
 
         public Voyageur CurrentVoyageur
@@ -754,12 +755,28 @@ namespace AppGestionAgenceVoyage
         public void SaveAsXML(string root)
         {
             root = Path.Combine(root, "Test.xml");
-            XmlSerializer xs = new XmlSerializer(typeof(MainWindowViewModel), new Type[] { typeof(MoyenDeTransport) });
+            XmlSerializer xs = new XmlSerializer(typeof(MainWindowViewModel));
             using (StreamWriter wr = new StreamWriter(root))
             {
                 xs.Serialize(wr, this);
             }
             MessageBox.Show("Fichier XML sauvegardé", "Info", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+        }
+
+        public MainWindowViewModel LoadFromXML(string filename)
+        {
+            if (filename == "")
+            {
+                MessageBox.Show("Vous n'avez pas sélectionné un dossier à charger", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return null;
+            }
+            XmlSerializer xs = new XmlSerializer(typeof(MainWindowViewModel));
+
+            using (Stream fstream = File.OpenRead(filename))
+            {
+                MainWindowViewModel importXML = (MainWindowViewModel)xs.Deserialize(fstream);
+                return importXML;
+            }
         }
 
         #endregion
