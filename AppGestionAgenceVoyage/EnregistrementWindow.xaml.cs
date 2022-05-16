@@ -65,8 +65,10 @@ namespace AppGestionAgenceVoyage
         {
             MainWindowViewModel binaryData = _viewModel.LoadFromBinary(TextBoxImportation.Text);
             if (binaryData != null)
+            {
                 _enregistrementEvent(this, new EnregistrementEvent(binaryData));
-            this.Close();
+                this.Close();
+            }
         }
 
         private void ButtonExporterXML_Click(object sender, RoutedEventArgs e)
@@ -79,8 +81,10 @@ namespace AppGestionAgenceVoyage
         {
             MainWindowViewModel xmlData = _viewModel.LoadFromXML(TextBoxImportation.Text);
             if (xmlData != null)
+            {
                 _enregistrementEvent(this, new EnregistrementEvent(xmlData));
-            this.Close();
+                this.Close();
+            }
         }
     }
 }

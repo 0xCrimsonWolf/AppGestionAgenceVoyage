@@ -657,6 +657,8 @@ namespace AppGestionAgenceVoyage
 
         private void EnregistrementWindow_EnregistrementEvent(object sender, EnregistrementEvent e)
         {
+            // Clear + ajout des nouvelles listes 
+
             _viewModel.ListeVoyageur.Clear();
             for (int i = 0; i < e.ViewModel.ListeVoyageur.Count; i++)
             {
@@ -682,15 +684,6 @@ namespace AppGestionAgenceVoyage
             {
                 this._viewModel.ListeVoyage.Add(e.ViewModel.ListeVoyage[i]);
             }
-
-            /*int count = _viewModel.ListeVoyageur.Count;
-            _viewModel.ListeVoyageur.Clear();
-            MessageBox.Show("" + (e.ViewModel.ListeVoyageur.Count - count));
-
-            for (int i = 0; i < e.ViewModel.ListeVoyageur.Count - count; i++)
-            {
-                this._viewModel.ListeVoyageur.Add(e.ViewModel.ListeVoyageur[i]);
-            }*/
 
             #endregion
 

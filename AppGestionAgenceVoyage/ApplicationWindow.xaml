@@ -985,20 +985,7 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Date début" Width="100" Binding="{Binding DateDebut}">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style TargetType="TextBlock">
-                            <Setter Property="Background">
-                                <Setter.Value>
-                                    <MultiBinding Converter="{StaticResource DataConverterToColor}">
-                                        <Binding Path="DateDebut"/>
-                                        <Binding Path="DateFin"/>
-                                    </MultiBinding>
-                                </Setter.Value>
-                            </Setter>
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
+                <DataGridTextColumn Header="Date début" Width="100" Binding="{Binding DateDebut}"/>
                 <DataGridTextColumn Header="Date fin" Width="100" Binding="{Binding DateFin}"/>
                 <DataGridTextColumn Header="Destination" Width="150">
                     <DataGridTextColumn.Binding>
@@ -1010,6 +997,22 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Transport" Width="100" Binding="{Binding TransportProp.Nom}"/>
             </DataGrid.Columns>
+            
+            <!-- Permet le double binding + double dataConverter -->
+
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="Background">
+                        <Setter.Value>
+                            <MultiBinding Converter="{StaticResource DataConverterToColor}">
+                                <Binding Path="DateDebut"/>
+                                <Binding Path="DateFin"/>
+                            </MultiBinding>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </DataGrid.RowStyle>
+
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
                     <TextBlock Text="{Binding LogementProp.AdressePostale}" Margin="10"/>

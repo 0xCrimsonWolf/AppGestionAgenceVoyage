@@ -14,15 +14,16 @@ namespace AppGestionAgenceVoyage
         object IMultiValueConverter.Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
             string dateDebut = values[0] as string;
-            DateTime bla = Convert.ToDateTime(dateDebut);
-            //DateTime dateFin = (DateTime)values[1];
+            string dateFin = values[1] as string;
+            DateTime DateDebut = Convert.ToDateTime(dateDebut);
+            DateTime DateFin = Convert.ToDateTime(dateFin);
 
-            if (bla.Year > 2023)
+            if (DateDebut.Year == 2022)
             {
-                return Brushes.Red;
+                return Brushes.Green;
             }
 
-            return null;
+            return Brushes.White;
         }
 
         object[] IMultiValueConverter.ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
