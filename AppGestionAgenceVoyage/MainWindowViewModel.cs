@@ -77,15 +77,14 @@ namespace AppGestionAgenceVoyage
             ListeLogement.Add(new Logement("Hotel", "Ibis", "Rue du Vieux Bac, 17/3", 5, "jacuzzi, sauna, massage"));
             ListeLogement.Add(new Logement("Villa", "Nature&Co", "Rue des amoureux, 8", 15, "3 salles de bains, 2 toilettes, 1 piscine"));
             ListeLogement.Add(new Logement("Hotel", "RHotel's", "Rue Victor Hugo, 45", 2, "5 étoiles"));
-
             ListeLogement.Add(new Logement("Gîte", "La maison nature", "Rue du peuplier libre, 17", 20, "Vue sur la forêt et sur le lac"));
             ListeLogement.Add(new Logement("Appartement", "Appart's You", "Avenue de l'Oracle, 2 bis", 10, "1 salles de bains, 1 toilette"));
             ListeLogement.Add(new Logement("Villa", "BeautyAir", "Rue de l'espérance, 54", 50, "Endroit posé pour plusieurs, en famille ou avec amis"));
 
             ListeVoyage = new ObservableCollection<Voyage>();
-            ListeVoyage.Add(new Voyage(1, ListeVoyageur[1], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[2], ListeTransport[3], ListeLogement[0]));
-            ListeVoyage.Add(new Voyage(2, ListeVoyageur[2], DateTime.Now.AddYears(2).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddYears(2).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[1], ListeTransport[4], ListeLogement[1]));
-            ListeVoyage.Add(new Voyage(3, ListeVoyageur[0], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(15).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[0], ListeTransport[0], ListeLogement[2]));
+            ListeVoyage.Add(new Voyage(1, ListeVoyageur[1], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[2], ListeTransport[3], ListeLogement[0], "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."));
+            ListeVoyage.Add(new Voyage(2, ListeVoyageur[2], DateTime.Now.AddYears(2).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddYears(2).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[1], ListeTransport[4], ListeLogement[1], "Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat."));
+            ListeVoyage.Add(new Voyage(3, ListeVoyageur[0], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(15).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[0], ListeTransport[0], ListeLogement[2], "Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor."));
         }
 
         public Voyageur CurrentVoyageur
@@ -228,16 +227,13 @@ namespace AppGestionAgenceVoyage
         {
             if (prenom == "" || nom == "" || sexe == "" || datenaissance == "" || email == "" || numtel == "")
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur d'entrée: Données manquantes.");
             }
             else
             {
                 DateTime naiss = DateTime.Parse(datenaissance);
 
-                // Faire un forçage pour le format du numéro de tel
-
-                ListeVoyageur.Add(new Voyageur(prenom, nom, sexe, naiss.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), email, numtel));
+                ListeVoyageur.Add(new Voyageur(prenom, nom, sexe.ToUpper(), naiss.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), email, numtel));
                 return true;
             }
         }
@@ -246,14 +242,12 @@ namespace AppGestionAgenceVoyage
         {
             if (voy == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un client", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné un client.");
             }
 
             if (prenom == "" || nom == "" || sexe == "" || datenaissance == "")
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur d'entrée: Données manquantes.");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier " + ListeVoyageur[num].Prenom + " " + ListeVoyageur[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -266,15 +260,14 @@ namespace AppGestionAgenceVoyage
                 ListeVoyageur[num].DateNaissance = naissance.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"));
                 return true;
             }
-            return false;
+            throw new WarningException();
         }
 
         public bool DeleteClient(Voyageur voy, int num)
         {
             if (voy == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un client", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné un client.");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer " + ListeVoyageur[num].Prenom + " " + ListeVoyageur[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -285,7 +278,7 @@ namespace AppGestionAgenceVoyage
             }
             else if (result == MessageBoxResult.No)
             {
-                return false;
+                throw new WarningException();
             }
 
             return false;
@@ -300,8 +293,7 @@ namespace AppGestionAgenceVoyage
         {
             if (continent == "" || country == "" || city == "" || climate == "")
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur d'entrée: Données manquantes.");
             }
             else
             {
@@ -314,14 +306,12 @@ namespace AppGestionAgenceVoyage
         {
             if (dest == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné une destination", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné une destination.");
             }
 
             if (continent == "" || country == "" || city == "" || climate == "")
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur d'entrée: Données manquantes.");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier la destination vers " + ListeDestination[num].City, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -333,15 +323,14 @@ namespace AppGestionAgenceVoyage
                 ListeDestination[num].Climate = climate;
                 return true;
             }
-            return false;
+            throw new WarningException();
         }
 
         public bool DeleteDestination(Destination dest, int num)
         {
             if (dest == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné une destination", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné une destination.");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer la destination vers " + ListeDestination[num].City, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -352,7 +341,7 @@ namespace AppGestionAgenceVoyage
             }
             else if (result == MessageBoxResult.No)
             {
-                return false;
+                throw new WarningException();
             }
 
             return false;
@@ -369,8 +358,7 @@ namespace AppGestionAgenceVoyage
             {
                 if (type == "" || nom == "" || typefuel == "")
                 {
-                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return false;
+                    throw new Exception("Erreur d'entrée: Données manquantes.");
                 }
                 else
                 {
@@ -381,7 +369,7 @@ namespace AppGestionAgenceVoyage
                         case "Train":
                             {
                                 if (compagnie == "")
-                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    throw new Exception("Erreur d'entrée: Données manquantes.");
                                 else
                                 {
                                     if (type == "Voiture")
@@ -397,7 +385,7 @@ namespace AppGestionAgenceVoyage
                         case "Avion":
                             {
                                 if (compagnie == "" || modele == "")
-                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    throw new Exception("Erreur d'entrée: Données manquantes.");
                                 else
                                     ListeTransport.Add(new TransportAerien(nom, Convert.ToInt32(passagermax), (float)Convert.ToDouble(chargeutile), typefuel, "img/plane.png", compagnie, modele));
                                 break;
@@ -405,7 +393,7 @@ namespace AppGestionAgenceVoyage
                         case "Bateau":
                             {
                                 if (compagnie == "" || modele == "")
-                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
+                                    throw new Exception("Erreur d'entrée: Données manquantes.");
                                 else
                                     ListeTransport.Add(new TransportMarin(nom, Convert.ToInt32(passagermax), (float)Convert.ToDouble(chargeutile), typefuel, "img/boat.png", compagnie, modele));
                                 break;
@@ -416,8 +404,7 @@ namespace AppGestionAgenceVoyage
             }
             catch (FormatException)
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de format: Formatage d'une(des) donnée(s) incorrect.");
             }
         }
 
@@ -425,14 +412,12 @@ namespace AppGestionAgenceVoyage
         {
             if (transport == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un moyen de transport", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné un transport.");
             }
 
             if (type == "" || nom == "" || typefuel == "" || passagermax <= 0 || chargeutile <= 0)
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur d'entrée: Données manquantes.");
             }
             else
             {
@@ -448,8 +433,7 @@ namespace AppGestionAgenceVoyage
                                 TransportTerrestre transportTerrestre = new TransportTerrestre();
                                 if (compagnie == "")
                                 {
-                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                    return false;
+                                    throw new Exception("Erreur d'entrée: Données manquantes.");
                                 }
                                 else
                                 {
@@ -475,8 +459,7 @@ namespace AppGestionAgenceVoyage
                                 TransportAerien transportAerien = new TransportAerien();
                                 if (compagnie == "" || modele == "")
                                 {
-                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                    return false;
+                                    throw new Exception("Erreur d'entrée: Données manquantes.");
                                 }
                                 else
                                 {
@@ -497,8 +480,7 @@ namespace AppGestionAgenceVoyage
                                 TransportMarin transportMarin = new TransportMarin();
                                 if (compagnie == "" || modele == "")
                                 {
-                                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                                    return false;
+                                    throw new Exception("Erreur d'entrée: Données manquantes.");
                                 }
                                 else
                                 {
@@ -517,7 +499,7 @@ namespace AppGestionAgenceVoyage
                     }
                 }
                 else
-                    return false;
+                    throw new WarningException();
             }
             return true;
         }
@@ -526,8 +508,7 @@ namespace AppGestionAgenceVoyage
         {
             if (transport == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un moyen de transport", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné un transport.");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer le moyen de transport " + ListeTransport[num].Nom + " ?", "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -538,7 +519,7 @@ namespace AppGestionAgenceVoyage
             }
             else if (result == MessageBoxResult.No)
             {
-                return false;
+                throw new WarningException();
             }
 
             return false;
@@ -592,8 +573,7 @@ namespace AppGestionAgenceVoyage
             {
                 if (type == "" || nom == "" || adressepostale == "")
                 {
-                    MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return false;
+                    throw new Exception("Erreur d'entrée: Données manquantes.");
                 }
                 else
                 {
@@ -603,8 +583,7 @@ namespace AppGestionAgenceVoyage
             }
             catch (FormatException)
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur d'entrée: Données manquantes.");
             }
         }
 
@@ -612,14 +591,12 @@ namespace AppGestionAgenceVoyage
         {
             if (logement == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un logement", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné un logement.");
             }
 
             if (type == "" || nom == "" || adressepostale == "")
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur d'entrée: Données manquantes.");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier le logement " + ListeLogement[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -632,15 +609,14 @@ namespace AppGestionAgenceVoyage
                 ListeLogement[num].Commentary = commentary;
                 return true;
             }
-            return false;
+            throw new WarningException();
         }
 
         public bool DeleteLogement(Logement logement, int num)
         {
             if (logement == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un logement", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné un logement.");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer le logement " + ListeLogement[num].Nom, "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -651,7 +627,7 @@ namespace AppGestionAgenceVoyage
             }
             else if (result == MessageBoxResult.No)
             {
-                return false;
+                throw new WarningException();
             }
 
             return false;
@@ -662,31 +638,32 @@ namespace AppGestionAgenceVoyage
         // Méthodes pour la gestion des voyages
         #region Méthodes "Voyage"
 
-        public bool AddVoyage(Voyageur voyageur, string dateDebut, string dateFin, Destination destination, MoyenDeTransport transport, Logement logement)
+        public bool AddVoyage(Voyageur voyageur, string dateDebut, string dateFin, Destination destination, MoyenDeTransport transport, Logement logement, string com)
         {
+            if (voyageur == null || dateDebut == "" || dateFin == "" || destination == null || transport == null || logement == null)
+            {
+                throw new Exception("Erreur d'entrée: Données manquantes.");
+            }
+
             int num = ListeVoyage.Count + 1;
 
             DateTime debut = DateTime.Parse(dateDebut);
             DateTime fin = DateTime.Parse(dateFin);
 
-            Voyage voyage = new Voyage(num, voyageur, debut.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), fin.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), destination, transport, logement);
+            Voyage voyage = new Voyage(num, voyageur, debut.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), fin.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), destination, transport, logement, com);
             ListeVoyage.Add(voyage);
 
             return true;
         }
 
-        public bool ModifyVoyage(Voyage voyage, int num, Voyageur voyageur, string dateDebut, string dateFin, Destination destination, MoyenDeTransport transport, Logement logement)
+        public bool ModifyVoyage(Voyage voyage, int num, Voyageur voyageur, string dateDebut, string dateFin, Destination destination, MoyenDeTransport transport, Logement logement, string com)
         {
-            if (voyage == null)
-            {
-                MessageBox.Show("Vous n'avez pas sélectionné un logement", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
-            }
-
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir modifier le voyage numero " + ListeVoyage[num].Id + " ?", "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                Voyage currentVoyage = new Voyage(num+1, voyageur, dateDebut, dateFin, destination, transport, logement);
+                DateTime debut = DateTime.Parse(dateDebut);
+                DateTime fin = DateTime.Parse(dateFin);
+                Voyage currentVoyage = new Voyage(num+1, voyageur, debut.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), fin.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR")), destination, transport, logement, com);
                 ListeVoyage[num] = currentVoyage;
 
                 return true;
@@ -698,8 +675,7 @@ namespace AppGestionAgenceVoyage
         {
             if (voyage == null)
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un voyage", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return false;
+                throw new Exception("Vous n'avez pas sélectionné un voyage");
             }
 
             MessageBoxResult result = MessageBox.Show("Êtes-vous sûr de vouloir supprimer le voyage numéro " + ListeVoyage[num].Id + " ?", "Attention !", MessageBoxButton.YesNo, MessageBoxImage.Warning);
@@ -731,9 +707,10 @@ namespace AppGestionAgenceVoyage
                 }
 
                 MessageBox.Show("Fichier binaire sauvegardé", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                return true;
             }
-
-            return true;
+            else
+                throw new WarningException();
         }
 
         public MainWindowViewModel LoadFromBinary(string filename)
@@ -745,25 +722,30 @@ namespace AppGestionAgenceVoyage
                 using (Stream fstream = File.OpenRead(filename))
                 {
                     MainWindowViewModel binImport = (MainWindowViewModel)binFormat.Deserialize(fstream);
+                    MessageBox.Show("Fichier binaire importé", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return binImport;
                 }
             }
             else
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un dossier à charger", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return null;
+                throw new Exception("Vous n'avez pas sélectionné un dossier à charger");
             }
         }
 
         public void SaveAsXML(string root)
         {
-            root = Path.Combine(root, "Test.xml");
-            XmlSerializer xs = new XmlSerializer(typeof(MainWindowViewModel));
-            using (StreamWriter wr = new StreamWriter(root))
+            if (MessageBox.Show("Voulez-vous sauvegarder en fichier XML ?", "Attention", MessageBoxButton.YesNo, MessageBoxImage.Exclamation) == MessageBoxResult.Yes)
             {
-                xs.Serialize(wr, this);
+                root = Path.Combine(root, "Test.xml");
+                XmlSerializer xs = new XmlSerializer(typeof(MainWindowViewModel));
+                using (StreamWriter wr = new StreamWriter(root))
+                {
+                    xs.Serialize(wr, this);
+                }
+                MessageBox.Show("Fichier XML sauvegardé", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
-            MessageBox.Show("Fichier XML sauvegardé", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            else
+                throw new WarningException();
         }
 
         public MainWindowViewModel LoadFromXML(string filename)
@@ -775,13 +757,13 @@ namespace AppGestionAgenceVoyage
                 using (Stream fstream = File.OpenRead(filename))
                 {
                     MainWindowViewModel importXML = (MainWindowViewModel)xs.Deserialize(fstream);
+                    MessageBox.Show("Fichier XML importé", "Information", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                     return importXML;
                 }
             }
             else
             {
-                MessageBox.Show("Vous n'avez pas sélectionné un dossier à charger", "Erreur de sélection", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return null;
+                throw new Exception("Vous n'avez pas sélectionné un dossier à charger");
             }
         }
 

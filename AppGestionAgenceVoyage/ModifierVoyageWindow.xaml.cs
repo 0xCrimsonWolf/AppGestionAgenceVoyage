@@ -23,6 +23,8 @@ namespace AppGestionAgenceVoyage
 
         public ModifierVoyageWindow(MainWindowViewModel viewModel, Voyage voyage, int num)
         {
+            if (voyage == null)
+                throw new Exception("Vous n'avez pas sélectionné un voyage.");
 
             InitializeComponent();
 
@@ -40,23 +42,26 @@ namespace AppGestionAgenceVoyage
             ComboBoxModifDestination.SelectedItem = voyage.DestinationProp;
             ComboBoxModifTransport.SelectedItem = voyage.TransportProp;
             ComboBoxModifLogement.SelectedItem = voyage.LogementProp;
+            TextBoxCom.Text = voyage.Commentaire.ToString();
 
         }
 
         private void ButtonOkModif_Click(object sender, RoutedEventArgs e)
         {
-            if (ComboBoxModifNom.Text == "" || DatePickerDateModifDebut.Text == "" || DatePickerDateModifFin.Text == "" || ComboBoxModifDestination.Text == "" || ComboBoxModifTransport.Text == "")
+            try
             {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
-            {
-                _viewModel.ModifyVoyage(_currentVoyage, _num, ComboBoxModifNom.SelectedItem as Voyageur, DatePickerDateModifDebut.Text, DatePickerDateModifFin.Text,
+                _viewModel.ModifyVoyage(_currentVoyage, _num, ComboBoxModifNom.SelectedItem as Voyageur, DatePickerDateModifDebut.DisplayDate.ToString(),
+                                        DatePickerDateModifFin.DisplayDate.ToString(),
                                         ComboBoxModifDestination.SelectedItem as Destination,
                                         ComboBoxModifTransport.SelectedItem as MoyenDeTransport,
-                                        ComboBoxModifLogement.SelectedItem as Logement);
+                                        ComboBoxModifLogement.SelectedItem as Logement,
+                                        TextBoxCom.Text);
+                this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ButtonAnnulerModif_Click(object sender, RoutedEventArgs e)

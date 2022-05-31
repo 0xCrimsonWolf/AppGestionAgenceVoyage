@@ -18,6 +18,7 @@ namespace Model
         private Destination _destination;
         private MoyenDeTransport _moyenDeTransport;
         private Logement _logement;
+        private string _commentaire;
 
         public int Id
         {
@@ -89,6 +90,16 @@ namespace Model
             }
         }
 
+        public string Commentaire
+        {
+            get { return _commentaire; }
+            set
+            {
+                _commentaire = value;
+                OnPropertyChanged();
+            }
+        }
+
         public Voyage()
         {
             Id = -1;
@@ -98,9 +109,10 @@ namespace Model
             DestinationProp = null;
             TransportProp = null;
             LogementProp = null;
+            Commentaire = "Default";
         }
 
-        public Voyage(int id, Voyageur voyageur, string debut, string fin, Destination destination, MoyenDeTransport transport, Logement logement)
+        public Voyage(int id, Voyageur voyageur, string debut, string fin, Destination destination, MoyenDeTransport transport, Logement logement, string com)
         {
             Id = id;
             VoyageurProp = voyageur;
@@ -109,11 +121,12 @@ namespace Model
             DestinationProp = destination;
             TransportProp = transport;
             LogementProp = logement;
+            Commentaire = com;  
         }
 
         public override string ToString()
         {
-            return Id + " " + VoyageurProp + " " + DateDebut + " " + DateFin + " " + DestinationProp + "" + TransportProp + " " + LogementProp;
+            return Id + " " + VoyageurProp + " " + DateDebut + " " + DateFin + " " + DestinationProp + "" + TransportProp + " " + LogementProp + " " + Commentaire;
         }
 
         [field: NonSerializedAttribute()] public event PropertyChangedEventHandler PropertyChanged;

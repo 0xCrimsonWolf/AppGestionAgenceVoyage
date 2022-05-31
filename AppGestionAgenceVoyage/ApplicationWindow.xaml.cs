@@ -2,6 +2,7 @@
 using Model;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -327,15 +328,9 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonAjouterClient_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.AddClient(TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString(), TextBoxEmail.Text, TextBoxNumtel.Text);
-        }
-
-        private void ButtonModifierClient_Click(object sender, RoutedEventArgs e)
-        {
-            bool result;
-            result = _viewModel.ModifyClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex, TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString());
-            if (result)
+            try
             {
+                _viewModel.AddClient(TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString(), TextBoxEmail.Text, TextBoxNumtel.Text);
                 TextBoxPrenom.Clear();
                 TextBoxNom.Clear();
                 TextBoxSexe.Clear();
@@ -343,11 +338,49 @@ namespace AppGestionAgenceVoyage
                 TextBoxEmail.Clear();
                 TextBoxNumtel.Clear();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ButtonModifierClient_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _viewModel.ModifyClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex, TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString());
+                TextBoxPrenom.Clear();
+                TextBoxNom.Clear();
+                TextBoxSexe.Clear();
+                DatePickerDateNaissance.SelectedDate = null;
+                TextBoxEmail.Clear();
+                TextBoxNumtel.Clear();
+            }
+            catch (WarningException wex)    // WarningException pour la réponse au message "Voulez vous modifier ? yes/no"
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ButtonSupprimerClient_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.DeleteClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex);
+            try
+            {
+                _viewModel.DeleteClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex);
+            }
+            catch (WarningException wex)    // WarningException pour la réponse au message "Voulez vous supprimer ? yes/no"
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ListViewClient_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ListViewClient.SelectedItems.Clear();
         }
 
         #endregion
@@ -361,25 +394,54 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonAjouterDestination_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.AddDestination(ComboBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text);
-        }
-
-        private void ButtonModifierDestination_Click(object sender, RoutedEventArgs e)
-        {
-            bool result;
-            result = _viewModel.ModifyDestination((Destination)ListViewDestination.SelectedItem, ListViewDestination.SelectedIndex, ComboBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text);
-            if (result)
+            try
             {
+                _viewModel.AddDestination(ComboBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text);
                 ComboBoxContinent.SelectedItem = null;
                 TextBoxCountry.Clear();
                 TextBoxCity.Clear();
                 TextBoxClimate.Clear();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ButtonModifierDestination_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _viewModel.ModifyDestination((Destination)ListViewDestination.SelectedItem, ListViewDestination.SelectedIndex, ComboBoxContinent.Text, TextBoxCountry.Text, TextBoxCity.Text, TextBoxClimate.Text); ComboBoxContinent.SelectedItem = null;
+                TextBoxCountry.Clear();
+                TextBoxCity.Clear();
+                TextBoxClimate.Clear();
+            }
+            catch (WarningException wex)    // WarningException pour la réponse au message "Voulez vous modifier ? yes/no"
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ButtonSupprimerDestination_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.DeleteDestination((Destination)ListViewDestination.SelectedItem, ListViewDestination.SelectedIndex);
+            try
+            {
+                _viewModel.DeleteDestination((Destination)ListViewDestination.SelectedItem, ListViewDestination.SelectedIndex);
+            }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ListViewDestination_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ListViewDestination.SelectedItems.Clear();
         }
 
         #endregion
@@ -397,7 +459,7 @@ namespace AppGestionAgenceVoyage
                     {
                         ComboBoxTypeTransport.IsEnabled = false;
                         TransportAerien transportAerien = ListViewTransport.SelectedItem as TransportAerien;
-                        PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                        PanelButtonTransport.Margin = new Thickness(0, 220, 133, -60);
                         LabelCompagnie.Content = "Compagnie";
                         LabelCompagnie.Visibility = Visibility.Visible;
                         LabelModele.Visibility = Visibility.Visible;
@@ -412,7 +474,7 @@ namespace AppGestionAgenceVoyage
                     {
                         ComboBoxTypeTransport.IsEnabled = false;
                         TransportMarin transportMarin = ListViewTransport.SelectedItem as TransportMarin;
-                        PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                        PanelButtonTransport.Margin = new Thickness(0, 220, 133, -60);
                         LabelCompagnie.Content = "Compagnie";
                         LabelCompagnie.Visibility = Visibility.Visible;
                         LabelModele.Visibility = Visibility.Visible;
@@ -427,7 +489,7 @@ namespace AppGestionAgenceVoyage
                     {
                         ComboBoxTypeTransport.IsEnabled = false;
                         TransportTerrestre transportTerrestre = ListViewTransport.SelectedItem as TransportTerrestre;
-                        PanelButtonTransport.Margin = new Thickness(0, 0, 133, 0);
+                        PanelButtonTransport.Margin = new Thickness(0, 190, 133, 0);
                         LabelModele.Visibility = Visibility.Hidden;
                         TextBoxModele.Visibility = Visibility.Hidden;
                         LabelCompagnie.Content = "Modèle";
@@ -442,32 +504,57 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonAjouterTransport_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.AddTransport(ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, TextBoxNbrPassager.Text, TextBoxChargeUtile.Text, TextBoxCompagnie.Text, TextBoxModele.Text);
+            try
+            {
+                _viewModel.AddTransport(ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, TextBoxNbrPassager.Text, TextBoxChargeUtile.Text, TextBoxCompagnie.Text, TextBoxModele.Text);
+                ComboBoxTypeTransport.SelectedItem = null;
+                TextBoxNomTransport.Clear();
+                TextBoxNbrTypeFuel.Clear();
+                TextBoxNbrPassager.Clear();
+                TextBoxChargeUtile.Clear();
+                TextBoxCompagnie.Clear();
+                TextBoxModele.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ButtonModifierTransport_Click(object sender, RoutedEventArgs e)
         {
-            bool result;
-            result = _viewModel.ModifyTransport((MoyenDeTransport)ListViewTransport.SelectedItem, ListViewTransport.SelectedIndex, ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, Convert.ToInt32(TextBoxNbrPassager.Text), (float)Convert.ToDouble(TextBoxChargeUtile.Text), TextBoxCompagnie.Text, TextBoxModele.Text);
-            if (result)
+            try
             {
+                _viewModel.ModifyTransport((MoyenDeTransport)ListViewTransport.SelectedItem, ListViewTransport.SelectedIndex, ComboBoxTypeTransport.Text, TextBoxNomTransport.Text, TextBoxNbrTypeFuel.Text, Convert.ToInt32(TextBoxNbrPassager.Text), (float)Convert.ToDouble(TextBoxChargeUtile.Text), TextBoxCompagnie.Text, TextBoxModele.Text);
                 ComboBoxTypeTransport.IsEnabled = true;
                 TextBoxCompagnie.Clear();
                 TextBoxModele.Clear();
+            }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void ButtonSupprimerTransport_Click(object sender, RoutedEventArgs e)
         {
-            bool result;
-            result = _viewModel.DeleteTransport(ListViewTransport.SelectedItem as MoyenDeTransport, ListViewTransport.SelectedIndex);
-            if (result)
+            try
             {
+                _viewModel.DeleteTransport(ListViewTransport.SelectedItem as MoyenDeTransport, ListViewTransport.SelectedIndex);
                 ComboBoxTypeTransport.IsEnabled = true;
                 TextBoxCompagnie.Clear();
                 TextBoxModele.Clear();
             }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
+
 
         private void ComboBoxTypeTransport_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -481,7 +568,7 @@ namespace AppGestionAgenceVoyage
                     case "System.Windows.Controls.ComboBoxItem: Autocar":
                     case "System.Windows.Controls.ComboBoxItem: Train":
                         {
-                            PanelButtonTransport.Margin = new Thickness(0, 0, 133, 0);
+                            PanelButtonTransport.Margin = new Thickness(0, 190, 133, 0);
                             LabelModele.Visibility = Visibility.Hidden;
                             TextBoxModele.Visibility = Visibility.Hidden;
                             LabelCompagnie.Content = "Modèle";
@@ -491,7 +578,7 @@ namespace AppGestionAgenceVoyage
                         }
                     case "System.Windows.Controls.ComboBoxItem: Avion":
                         {
-                            PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                            PanelButtonTransport.Margin = new Thickness(0, 220, 133, -60);
                             LabelCompagnie.Content = "Compagnie";
                             LabelCompagnie.Visibility = Visibility.Visible;
                             LabelModele.Visibility = Visibility.Visible;
@@ -501,7 +588,7 @@ namespace AppGestionAgenceVoyage
                         }
                     case "System.Windows.Controls.ComboBoxItem: Bateau":
                         {
-                            PanelButtonTransport.Margin = new Thickness(0, 0, 133, -60);
+                            PanelButtonTransport.Margin = new Thickness(0, 220, 133, -60);
                             LabelCompagnie.Content = "Compagnie";
                             LabelCompagnie.Visibility = Visibility.Visible;
                             LabelModele.Visibility = Visibility.Visible;
@@ -528,35 +615,73 @@ namespace AppGestionAgenceVoyage
         private void ListViewLogement_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _viewModel.CurrentLogement = ListViewLogement.SelectedItem as Logement;
+            DataGridCell cell = (DataGridCell)sender;
+            cell.Foreground = Brushes.Red;
         }
 
         private void ButtonAjouterLogement_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.AddLogement(TextBoxTypeLogement.Text, TextBoxNomLogement.Text, TextBoxAdrPostale.Text, TextBoxNbrPersonne.Text, TextBoxCommentaire.Text);
-        }
-
-        private void ButtonModifierLogement_Click(object sender, RoutedEventArgs e)
-        {
-            bool result;
-            result = _viewModel.ModifyLogement((Logement)ListViewLogement.SelectedItem, ListViewLogement.SelectedIndex, TextBoxTypeLogement.Text, TextBoxNomLogement.Text, TextBoxAdrPostale.Text, Convert.ToInt32(TextBoxNbrPersonne.Text), TextBoxCommentaire.Text);
-            if (result)
+            try
             {
+                _viewModel.AddLogement(TextBoxTypeLogement.Text, TextBoxNomLogement.Text, TextBoxAdrPostale.Text, TextBoxNbrPersonne.Text, TextBoxCommentaire.Text);
                 TextBoxTypeLogement.Clear();
                 TextBoxNomLogement.Clear();
                 TextBoxAdrPostale.Clear();
                 TextBoxNbrPersonne.Clear();
                 TextBoxCommentaire.Clear();
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ButtonModifierLogement_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _viewModel.ModifyLogement((Logement)ListViewLogement.SelectedItem, ListViewLogement.SelectedIndex, TextBoxTypeLogement.Text, TextBoxNomLogement.Text, TextBoxAdrPostale.Text, Convert.ToInt32(TextBoxNbrPersonne.Text), TextBoxCommentaire.Text);
+                TextBoxTypeLogement.Clear();
+                TextBoxNomLogement.Clear();
+                TextBoxAdrPostale.Clear();
+                TextBoxNbrPersonne.Clear();
+                TextBoxCommentaire.Clear();
+            }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ButtonSupprimerLogement_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.DeleteLogement((Logement)ListViewLogement.SelectedItem, ListViewLogement.SelectedIndex);
+            try
+            {
+                _viewModel.DeleteLogement((Logement)ListViewLogement.SelectedItem, ListViewLogement.SelectedIndex);
+            }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private void ListViewLogement_MouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            ListViewLogement.SelectedItems.Clear();
         }
 
         #endregion
 
         #region Boutons "Voyages"
+
+        private void DataGridVoyages_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.CurrentVoyage = DataGridVoyages.SelectedItem as Voyage;
+        }
 
         private void ButtonAjouterVoyage_Click(object sender, RoutedEventArgs e)
         {
@@ -566,13 +691,28 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonModifierVoyage_Click(object sender, RoutedEventArgs e)
         {
-            ModifierVoyageWindow modifierVoyageWindow = new ModifierVoyageWindow(_viewModel, DataGridVoyages.SelectedItem as Voyage, DataGridVoyages.SelectedIndex);
-            modifierVoyageWindow.ShowDialog();
+            try
+            {
+                ModifierVoyageWindow modifierVoyageWindow = new ModifierVoyageWindow(_viewModel, DataGridVoyages.SelectedItem as Voyage, DataGridVoyages.SelectedIndex);
+                modifierVoyageWindow.ShowDialog();
+                DataGridVoyages.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ButtonSupprimerVoyage_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.DeleteVoyage(DataGridVoyages.SelectedItem as Voyage, DataGridVoyages.SelectedIndex);
+            try
+            {
+                _viewModel.DeleteVoyage(DataGridVoyages.SelectedItem as Voyage, DataGridVoyages.SelectedIndex);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         #endregion
@@ -684,9 +824,8 @@ namespace AppGestionAgenceVoyage
             {
                 this._viewModel.ListeVoyage.Add(e.ViewModel.ListeVoyage[i]);
             }
-
-            #endregion
-
         }
+
+        #endregion
     }
 }

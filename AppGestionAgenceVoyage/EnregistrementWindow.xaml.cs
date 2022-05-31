@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -57,33 +58,67 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonExporterBinaire_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.SaveAsBinary(TextBoxExportation.Text);
-            this.Close();
+            try
+            {
+                _viewModel.SaveAsBinary(TextBoxExportation.Text);
+                this.Close();
+            }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void ButtonImporterBinaire_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowViewModel binaryData = _viewModel.LoadFromBinary(TextBoxImportation.Text);
-            if (binaryData != null)
+            try
             {
-                _enregistrementEvent(this, new EnregistrementEvent(binaryData));
-                this.Close();
+                MainWindowViewModel binaryData = _viewModel.LoadFromBinary(TextBoxImportation.Text);
+                if (binaryData != null)
+                {
+                    _enregistrementEvent(this, new EnregistrementEvent(binaryData));
+                    this.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
 
         private void ButtonExporterXML_Click(object sender, RoutedEventArgs e)
         {
-            _viewModel.SaveAsXML(TextBoxExportation.Text);
-            this.Close();
+            try
+            {
+                _viewModel.SaveAsXML(TextBoxExportation.Text);
+                this.Close();
+            }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
         }
 
         private void ButtonImporterXML_Click(object sender, RoutedEventArgs e)
         {
-            MainWindowViewModel xmlData = _viewModel.LoadFromXML(TextBoxImportation.Text);
-            if (xmlData != null)
+            try
             {
-                _enregistrementEvent(this, new EnregistrementEvent(xmlData));
-                this.Close();
+                MainWindowViewModel xmlData = _viewModel.LoadFromXML(TextBoxImportation.Text);
+                if (xmlData != null)
+                {
+                    _enregistrementEvent(this, new EnregistrementEvent(xmlData));
+                    this.Close();
+                }
+            }
+            catch (WarningException wex)
+            { WarningException warning = wex; }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
         }
     }

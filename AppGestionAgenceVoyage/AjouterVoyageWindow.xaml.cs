@@ -32,18 +32,19 @@ namespace AppGestionAgenceVoyage
 
         private void ButtonOk_Click(object sender, RoutedEventArgs e)
         {
-            if (ComboBoxAddNom.Text == "" || DatePickerDateDebut.Text == "" || DatePickerDateFin.Text == "" || ComboBoxAddDestination.Text == "" || ComboBoxAddTransport.Text == "")
-            {
-                MessageBox.Show("Données manquantes...", "Erreur d'entrée", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
+            try
             {
                 _viewModel.AddVoyage(ComboBoxAddNom.SelectedItem as Voyageur, DatePickerDateDebut.Text, DatePickerDateFin.Text,
                                         ComboBoxAddDestination.SelectedItem as Destination,
                                         ComboBoxAddTransport.SelectedItem as MoyenDeTransport,
-                                        ComboBoxAddLogement.SelectedItem as Logement);
+                                        ComboBoxAddLogement.SelectedItem as Logement,
+                                        TextBoxCom.Text);
+                this.Close();
             }
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void ButtonAnnuler_Click(object sender, RoutedEventArgs e)

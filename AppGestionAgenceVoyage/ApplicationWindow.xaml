@@ -417,7 +417,7 @@
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding ListeVoyageur, Mode=TwoWay}"
-                  SelectionChanged="ListViewClient_SelectionChanged">
+                  SelectionChanged="ListViewClient_SelectionChanged" MouseRightButtonDown="ListViewClient_MouseRightButtonDown">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Prenom" Width="120" DisplayMemberBinding="{Binding Prenom}"/>
@@ -513,7 +513,7 @@
                          Height="24"/>
         </StackPanel>
 
-        <StackPanel x:Name="PanelButtonClient" Visibility="Hidden" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,133,0" HorizontalAlignment="Left" Height="100" Width="370">
+        <StackPanel x:Name="PanelButtonClient" Visibility="Hidden" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,200,133,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="100" Width="370">
             <Button x:Name="ButtonAjouterClient"
                     Content="Ajouter"
                     FontSize="15"
@@ -560,7 +560,7 @@
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding ListeDestination, Mode=TwoWay}"
-                  SelectionChanged="ListViewDestination_SelectionChanged">
+                  SelectionChanged="ListViewDestination_SelectionChanged" MouseRightButtonDown="ListViewDestination_MouseRightButtonDown">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Continent" Width="120" DisplayMemberBinding="{Binding Continent}"/>
@@ -635,7 +635,7 @@
                          Height="24"/>
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="PanelButtonDestination" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,133,130" Height="100" Width="370">
+        <StackPanel Visibility="Hidden" x:Name="PanelButtonDestination" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,140,133,130" Height="100" Width="370">
             <Button x:Name="ButtonAjouterDestination"
                     Content="Ajouter"
                     FontSize="15"
@@ -802,7 +802,7 @@
                          Height="24"/>
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="PanelButtonTransport" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Stretch" Margin="0,0,133,70" Height="100" Width="370">
+        <StackPanel Visibility="Hidden" x:Name="PanelButtonTransport" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,160,133,70" Height="100" Width="370">
             <Button x:Name="ButtonAjouterTransport"
                     Content="Ajouter"
                     FontSize="15"
@@ -850,7 +850,7 @@
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Stretch"
                   ItemsSource="{Binding ListeLogement, Mode=TwoWay}"
-                  SelectionChanged="ListViewLogement_SelectionChanged">
+                  SelectionChanged="ListViewLogement_SelectionChanged" MouseRightButtonDown="ListViewLogement_MouseRightButtonDown">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Type" Width="120" DisplayMemberBinding="{Binding Type}"/>
@@ -931,7 +931,7 @@
                          Height="96"/>
         </StackPanel>
 
-        <StackPanel Visibility="Hidden" x:Name="PanelButtonLogement" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,0,133,-100" HorizontalAlignment="Left" Height="100" Width="370">
+        <StackPanel Visibility="Hidden" x:Name="PanelButtonLogement" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="4" Margin="0,230,133,-100" VerticalAlignment="Top" HorizontalAlignment="Left" Height="100" Width="370">
             <Button x:Name="ButtonAjouterLogement"
                     Content="Ajouter"
                     FontSize="15"
@@ -966,7 +966,7 @@
         <!-- NAV. VOYAGES -->
         <!--#region NAV. VOYAGES -->
 
-        <DataGrid x:Name="DataGridVoyages"
+        <DataGrid x:Name="DataGridVoyages" Visibility="Visible"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
@@ -974,7 +974,7 @@
                   Grid.Column="3"
                   Grid.Row="2"
                   Grid.ColumnSpan="7"
-                  ItemsSource="{Binding ListeVoyage, Mode=TwoWay}">
+                  ItemsSource="{Binding ListeVoyage, Mode=TwoWay}" SelectionChanged="DataGridVoyages_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Width="50" Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Client" Width="130">
@@ -989,19 +989,27 @@
                 <DataGridTextColumn Header="Date fin" Width="100" Binding="{Binding DateFin}"/>
                 <DataGridTextColumn Header="Destination" Width="150">
                     <DataGridTextColumn.Binding>
-                        <MultiBinding StringFormat="{}{0} ({1})">
+                        <MultiBinding StringFormat="{}{0}  ({1})">
                             <Binding Path="DestinationProp.City"/>
                             <Binding Path="DestinationProp.Country"/>
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
+                <DataGridTextColumn Header="Logement" Width="120">
+                    <DataGridTextColumn.Binding>
+                        <MultiBinding StringFormat="{}{0}  ({1})">
+                            <Binding Path="LogementProp.Nom"/>
+                            <Binding Path="LogementProp.Type"/>
+                        </MultiBinding>
+                    </DataGridTextColumn.Binding>
+                </DataGridTextColumn>
                 <DataGridTextColumn Header="Transport" Width="100" Binding="{Binding TransportProp.Nom}"/>
             </DataGrid.Columns>
-            
+
             <!-- Permet le double binding + double dataConverter -->
 
-            <DataGrid.RowStyle>
-                <Style TargetType="DataGridRow">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell">
                     <Setter Property="Background">
                         <Setter.Value>
                             <MultiBinding Converter="{StaticResource DataConverterToColor}">
@@ -1010,17 +1018,22 @@
                             </MultiBinding>
                         </Setter.Value>
                     </Setter>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
-            </DataGrid.RowStyle>
+            </DataGrid.CellStyle>
 
             <DataGrid.RowDetailsTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding LogementProp.AdressePostale}" Margin="10"/>
+                    <TextBlock Text="{Binding Commentaire}" Margin="10"/>
                 </DataTemplate>
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
 
-        <StackPanel x:Name="PanelButtonVoyages" Grid.Column="1" Grid.Row="2" Orientation="Vertical" Height="160" VerticalAlignment="Top" Margin="0,15,0,0">
+        <StackPanel Visibility="Visible" x:Name="PanelButtonVoyages" Grid.Column="1" Grid.Row="2" Orientation="Vertical" Height="160" VerticalAlignment="Top" Margin="0,15,0,0">
 
             <Button x:Name="ButtonAjouterVoyage"
                     Height="40"

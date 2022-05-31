@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AppGestionAgenceVoyage"
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
-        Title=" Modification" Background="#f58735" Height="300" Width="400" ResizeMode="NoResize">
+        Title=" Modification" Background="#f58735" Height="300" Width="700" ResizeMode="NoResize" Icon="img/TestLogo2.png">
     <Grid>
         <StackPanel Orientation="Horizontal">
             <StackPanel x:Name="PanelLabelModifVoyage" Orientation="Vertical" Grid.Column="1" Grid.Row="2" VerticalAlignment="Top" Height="210" Margin="5,5,5,0">
@@ -150,24 +150,40 @@
                     </ComboBox.ItemTemplate>
                 </ComboBox>
             </StackPanel>
+
+            <StackPanel Margin="10,5,5,0" Orientation="Vertical">
+
+                <Label Content="Commentaire :"
+                       FontSize="15"
+                       FontFamily="Segoe UI Semibold"/>
+
+                <TextBox x:Name="TextBoxCom"
+                         FontSize="15"
+                         TextWrapping="Wrap"
+                         Width="325"
+                         Height="175"/>
+            </StackPanel>
+
         </StackPanel>
 
         <Canvas>
-            <Button x:Name="ButtonOkModif"
+            <Button x:Name="ButtonOk"
                 Content="Ok"
                 FontFamily="Saira condensed bold"
                 FontSize="14"
                 Width="60"
                 Height="27"
-                Canvas.Left="235" Canvas.Top="225" Click="ButtonOkModif_Click"/>
+                Canvas.Left="535" Canvas.Top="225"
+                Click="ButtonOkModif_Click"/>
 
-            <Button x:Name="ButtonAnnulerModif"
+            <Button x:Name="ButtonAnnuler"
                 Content="Annuler"
                 FontFamily="Saira condensed bold"
                 FontSize="14"
                 Width="70"
                 Height="27"
-                Canvas.Left="305" Canvas.Top="225" Click="ButtonAnnulerModif_Click"/>
+                Canvas.Left="605" Canvas.Top="225"
+                Click="ButtonAnnulerModif_Click"/>
         </Canvas>
     </Grid>
 </Window>
