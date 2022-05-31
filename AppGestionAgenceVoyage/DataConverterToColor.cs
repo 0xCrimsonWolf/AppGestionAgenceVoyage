@@ -18,9 +18,16 @@ namespace AppGestionAgenceVoyage
             DateTime DateDebut = Convert.ToDateTime(dateDebut);
             DateTime DateFin = Convert.ToDateTime(dateFin);
 
-            if (DateDebut.Year == 2022)
+            if (DateDebut > DateTime.Now && DateFin > DateTime.Now)     // Cas 1 : Avant le voyage
             {
+                if ((DateDebut.DayOfYear - DateTime.Now.DayOfYear) < 5)
+                    return Brushes.DarkOrange;
+            }
+            else if (DateDebut < DateTime.Now && DateFin > DateTime.Now)        // Cas 3 : Voyage actif
                 return Brushes.Green;
+            else if (DateFin < DateTime.Now)        // Cas 2 : Après le voyage
+            {
+                return Brushes.OrangeRed;
             }
 
             return Brushes.White;
