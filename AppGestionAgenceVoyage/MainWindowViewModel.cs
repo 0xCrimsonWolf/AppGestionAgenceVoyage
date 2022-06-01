@@ -57,6 +57,9 @@ namespace AppGestionAgenceVoyage
             ListeVoyageur.Add(new Voyageur("Alix", "Hernish", "H", "03/02/1998", "Alix14@gmail.com", "0476.74.68.65"));
             ListeVoyageur.Add(new Voyageur("Clara", "François", "F", "18/12/1982", "cla.ra@hotmail.com", "0477.02.01.58"));
             ListeVoyageur.Add(new Voyageur("Tom", "Tailor", "H", "12/07/2001", "tomtailor9@outlook.com", "0498.08.68.42"));
+            ListeVoyageur.Add(new Voyageur("Sylvie", "Bravière", "F", "25/05/1953", "sy.braviere@gmail.com", "0472.45.87.89"));
+            ListeVoyageur.Add(new Voyageur("Emma", "Ferrier", "F", "14/03/1980", "emmaferrier1@hotmail.com", "0474.02.26.12"));
+            ListeVoyageur.Add(new Voyageur("Saskia", "Chantraine", "F", "02/10/2000", "saskia12.chantraine@outlook.com", "0496.87.65.53"));
 
             ListeDestination = new ObservableCollection<Destination>();
             ListeDestination.Add(new Destination("Afrique", "Maroc", "Marrakech", "Subhumide/aride"));

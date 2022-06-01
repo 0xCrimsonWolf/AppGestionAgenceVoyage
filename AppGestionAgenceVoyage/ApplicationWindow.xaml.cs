@@ -87,6 +87,7 @@ namespace AppGestionAgenceVoyage
 
             PanelButtonVoyages.Visibility = Visibility.Hidden;
             DataGridVoyages.Visibility = Visibility.Hidden;
+            PanelLegendVoyages.Visibility = Visibility.Hidden;
 
             PanelLabelBienvenue.Visibility = Visibility.Visible;
         }
@@ -131,6 +132,7 @@ namespace AppGestionAgenceVoyage
 
             PanelButtonVoyages.Visibility = Visibility.Hidden;
             DataGridVoyages.Visibility = Visibility.Hidden;
+            PanelLegendVoyages.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -172,6 +174,7 @@ namespace AppGestionAgenceVoyage
 
             PanelButtonVoyages.Visibility = Visibility.Hidden;
             DataGridVoyages.Visibility = Visibility.Hidden;
+            PanelLegendVoyages.Visibility = Visibility.Hidden;
         }
 
         #endregion
@@ -209,6 +212,7 @@ namespace AppGestionAgenceVoyage
 
             PanelButtonVoyages.Visibility = Visibility.Hidden;
             DataGridVoyages.Visibility = Visibility.Hidden;
+            PanelLegendVoyages.Visibility = Visibility.Hidden;
 
             PanelTextLogement.Visibility = Visibility.Hidden;
             PanelButtonLogement.Visibility = Visibility.Hidden;
@@ -254,6 +258,7 @@ namespace AppGestionAgenceVoyage
 
             PanelButtonVoyages.Visibility = Visibility.Hidden;
             DataGridVoyages.Visibility = Visibility.Hidden;
+            PanelLegendVoyages.Visibility = Visibility.Hidden;
 
             PanelLabelBienvenue.Visibility = Visibility.Hidden;
         }
@@ -277,6 +282,7 @@ namespace AppGestionAgenceVoyage
 
             PanelButtonVoyages.Visibility = Visibility.Visible;
             DataGridVoyages.Visibility = Visibility.Visible;
+            PanelLegendVoyages.Visibility= Visibility.Visible;
 
             PanelTextLogement.Visibility = Visibility.Hidden;
             PanelButtonLogement.Visibility = Visibility.Hidden;

@@ -1059,6 +1059,41 @@
                     Background="#f58735" Click="ButtonSupprimerVoyage_Click"/>
         </StackPanel>
 
+        <StackPanel Visibility="Visible" x:Name="PanelLegendVoyages" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Vertical" Height="75" VerticalAlignment="Bottom" Margin="0,15,0,0">
+            <StackPanel Orientation="Horizontal">
+                <Label Width="20"
+                   Height="20"
+                   Background="Green"
+                   HorizontalAlignment="Left"/>
+                <TextBlock Width="85" Height="20"
+                           Text=" En voyage"
+                           FontSize="15"
+                           FontFamily="Segoe UI Semibold"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Width="20"
+                   Height="20"
+                   Background="DarkOrange"
+                   HorizontalAlignment="Left"/>
+                <TextBlock Width="160" Height="20"
+                           Text=" &lt; 5j Avant le voyage"
+                           FontSize="15"
+                           FontFamily="Segoe UI Semibold"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
+                <Label Width="20"
+                   Height="20"
+                   Background="OrangeRed"
+                   HorizontalAlignment="Left"/>
+                <TextBlock Width="160" Height="20"
+                           Text=" N'est plus en voyage"
+                           FontSize="15"
+                           FontFamily="Segoe UI Semibold"/>
+            </StackPanel>
+        </StackPanel>
+
         <!--#endregion-->
 
     </Grid>
