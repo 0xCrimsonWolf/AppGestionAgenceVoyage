@@ -621,8 +621,6 @@ namespace AppGestionAgenceVoyage
         private void ListViewLogement_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _viewModel.CurrentLogement = ListViewLogement.SelectedItem as Logement;
-            DataGridCell cell = (DataGridCell)sender;
-            cell.Foreground = Brushes.Red;
         }
 
         private void ButtonAjouterLogement_Click(object sender, RoutedEventArgs e)

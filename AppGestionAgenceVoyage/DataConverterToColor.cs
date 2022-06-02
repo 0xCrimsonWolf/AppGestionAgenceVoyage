@@ -21,14 +21,12 @@ namespace AppGestionAgenceVoyage
             if (DateDebut > DateTime.Now && DateFin > DateTime.Now)     // Cas 1 : Avant le voyage
             {
                 if ((DateDebut.DayOfYear - DateTime.Now.DayOfYear) < 5)
-                    return Brushes.DarkOrange;
+                    return new SolidColorBrush(Color.FromRgb(255,171, 60));
             }
             else if (DateDebut < DateTime.Now && DateFin > DateTime.Now)        // Cas 3 : Voyage actif
-                return Brushes.Green;
+                return Brushes.LightGreen;
             else if (DateFin < DateTime.Now)        // Cas 2 : Après le voyage
-            {
-                return Brushes.OrangeRed;
-            }
+                return new SolidColorBrush(Color.FromRgb(255, 100, 100));
 
             return Brushes.White;
         }

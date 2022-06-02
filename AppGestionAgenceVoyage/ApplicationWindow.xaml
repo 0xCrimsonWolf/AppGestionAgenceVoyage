@@ -1003,7 +1003,7 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Transport" Width="100" Binding="{Binding TransportProp.Nom}"/>
+                <DataGridTextColumn Header="Transport" Width="830" Binding="{Binding TransportProp.Nom}"/>
             </DataGrid.Columns>
 
             <!-- Permet le double binding + double dataConverter -->
@@ -1063,7 +1063,7 @@
             <StackPanel Orientation="Horizontal">
                 <Label Width="20"
                    Height="20"
-                   Background="Green"
+                   Background="#81d681"
                    HorizontalAlignment="Left"/>
                 <TextBlock Width="85" Height="20"
                            Text=" En voyage"
@@ -1074,7 +1074,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <Label Width="20"
                    Height="20"
-                   Background="DarkOrange"
+                   Background="#ffab3c"
                    HorizontalAlignment="Left"/>
                 <TextBlock Width="160" Height="20"
                            Text=" &lt; 5j Avant le voyage"
@@ -1085,7 +1085,7 @@
             <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                 <Label Width="20"
                    Height="20"
-                   Background="OrangeRed"
+                   Background="#ff6464"
                    HorizontalAlignment="Left"/>
                 <TextBlock Width="160" Height="20"
                            Text=" N'est plus en voyage"
