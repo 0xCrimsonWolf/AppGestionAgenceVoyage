@@ -6,11 +6,10 @@
 Debarsy William - 2021-2022
 
 ## Sujet de l'application
-
 Faites pour les agents de voyages, l'application traitera de la gestion d'une agence de voyage. Elle permettra de gérer les destinations, les vols, les moyens de transports, les dates, les voyageurs, les logements, etc
-
+## Utilisation
+La première fenêtre à s'ouvrir est la fenêtre de login permettant d'encoder son nom d'utilisateur ainsi que son mot de passe (à savoir que ceux-ci sont hardcode lors de la première utilisation du programme cf. [mots de passes](#Mots-de-passes)). Une fois validé, on arrive sur la fenêtre de base sur la page d'accueil, via les différents onglets de la barre de navigation on peut choisir vers où on va et ce que l'on veut faire. On a aussi dans la barre de navigation la possibilité d'enregistrer (importer ou exporter) les données soit en binaire ou en XML. On y retrouve aussi un onglet options où l'on pourra changer le chemin d'accès vers le répertoire où l'on désire enregistrer ses données, et où l'on pourra aussi changer le thème (sombre ou clair).
 ## Organisation du code
-
 Pour les classes, voici les parties principales, respectant le MVVM, on y retrouve forcément la View (généralement tout les .xaml), le Model (représentant les classes utiles à proprement parlé) et le ViewModel (l'intermédiaire entre les deux) :
 
 Du côté WPF :
@@ -29,5 +28,15 @@ Du côté Model :
 - La classe **Logement** : elle contient tout ce qui est en rapport avec le logement c'est-à-dire, le type, le nom, l'adresse, etc.
 - La classe **Voyage** : elle est la classe qui va rassembler toutes celles du dessus (références),  elle sera gérée par l'onglet "Voyages" dans l'application de base.
 
+## Informations supplémentaires
+Des images .png ont aussi été ajoutées en tant que ressources du projet (logo, icones, ...).
 
-Les mots de passes stocké en registry et crypto sha256 + les autres données style les images
+## Mots de passes
+Lors de la première exécution du programme sur une machine, ça créera automatiquement les mots de passes qui sont hardcode, dans la registry Windows. Les mots de passes sont évidemment crypter en SHA256. Pour les jeux de tests voici les mots de passes en brut : 
+|  Nom d'utilisateur|   Mot de passe  |
+|--|--|
+|admin|admin|
+|Basile|chap123|
+|Marie|azerty|
+|Kentin|abc123|
+|Bunyamin|bubu456|
