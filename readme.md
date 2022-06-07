@@ -36,7 +36,7 @@ Lors de la première exécution du programme sur une machine, ça créera automa
 |  Nom d'utilisateur|   Mot de passe  |
 |--|--|
 |admin|admin|
-|Basile|chap123|
+|Basile|Chap123|
 |Marie|azerty|
 |Kentin|abc123|
 |Bunyamin|bubu456|
