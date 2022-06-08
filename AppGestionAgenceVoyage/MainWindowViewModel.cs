@@ -51,43 +51,10 @@ namespace AppGestionAgenceVoyage
         public MainWindowViewModel()
         {
             ListeVoyageur = new ObservableCollection<Voyageur>();
-            ListeVoyageur.Add(new Voyageur("Thomas", "Jehasse", "H", "20/04/2002", "thomas.jehasse@gmail.com", "0496.75.68.45"));
-            ListeVoyageur.Add(new Voyageur("Frank", "Aroush", "H", "19/04/1996", "frank94@gmail.com", "0497.20.65.57"));
-            ListeVoyageur.Add(new Voyageur("Elise", "Beri", "F", "02/05/2010", "mahieuelise@gmail.com", "0499.03.69.50"));
-            ListeVoyageur.Add(new Voyageur("Alix", "Hernish", "H", "03/02/1998", "Alix14@gmail.com", "0476.74.68.65"));
-            ListeVoyageur.Add(new Voyageur("Clara", "François", "F", "18/12/1982", "cla.ra@hotmail.com", "0477.02.01.58"));
-            ListeVoyageur.Add(new Voyageur("Tom", "Tailor", "H", "12/07/2001", "tomtailor9@outlook.com", "0498.08.68.42"));
-            ListeVoyageur.Add(new Voyageur("Sylvie", "Bravière", "F", "25/05/1953", "sy.braviere@gmail.com", "0472.45.87.89"));
-            ListeVoyageur.Add(new Voyageur("Emma", "Ferrier", "F", "14/03/1980", "emmaferrier1@hotmail.com", "0474.02.26.12"));
-            ListeVoyageur.Add(new Voyageur("Saskia", "Chantraine", "F", "02/10/2000", "saskia12.chantraine@outlook.com", "0496.87.65.53"));
-
             ListeDestination = new ObservableCollection<Destination>();
-            ListeDestination.Add(new Destination("Afrique", "Maroc", "Marrakech", "Subhumide/aride"));
-            ListeDestination.Add(new Destination("Amérique du Nord", "Texas", "Houston", "Subtropical"));
-            ListeDestination.Add(new Destination("Europe", "Belgique", "Liège", "Océanique chaud"));
-            ListeDestination.Add(new Destination("Europe", "Espagne", "Barcelone", "Méditerranéen"));
-            ListeDestination.Add(new Destination("Europe", "Russie", "Moscou", "Continental humide"));
-            ListeDestination.Add(new Destination("Asie", "Japon", "Tokyo", "Subtropical humide"));
-
             ListeTransport = new ObservableCollection<MoyenDeTransport>();
-            ListeTransport.Add(new TransportMarin("Balancelle", 500, (float)10.5, "Diesel", "img/boat.png", "WaterBoat", "Ferry"));
-            ListeTransport.Add(new TransportAerien("AriPlane", 600, (float)100.7, "Kérozène", "img/plane.png", "PowerPlane", "Airbus789"));
-            ListeTransport.Add(new TransportTerrestre("Audi SLine", 6, (float)50.2, "Essence", "img/car.png", "Cabriolet", "Voiture"));
-            ListeTransport.Add(new TransportTerrestre("Thalys", 560, (float)900.5, "Electrique", "img/train.png", "TGV", "Train"));
-            ListeTransport.Add(new TransportTerrestre("Leonard", 100, (float)50.6, "Diesel", "img/autocar.png", "AutocarV2", "Autocar"));
-
             ListeLogement = new ObservableCollection<Logement>();
-            ListeLogement.Add(new Logement("Hotel", "Ibis", "Rue du Vieux Bac, 17/3", 5, "jacuzzi, sauna, massage"));
-            ListeLogement.Add(new Logement("Villa", "Nature&Co", "Rue des amoureux, 8", 15, "3 salles de bains, 2 toilettes, 1 piscine"));
-            ListeLogement.Add(new Logement("Hotel", "RHotel's", "Rue Victor Hugo, 45", 2, "5 étoiles"));
-            ListeLogement.Add(new Logement("Gîte", "La maison nature", "Rue du peuplier libre, 17", 20, "Vue sur la forêt et sur le lac"));
-            ListeLogement.Add(new Logement("Appartement", "Appart's You", "Avenue de l'Oracle, 2 bis", 10, "1 salles de bains, 1 toilette"));
-            ListeLogement.Add(new Logement("Villa", "BeautyAir", "Rue de l'espérance, 54", 50, "Endroit posé pour plusieurs, en famille ou avec amis"));
-
             ListeVoyage = new ObservableCollection<Voyage>();
-            ListeVoyage.Add(new Voyage(1, ListeVoyageur[1], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(10).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[2], ListeTransport[3], ListeLogement[0], "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."));
-            ListeVoyage.Add(new Voyage(2, ListeVoyageur[2], DateTime.Now.AddYears(2).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddYears(2).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[1], ListeTransport[4], ListeLogement[1], "Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat."));
-            ListeVoyage.Add(new Voyage(3, ListeVoyageur[0], DateTime.Now.ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), DateTime.Now.AddDays(15).ToString("dd/MM/yyyy", CultureInfo.CreateSpecificCulture("fr-FR")), ListeDestination[0], ListeTransport[0], ListeLogement[2], "Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor."));
         }
 
         public Voyageur CurrentVoyageur
@@ -180,13 +147,7 @@ namespace AppGestionAgenceVoyage
 
         public bool LoginCheck(string username, string password)
         {
-            ApplicationWindow applicationWindow;
-            applicationWindow = new ApplicationWindow(username);
-            applicationWindow.Show();
-
-            return true;
-
-            /*if (LoginCheckRegistry(username, password))       // A remettre !
+            if (LoginCheckRegistry(username, password))       // A remettre !
             {
                 ApplicationWindow applicationWindow;
                 applicationWindow = new ApplicationWindow(username);
@@ -197,7 +158,7 @@ namespace AppGestionAgenceVoyage
             {
                 MessageBox.Show("Nom d'utilisateur ou mot de passe incorrect.", "Erreur", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
-            }*/
+            }
         }
 
         public bool LoginCheckRegistry(string username, string password)
@@ -241,14 +202,14 @@ namespace AppGestionAgenceVoyage
             }
         }
 
-        public bool ModifyClient(Voyageur voy, int num, string prenom, string nom, string sexe, string datenaissance)
+        public bool ModifyClient(Voyageur voy, int num, string prenom, string nom, string sexe, string datenaissance, string email, string numtel)
         {
             if (voy == null)
             {
                 throw new Exception("Erreur de sélection: Vous n'avez pas sélectionné un client.");
             }
 
-            if (prenom == "" || nom == "" || sexe == "" || datenaissance == "")
+            if (prenom == "" || nom == "" || sexe == "" || datenaissance == "" || email == "" || numtel == "")
             {
                 throw new Exception("Erreur d'entrée: Données manquantes.");
             }
@@ -261,6 +222,8 @@ namespace AppGestionAgenceVoyage
                 ListeVoyageur[num].Sexe = sexe;
                 DateTime naissance = DateTime.Parse(datenaissance);
                 ListeVoyageur[num].DateNaissance = naissance.ToString("dd/MM/yyyy", System.Globalization.CultureInfo.CreateSpecificCulture("fr-FR"));
+                ListeVoyageur[num].Email = email;
+                ListeVoyageur[num].Numtel = numtel;
                 return true;
             }
             throw new WarningException();

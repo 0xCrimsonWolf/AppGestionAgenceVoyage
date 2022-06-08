@@ -36,14 +36,13 @@ namespace AppGestionAgenceVoyage
             ComboBoxModifTransport.ItemsSource = viewModel.ListeTransport;
             ComboBoxModifLogement.ItemsSource = viewModel.ListeLogement;
 
-            ComboBoxModifNom.SelectedItem = voyage.VoyageurProp;
+            ComboBoxModifNom.Text = voyage.VoyageurProp.ToString();
             DatePickerDateModifDebut.Text = voyage.DateDebut.ToString();
             DatePickerDateModifFin.Text = voyage.DateFin.ToString();
-            ComboBoxModifDestination.SelectedItem = voyage.DestinationProp;
-            ComboBoxModifTransport.SelectedItem = voyage.TransportProp;
-            ComboBoxModifLogement.SelectedItem = voyage.LogementProp;
+            ComboBoxModifDestination.Text = voyage.DestinationProp.ToString();
+            ComboBoxModifTransport.Text = voyage.TransportProp.ToString();
+            ComboBoxModifLogement.Text = voyage.LogementProp.ToString();
             TextBoxCom.Text = voyage.Commentaire.ToString();
-
         }
 
         private void ButtonOkModif_Click(object sender, RoutedEventArgs e)

@@ -353,24 +353,24 @@
         <!-- PAGE DE BIENVENUE / ACCUEIL -->
         <!--#region PAGE DE BIENVENUE / ACCUEIL -->
 
-        <StackPanel x:Name="PanelLabelBienvenue" Visibility="Hidden" Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="4" Height="150" VerticalAlignment="Top">
+        <StackPanel x:Name="PanelLabelBienvenue" Visibility="Visible" Orientation="Vertical" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="8" Height="150" VerticalAlignment="Center" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
-                <Label Height="65"
+                <Label Height="105"
                    Content="Bonjour"
                    Margin="0,-10,0,0"
                    FontFamily="Saira condensed bold"
-                   FontSize="40"
+                   FontSize="60"
                    FontWeight="Bold"
                    Foreground="#f58735"
                    HorizontalAlignment="Left"
                    VerticalAlignment="Top"/>
 
                 <Label x:Name="LabelPrenomBVN"
-                   Height="65"
+                   Height="105"
                    Content="abcdefadadgqrstuv"
                    Margin="0,-10,0,0"
                    FontFamily="Saira Condensed Bold"
-                   FontSize="40"
+                   FontSize="60"
                    FontWeight="Bold"
                    Foreground="#00afef"
                    HorizontalAlignment="Left"
@@ -384,17 +384,17 @@
                    Content=","
                    Margin="-5,-10,0,0"
                    FontFamily="Saira condensed bold"
-                   FontSize="40"
+                   FontSize="60"
                    FontWeight="Bold"
                    Foreground="#f58735"
                    VerticalAlignment="Top"/>
             </StackPanel>
 
-            <Label Height="55"
+            <Label Height="75"
                    Content="passez une bonne journée !"
                    FontFamily="Saira condensed bold"
-                   FontSize="25"
-                   Margin="0,-15,0,0"
+                   FontSize="45"
+                   Margin="0,-35,0,0"
                    FontWeight="Bold"
                    Foreground="#f58735"
                    HorizontalAlignment="Left"/>
@@ -699,7 +699,7 @@
                     <GridViewColumn x:Name="NomColumn" Header="Nom" Width="120" DisplayMemberBinding="{Binding Nom}"/>
                     <GridViewColumn Header="Type de fuel" Width="120" DisplayMemberBinding="{Binding TypeFuel}"/>
                     <GridViewColumn Header="Passagers Max" Width="120" DisplayMemberBinding="{Binding NbrPassager}"/>
-                    <GridViewColumn Header="Charge utile" Width="120" DisplayMemberBinding="{Binding ChargeUtile}"/>
+                    <GridViewColumn Header="Charge utile (kg)" Width="120" DisplayMemberBinding="{Binding ChargeUtile}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -966,7 +966,7 @@
         <!-- NAV. VOYAGES -->
         <!--#region NAV. VOYAGES -->
 
-        <DataGrid x:Name="DataGridVoyages" Visibility="Visible"
+        <DataGrid x:Name="DataGridVoyages" Visibility="Hidden"
                   IsReadOnly="True"
                   AutoGenerateColumns="False"
                   CanUserAddRows="False"
@@ -995,7 +995,7 @@
                         </MultiBinding>
                     </DataGridTextColumn.Binding>
                 </DataGridTextColumn>
-                <DataGridTextColumn Header="Logement" Width="120">
+                <DataGridTextColumn Header="Logement" Width="140">
                     <DataGridTextColumn.Binding>
                         <MultiBinding StringFormat="{}{0}  ({1})">
                             <Binding Path="LogementProp.Nom"/>
@@ -1033,7 +1033,7 @@
             </DataGrid.RowDetailsTemplate>
         </DataGrid>
 
-        <StackPanel Visibility="Visible" x:Name="PanelButtonVoyages" Grid.Column="1" Grid.Row="2" Orientation="Vertical" Height="160" VerticalAlignment="Top" Margin="0,15,0,0">
+        <StackPanel Visibility="Hidden" x:Name="PanelButtonVoyages" Grid.Column="1" Grid.Row="2" Orientation="Vertical" Height="160" VerticalAlignment="Top" Margin="0,15,0,0">
 
             <Button x:Name="ButtonAjouterVoyage"
                     Height="40"
@@ -1059,7 +1059,7 @@
                     Background="#f58735" Click="ButtonSupprimerVoyage_Click"/>
         </StackPanel>
 
-        <StackPanel Visibility="Visible" x:Name="PanelLegendVoyages" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Vertical" Height="75" VerticalAlignment="Bottom" Margin="0,15,0,0">
+        <StackPanel Visibility="Hidden" x:Name="PanelLegendVoyages" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" Orientation="Vertical" Height="75" VerticalAlignment="Bottom" Margin="0,15,0,0">
             <StackPanel Orientation="Horizontal">
                 <Label Width="20"
                    Height="20"

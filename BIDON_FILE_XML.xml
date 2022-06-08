@@ -1,0 +1,456 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MainWindowViewModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Voyageur>
+    <Nom>Jehasse</Nom>
+    <Prenom>Thomas</Prenom>
+    <Sexe>H</Sexe>
+    <DateNaissance>20/04/2002</DateNaissance>
+    <Email>thomas.jehasse@gmail.com</Email>
+    <Numtel>0496.75.68.45</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>Aroush</Nom>
+    <Prenom>Frank</Prenom>
+    <Sexe>H</Sexe>
+    <DateNaissance>19/04/1996</DateNaissance>
+    <Email>frank94@gmail.com</Email>
+    <Numtel>0497.20.65.57</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>Beri</Nom>
+    <Prenom>Elise</Prenom>
+    <Sexe>F</Sexe>
+    <DateNaissance>02/05/2010</DateNaissance>
+    <Email>mahieuelise@gmail.com</Email>
+    <Numtel>0499.03.69.50</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>Hernish</Nom>
+    <Prenom>Alix</Prenom>
+    <Sexe>H</Sexe>
+    <DateNaissance>03/02/1998</DateNaissance>
+    <Email>Alix14@gmail.com</Email>
+    <Numtel>0476.74.68.65</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>François</Nom>
+    <Prenom>Clara</Prenom>
+    <Sexe>F</Sexe>
+    <DateNaissance>18/12/1982</DateNaissance>
+    <Email>cla.ra@hotmail.com</Email>
+    <Numtel>0477.02.01.58</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>Tailor</Nom>
+    <Prenom>Tom</Prenom>
+    <Sexe>H</Sexe>
+    <DateNaissance>12/07/2001</DateNaissance>
+    <Email>tomtailor9@outlook.com</Email>
+    <Numtel>0498.08.68.42</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>Bravière</Nom>
+    <Prenom>Sylvie</Prenom>
+    <Sexe>F</Sexe>
+    <DateNaissance>25/05/1953</DateNaissance>
+    <Email>sy.braviere@gmail.com</Email>
+    <Numtel>0472.45.87.89</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>Ferrier</Nom>
+    <Prenom>Emma</Prenom>
+    <Sexe>F</Sexe>
+    <DateNaissance>14/03/1980</DateNaissance>
+    <Email>emmaferrier1@hotmail.com</Email>
+    <Numtel>0474.02.26.12</Numtel>
+  </Voyageur>
+  <Voyageur>
+    <Nom>Chantraine</Nom>
+    <Prenom>Saskia</Prenom>
+    <Sexe>F</Sexe>
+    <DateNaissance>02/10/2000</DateNaissance>
+    <Email>saskia12.chantraine@outlook.com</Email>
+    <Numtel>0496.87.65.53</Numtel>
+  </Voyageur>
+  <ListeDestination>
+    <Destination>
+      <Continent>Afrique</Continent>
+      <Country>Maroc</Country>
+      <City>Marrakech</City>
+      <Climate>Subhumide/aride</Climate>
+    </Destination>
+    <Destination>
+      <Continent>Amérique du Nord</Continent>
+      <Country>Texas</Country>
+      <City>Houston</City>
+      <Climate>Subtropical</Climate>
+    </Destination>
+    <Destination>
+      <Continent>Europe</Continent>
+      <Country>Belgique</Country>
+      <City>Liège</City>
+      <Climate>Océanique chaud</Climate>
+    </Destination>
+    <Destination>
+      <Continent>Europe</Continent>
+      <Country>Espagne</Country>
+      <City>Barcelone</City>
+      <Climate>Méditerranéen</Climate>
+    </Destination>
+    <Destination>
+      <Continent>Europe</Continent>
+      <Country>Russie</Country>
+      <City>Moscou</City>
+      <Climate>Continental humide</Climate>
+    </Destination>
+    <Destination>
+      <Continent>Asie</Continent>
+      <Country>Japon</Country>
+      <City>Tokyo</City>
+      <Climate>Subtropical humide</Climate>
+    </Destination>
+  </ListeDestination>
+  <ListeTransport>
+    <MoyenDeTransport xsi:type="TransportMarin">
+      <Nom>Balancelle</Nom>
+      <TypeFuel>Diesel</TypeFuel>
+      <NbrPassager>500</NbrPassager>
+      <ChargeUtile>10</ChargeUtile>
+      <Image>img/boat.png</Image>
+      <CompagnieMaritime>WaterBoat</CompagnieMaritime>
+      <ModeleBateau>Ferry</ModeleBateau>
+    </MoyenDeTransport>
+    <MoyenDeTransport xsi:type="TransportAerien">
+      <Nom>AriPlane</Nom>
+      <TypeFuel>Kérozène</TypeFuel>
+      <NbrPassager>600</NbrPassager>
+      <ChargeUtile>100</ChargeUtile>
+      <Image>img/plane.png</Image>
+      <CompagnieAerienne>PowerPlane</CompagnieAerienne>
+      <ModeleAvion>Airbus789</ModeleAvion>
+    </MoyenDeTransport>
+    <MoyenDeTransport xsi:type="TransportTerrestre">
+      <Nom>Audi SLine</Nom>
+      <TypeFuel>Essence</TypeFuel>
+      <NbrPassager>6</NbrPassager>
+      <ChargeUtile>50</ChargeUtile>
+      <Image>img/car.png</Image>
+      <Modele>Cabriolet</Modele>
+      <Type>Voiture</Type>
+    </MoyenDeTransport>
+    <MoyenDeTransport xsi:type="TransportTerrestre">
+      <Nom>Thalys</Nom>
+      <TypeFuel>Electrique</TypeFuel>
+      <NbrPassager>560</NbrPassager>
+      <ChargeUtile>900</ChargeUtile>
+      <Image>img/train.png</Image>
+      <Modele>TGV</Modele>
+      <Type>Train</Type>
+    </MoyenDeTransport>
+    <MoyenDeTransport xsi:type="TransportTerrestre">
+      <Nom>Leonard</Nom>
+      <TypeFuel>Diesel</TypeFuel>
+      <NbrPassager>100</NbrPassager>
+      <ChargeUtile>50</ChargeUtile>
+      <Image>img/autocar.png</Image>
+      <Modele>AutocarV2</Modele>
+      <Type>Autocar</Type>
+    </MoyenDeTransport>
+  </ListeTransport>
+  <ListeLogement>
+    <Logement>
+      <Type>Hotel</Type>
+      <Nom>Ibis</Nom>
+      <NbrPersonnes>5</NbrPersonnes>
+      <AdressePostale>Rue du Vieux Bac, 17/3</AdressePostale>
+      <Commentary>jacuzzi, sauna, massage</Commentary>
+    </Logement>
+    <Logement>
+      <Type>Villa</Type>
+      <Nom>Nature&amp;Co</Nom>
+      <NbrPersonnes>15</NbrPersonnes>
+      <AdressePostale>Rue des amoureux, 8</AdressePostale>
+      <Commentary>3 salles de bains, 2 toilettes, 1 piscine</Commentary>
+    </Logement>
+    <Logement>
+      <Type>Hotel</Type>
+      <Nom>RHotel's</Nom>
+      <NbrPersonnes>2</NbrPersonnes>
+      <AdressePostale>Rue Victor Hugo, 45</AdressePostale>
+      <Commentary>5 étoiles</Commentary>
+    </Logement>
+    <Logement>
+      <Type>Gîte</Type>
+      <Nom>La maison nature</Nom>
+      <NbrPersonnes>20</NbrPersonnes>
+      <AdressePostale>Rue du peuplier libre, 17</AdressePostale>
+      <Commentary>Vue sur la forêt et sur le lac</Commentary>
+    </Logement>
+    <Logement>
+      <Type>Appartement</Type>
+      <Nom>Appart's You</Nom>
+      <NbrPersonnes>10</NbrPersonnes>
+      <AdressePostale>Avenue de l'Oracle, 2 bis</AdressePostale>
+      <Commentary>1 salles de bains, 1 toilette</Commentary>
+    </Logement>
+    <Logement>
+      <Type>Villa</Type>
+      <Nom>BeautyAir</Nom>
+      <NbrPersonnes>50</NbrPersonnes>
+      <AdressePostale>Rue de l'espérance, 54</AdressePostale>
+      <Commentary>Endroit posé pour plusieurs, en famille ou avec amis</Commentary>
+    </Logement>
+  </ListeLogement>
+  <ListeVoyage>
+    <Voyage>
+      <Id>1</Id>
+      <VoyageurProp>
+        <Nom>Aroush</Nom>
+        <Prenom>Frank</Prenom>
+        <Sexe>H</Sexe>
+        <DateNaissance>19/04/1996</DateNaissance>
+        <Email>frank94@gmail.com</Email>
+        <Numtel>0497.20.65.57</Numtel>
+      </VoyageurProp>
+      <DateDebut>19/05/2022</DateDebut>
+      <DateFin>29/05/2022</DateFin>
+      <DestinationProp>
+        <Continent>Europe</Continent>
+        <Country>Belgique</Country>
+        <City>Liège</City>
+        <Climate>Océanique chaud</Climate>
+      </DestinationProp>
+      <TransportProp xsi:type="TransportTerrestre">
+        <Nom>Thalys</Nom>
+        <TypeFuel>Electrique</TypeFuel>
+        <NbrPassager>560</NbrPassager>
+        <ChargeUtile>900</ChargeUtile>
+        <Image>img/train.png</Image>
+        <Modele>TGV</Modele>
+        <Type>Train</Type>
+      </TransportProp>
+      <LogementProp>
+        <Type>Hotel</Type>
+        <Nom>Ibis</Nom>
+        <NbrPersonnes>5</NbrPersonnes>
+        <AdressePostale>Rue du Vieux Bac, 17/3</AdressePostale>
+        <Commentary>jacuzzi, sauna, massage</Commentary>
+      </LogementProp>
+      <Commentaire>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</Commentaire>
+    </Voyage>
+    <Voyage>
+      <Id>2</Id>
+      <VoyageurProp>
+        <Nom>Beri</Nom>
+        <Prenom>Elise</Prenom>
+        <Sexe>F</Sexe>
+        <DateNaissance>02/05/2010</DateNaissance>
+        <Email>mahieuelise@gmail.com</Email>
+        <Numtel>0499.03.69.50</Numtel>
+      </VoyageurProp>
+      <DateDebut>08/06/2023</DateDebut>
+      <DateFin>08/06/2024</DateFin>
+      <DestinationProp>
+        <Continent>Amérique du Nord</Continent>
+        <Country>Texas</Country>
+        <City>Houston</City>
+        <Climate>Subtropical</Climate>
+      </DestinationProp>
+      <TransportProp xsi:type="TransportTerrestre">
+        <Nom>Leonard</Nom>
+        <TypeFuel>Diesel</TypeFuel>
+        <NbrPassager>100</NbrPassager>
+        <ChargeUtile>50</ChargeUtile>
+        <Image>img/autocar.png</Image>
+        <Modele>AutocarV2</Modele>
+        <Type>Autocar</Type>
+      </TransportProp>
+      <LogementProp>
+        <Type>Villa</Type>
+        <Nom>Nature&amp;Co</Nom>
+        <NbrPersonnes>15</NbrPersonnes>
+        <AdressePostale>Rue des amoureux, 8</AdressePostale>
+        <Commentary>3 salles de bains, 2 toilettes, 1 piscine</Commentary>
+      </LogementProp>
+      <Commentaire>Maecenas ligula massa, varius a, semper congue, euismod non, mi. Proin porttitor, orci nec nonummy molestie, enim est eleifend mi, non fermentum diam nisl sit amet erat.</Commentaire>
+    </Voyage>
+    <Voyage>
+      <Id>3</Id>
+      <VoyageurProp>
+        <Nom>Jehasse</Nom>
+        <Prenom>Thomas</Prenom>
+        <Sexe>H</Sexe>
+        <DateNaissance>20/04/2002</DateNaissance>
+        <Email>thomas.jehasse@gmail.com</Email>
+        <Numtel>0496.75.68.45</Numtel>
+      </VoyageurProp>
+      <DateDebut>08/06/2022</DateDebut>
+      <DateFin>23/06/2022</DateFin>
+      <DestinationProp>
+        <Continent>Afrique</Continent>
+        <Country>Maroc</Country>
+        <City>Marrakech</City>
+        <Climate>Subhumide/aride</Climate>
+      </DestinationProp>
+      <TransportProp xsi:type="TransportMarin">
+        <Nom>Balancelle</Nom>
+        <TypeFuel>Diesel</TypeFuel>
+        <NbrPassager>500</NbrPassager>
+        <ChargeUtile>10</ChargeUtile>
+        <Image>img/boat.png</Image>
+        <CompagnieMaritime>WaterBoat</CompagnieMaritime>
+        <ModeleBateau>Ferry</ModeleBateau>
+      </TransportProp>
+      <LogementProp>
+        <Type>Hotel</Type>
+        <Nom>RHotel's</Nom>
+        <NbrPersonnes>2</NbrPersonnes>
+        <AdressePostale>Rue Victor Hugo, 45</AdressePostale>
+        <Commentary>5 étoiles</Commentary>
+      </LogementProp>
+      <Commentaire>Duis semper. Duis arcu massa, scelerisque vitae, consequat in, pretium a, enim. Pellentesque congue. Ut in risus volutpat libero pharetra tempor.</Commentaire>
+    </Voyage>
+    <Voyage>
+      <Id>4</Id>
+      <VoyageurProp>
+        <Nom>Bravière</Nom>
+        <Prenom>Sylvie</Prenom>
+        <Sexe>F</Sexe>
+        <DateNaissance>25/05/1953</DateNaissance>
+        <Email>sy.braviere@gmail.com</Email>
+        <Numtel>0472.45.87.89</Numtel>
+      </VoyageurProp>
+      <DateDebut>03/06/2022</DateDebut>
+      <DateFin>13/06/2022</DateFin>
+      <DestinationProp>
+        <Continent>Europe</Continent>
+        <Country>Belgique</Country>
+        <City>Liège</City>
+        <Climate>Océanique chaud</Climate>
+      </DestinationProp>
+      <TransportProp xsi:type="TransportAerien">
+        <Nom>AriPlane</Nom>
+        <TypeFuel>Kérozène</TypeFuel>
+        <NbrPassager>600</NbrPassager>
+        <ChargeUtile>100</ChargeUtile>
+        <Image>img/plane.png</Image>
+        <CompagnieAerienne>PowerPlane</CompagnieAerienne>
+        <ModeleAvion>Airbus789</ModeleAvion>
+      </TransportProp>
+      <LogementProp>
+        <Type>Villa</Type>
+        <Nom>BeautyAir</Nom>
+        <NbrPersonnes>50</NbrPersonnes>
+        <AdressePostale>Rue de l'espérance, 54</AdressePostale>
+        <Commentary>Endroit posé pour plusieurs, en famille ou avec amis</Commentary>
+      </LogementProp>
+      <Commentaire>Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar.</Commentaire>
+    </Voyage>
+    <Voyage>
+      <Id>5</Id>
+      <VoyageurProp>
+        <Nom>Ferrier</Nom>
+        <Prenom>Emma</Prenom>
+        <Sexe>F</Sexe>
+        <DateNaissance>14/03/1980</DateNaissance>
+        <Email>emmaferrier1@hotmail.com</Email>
+        <Numtel>0474.02.26.12</Numtel>
+      </VoyageurProp>
+      <DateDebut>19/05/2022</DateDebut>
+      <DateFin>10/06/2022</DateFin>
+      <DestinationProp>
+        <Continent>Europe</Continent>
+        <Country>Espagne</Country>
+        <City>Barcelone</City>
+        <Climate>Méditerranéen</Climate>
+      </DestinationProp>
+      <TransportProp xsi:type="TransportMarin">
+        <Nom>Balancelle</Nom>
+        <TypeFuel>Diesel</TypeFuel>
+        <NbrPassager>500</NbrPassager>
+        <ChargeUtile>10</ChargeUtile>
+        <Image>img/boat.png</Image>
+        <CompagnieMaritime>WaterBoat</CompagnieMaritime>
+        <ModeleBateau>Ferry</ModeleBateau>
+      </TransportProp>
+      <LogementProp>
+        <Type>Gîte</Type>
+        <Nom>La maison nature</Nom>
+        <NbrPersonnes>20</NbrPersonnes>
+        <AdressePostale>Rue du peuplier libre, 17</AdressePostale>
+        <Commentary>Vue sur la forêt et sur le lac</Commentary>
+      </LogementProp>
+      <Commentaire>Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar.</Commentaire>
+    </Voyage>
+    <Voyage>
+      <Id>6</Id>
+      <VoyageurProp>
+        <Nom>Tailor</Nom>
+        <Prenom>Tom</Prenom>
+        <Sexe>H</Sexe>
+        <DateNaissance>12/07/2001</DateNaissance>
+        <Email>tomtailor9@outlook.com</Email>
+        <Numtel>0498.08.68.42</Numtel>
+      </VoyageurProp>
+      <DateDebut>30/06/2022</DateDebut>
+      <DateFin>14/07/2022</DateFin>
+      <DestinationProp>
+        <Continent>Europe</Continent>
+        <Country>Russie</Country>
+        <City>Moscou</City>
+        <Climate>Continental humide</Climate>
+      </DestinationProp>
+      <TransportProp xsi:type="TransportTerrestre">
+        <Nom>Leonard</Nom>
+        <TypeFuel>Diesel</TypeFuel>
+        <NbrPassager>100</NbrPassager>
+        <ChargeUtile>50</ChargeUtile>
+        <Image>img/autocar.png</Image>
+        <Modele>AutocarV2</Modele>
+        <Type>Autocar</Type>
+      </TransportProp>
+      <LogementProp>
+        <Type>Appartement</Type>
+        <Nom>Appart's You</Nom>
+        <NbrPersonnes>10</NbrPersonnes>
+        <AdressePostale>Avenue de l'Oracle, 2 bis</AdressePostale>
+        <Commentary>1 salles de bains, 1 toilette</Commentary>
+      </LogementProp>
+      <Commentaire>Ut velit mauris, egestas sed, gravida nec, ornare ut, mi. Aenean ut orci vel massa suscipit pulvinar.</Commentaire>
+    </Voyage>
+  </ListeVoyage>
+  <Root>C:\Users\willi\Desktop</Root>
+  <Brushhh>
+    <Opacity>1</Opacity>
+    <Transform xsi:type="MatrixTransform">
+      <Matrix>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M21>0</M21>
+        <M22>1</M22>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+      </Matrix>
+    </Transform>
+    <RelativeTransform xsi:type="MatrixTransform">
+      <Matrix>
+        <M11>1</M11>
+        <M12>0</M12>
+        <M21>0</M21>
+        <M22>1</M22>
+        <OffsetX>0</OffsetX>
+        <OffsetY>0</OffsetY>
+      </Matrix>
+    </RelativeTransform>
+    <Color>
+      <A>255</A>
+      <R>255</R>
+      <G>255</G>
+      <B>255</B>
+      <ScA>1</ScA>
+      <ScR>1</ScR>
+      <ScG>1</ScG>
+      <ScB>1</ScB>
+    </Color>
+  </Brushhh>
+</MainWindowViewModel>

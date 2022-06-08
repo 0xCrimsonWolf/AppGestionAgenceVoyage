@@ -32,6 +32,40 @@ namespace AppGestionAgenceVoyage
 
             SolidColorBrush brush = _viewModel.OpenRegistry_OptionsPath();
 
+            // Permet de lancer le programme avec directement le fichier bidonné ->
+
+            /*MainWindowViewModel binaryData = _viewModel.LoadFromBinary("D:/Documents/Travaux_Scolaires/HEPL/Bloc2/Q2/C#/Laboratoire/labo-final-WilliamDeb/BIDON_FILE_BINAIRE.dat");
+            if (binaryData != null)
+            {
+                EnregistrementEvent e = new EnregistrementEvent(binaryData);
+
+                _viewModel.ListeVoyageur.Clear();
+                for (int i = 0; i < e.ViewModel.ListeVoyageur.Count; i++)
+                {
+                    _viewModel.ListeVoyageur.Add(e.ViewModel.ListeVoyageur[i]);
+                }
+                _viewModel.ListeDestination.Clear();
+                for (int i = 0; i < e.ViewModel.ListeDestination.Count; i++)
+                {
+                    _viewModel.ListeDestination.Add(e.ViewModel.ListeDestination[i]);
+                }
+                _viewModel.ListeLogement.Clear();
+                for (int i = 0; i < e.ViewModel.ListeLogement.Count; i++)
+                {
+                    _viewModel.ListeLogement.Add(e.ViewModel.ListeLogement[i]);
+                }
+                _viewModel.ListeTransport.Clear();
+                for (int i = 0; i < e.ViewModel.ListeTransport.Count; i++)
+                {
+                    _viewModel.ListeTransport.Add(e.ViewModel.ListeTransport[i]);
+                }
+                _viewModel.ListeVoyage.Clear();
+                for (int i = 0; i < e.ViewModel.ListeVoyage.Count; i++)
+                {
+                    _viewModel.ListeVoyage.Add(e.ViewModel.ListeVoyage[i]);
+                }
+            }*/
+
             _viewModel.Brushhh = brush;
             this.Background = brush;
             TextBoxChargeUtile.Background = brush;
@@ -354,7 +388,7 @@ namespace AppGestionAgenceVoyage
         {
             try
             {
-                _viewModel.ModifyClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex, TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString());
+                _viewModel.ModifyClient((Voyageur)ListViewClient.SelectedItem, ListViewClient.SelectedIndex, TextBoxPrenom.Text, TextBoxNom.Text, TextBoxSexe.Text, DatePickerDateNaissance.ToString(), TextBoxEmail.Text, TextBoxNumtel.Text);
                 TextBoxPrenom.Clear();
                 TextBoxNom.Clear();
                 TextBoxSexe.Clear();
